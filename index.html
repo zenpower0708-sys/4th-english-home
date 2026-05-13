@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>젠파워 영어 — 대치동 25년 소수정예 영어학원</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy2: #0f2040;
+  --navy3: #1a3a6e;
+  --blue: #1e5eb8;
+  --blue-light: #3a82d4;
+  --gold: #c8992a;
+  --gold-light: #e8b84b;
+  --cream: #f8f5ef;
+  --white: #ffffff;
+  --gray: #8a94a6;
+  --gray-light: #f0f2f5;
+  --text: #1a2332;
+  --text-muted: #5a6578;
+  --border: rgba(255,255,255,0.1);
+  --border-dark: rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans KR', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--navy3); border-radius: 3px; }
+
+/* TOP BAR */
+.topbar {
+  background: var(--navy);
+  padding: 8px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.topbar-left { font-size: 12px; color: rgba(255,255,255,0.5); }
+.topbar-right { display: flex; gap: 20px; align-items: center; }
+.topbar-phone { font-size: 13px; color: var(--gold-light); font-weight: 500; letter-spacing: 0.3px; }
+.topbar-links { display: flex; gap: 16px; }
+.topbar-links a { font-size: 12px; color: rgba(255,255,255,0.5); text-decoration: none; }
+.topbar-links a:hover { color: rgba(255,255,255,0.8); }
+
+/* NEWS TICKER */
+.ticker {
+  background: var(--navy2);
+  border-bottom: 1px solid rgba(200,153,42,0.2);
+  padding: 9px 40px;
+  display: flex; align-items: center; gap: 16px; overflow: hidden;
+}
+.ticker-badge {
+  flex-shrink: 0;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  padding: 3px 8px; border-radius: 2px;
+}
+.ticker-track { overflow: hidden; flex: 1; }
+.ticker-inner {
+  display: flex; gap: 60px; white-space: nowrap;
+  animation: scroll 35s linear infinite;
+}
+.ticker-inner:hover { animation-play-state: paused; }
+.ticker-item { font-size: 12px; color: rgba(255,255,255,0.7); flex-shrink: 0; }
+.ticker-item .tag { color: var(--gold-light); margin-right: 6px; font-weight: 500; }
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* NAV */
+.nav {
+  background: rgba(10,22,40,0.97);
+  backdrop-filter: blur(20px);
+  padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+  position: sticky; top: 0; z-index: 200;
+  border-bottom: 1px solid rgba(200,153,42,0.15);
+}
+.logo { display: flex; align-items: baseline; gap: 2px; text-decoration: none; }
+.logo-zen { font-family: 'Playfair Display', serif; font-size: 20px; color: white; letter-spacing: 1px; }
+.logo-power { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); letter-spacing: 1px; }
+.logo-eng { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 3px; margin-left: 6px; text-transform: uppercase; }
+.nav-menu { display: flex; gap: 4px; }
+.nav-item {
+  color: rgba(255,255,255,0.65); font-size: 13px;
+  padding: 8px 14px; border-radius: 6px;
+  cursor: pointer; text-decoration: none;
+  transition: all 0.2s;
+}
+.nav-item:hover, .nav-item.active { color: white; background: rgba(255,255,255,0.06); }
+.nav-right { display: flex; gap: 8px; align-items: center; }
+.nav-dict-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(200,153,42,0.15); color: var(--gold-light);
+  border: 1px solid rgba(200,153,42,0.3);
+  padding: 7px 14px; border-radius: 20px;
+  font-size: 12px; cursor: pointer; text-decoration: none;
+  transition: all 0.2s;
+}
+.nav-dict-btn:hover { background: rgba(200,153,42,0.25); }
+.nav-dict-btn svg { width: 14px; height: 14px; }
+.nav-login-btn {
+  background: var(--blue); color: white;
+  border: none; padding: 8px 18px; border-radius: 6px;
+  font-size: 13px; cursor: pointer; font-family: inherit;
+  transition: background 0.2s;
+}
+.nav-login-btn:hover { background: var(--blue-light); }
+
+/* HERO */
+.hero {
+  background: var(--navy);
+  min-height: 580px;
+  display: flex; align-items: stretch;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(30,94,184,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+/* grid pattern */
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.hero-content {
+  flex: 1; padding: 80px 40px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+  z-index: 2; max-width: 580px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-bottom: 20px;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold-light);
+}
+.hero-eyebrow::before {
+  content: ''; width: 24px; height: 1px; background: var(--gold);
+}
+.hero-h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 40px; font-weight: 700; line-height: 1.3;
+  color: white; margin-bottom: 16px;
+}
+.hero-h1 em { color: var(--gold-light); font-style: normal; }
+.hero-sub {
+  font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.8;
+  margin-bottom: 36px; max-width: 460px;
+}
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+.cta-primary {
+  background: var(--gold); color: var(--navy);
+  border: none; padding: 13px 28px; border-radius: 6px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  font-family: inherit; letter-spacing: 0.3px;
+  transition: all 0.2s;
+}
+.cta-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.cta-outline {
+  background: transparent; color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 13px 28px; border-radius: 6px;
+  font-size: 14px; cursor: pointer; font-family: inherit;
+  transition: all 0.2s;
+}
+.cta-outline:hover { border-color: rgba(255,255,255,0.5); color: white; }
+.hero-trust {
+  display: flex; gap: 28px; flex-wrap: wrap;
+}
+.trust-item { display: flex; align-items: baseline; gap: 6px; }
+.trust-num { font-size: 22px; font-weight: 700; color: white; font-family: 'Playfair Display', serif; }
+.trust-label { font-size: 12px; color: rgba(255,255,255,0.45); }
+
+.hero-visual {
+  flex: 0 0 420px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px; z-index: 2; position: relative;
+}
+
+/* 3D SCENE SVG */
+.scene { width: 100%; max-width: 380px; }
+
+/* STATS RIBBON */
+.stats-ribbon {
+  background: var(--navy2);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(200,153,42,0.2);
+}
+.ribbon-item {
+  padding: 20px 24px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.ribbon-item:last-child { border-right: none; }
+.ribbon-num {
+  font-size: 24px; font-weight: 700; color: var(--gold-light);
+  font-family: 'Playfair Display', serif;
+}
+.ribbon-label { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px; letter-spacing: 0.3px; }
+
+/* SECTION BASE */
+.section { padding: 80px 40px; }
+.section-alt { background: var(--cream); }
+.section-dark { background: var(--navy); }
+.sec-eyebrow {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--blue); font-weight: 500; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sec-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--blue); }
+.sec-title { font-family: 'Noto Serif KR', serif; font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.sec-title.light { color: white; }
+.sec-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 40px; line-height: 1.7; }
+.sec-sub.light { color: rgba(255,255,255,0.5); }
+
+/* QUICK LINKS */
+.quick-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;
+}
+.quick-card {
+  background: white; border: 1px solid var(--border-dark);
+  border-radius: 10px; padding: 20px 14px;
+  text-align: center; cursor: pointer;
+  text-decoration: none; color: inherit;
+  transition: all 0.2s;
+}
+.quick-card:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,94,184,0.1); }
+.quick-icon { font-size: 24px; margin-bottom: 8px; }
+.quick-name { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+.quick-desc { font-size: 11px; color: var(--text-muted); }
+
+/* ABOUT / PRINCIPAL */
+.about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 60px; align-items: start; }
+.principal-card {
+  background: var(--navy); border-radius: 16px; padding: 32px;
+  text-align: center; position: sticky; top: 84px;
+}
+.principal-avatar {
+  width: 90px; height: 90px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--navy3));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 26px; color: white;
+  margin: 0 auto 16px;
+  border: 3px solid rgba(200,153,42,0.3);
+}
+.principal-name { font-size: 17px; font-weight: 600; color: white; margin-bottom: 4px; }
+.principal-title { font-size: 12px; color: var(--gold-light); margin-bottom: 20px; letter-spacing: 0.5px; }
+.principal-badges { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+.p-badge {
+  font-size: 11px; padding: 5px 12px; border-radius: 20px; text-align: left;
+  background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.7);
+  display: flex; align-items: center; gap: 6px;
+}
+.p-badge::before { content: '·'; color: var(--gold); font-size: 16px; }
+.principal-contact {
+  background: rgba(200,153,42,0.1); border: 1px solid rgba(200,153,42,0.2);
+  border-radius: 8px; padding: 12px;
+  font-size: 12px; color: var(--gold-light); text-align: center;
+  cursor: pointer;
+}
+.about-content { }
+.about-quote {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 20px; line-height: 1.7; color: var(--navy);
+  border-left: 3px solid var(--gold); padding-left: 20px;
+  margin-bottom: 32px; border-radius: 0;
+}
+.about-points { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+.about-point {
+  background: white; border: 1px solid var(--border-dark); border-radius: 10px;
+  padding: 18px; display: flex; gap: 12px; align-items: flex-start;
+}
+.point-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.point-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.point-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+/* STEPS */
+.steps-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border-dark); border-radius: 12px; overflow: hidden;
+}
+.step-col {
+  padding: 28px 24px;
+  border-right: 1px solid var(--border-dark);
+  position: relative;
+}
+.step-col:last-child { border-right: none; }
+.step-col::after {
+  content: '→';
+  position: absolute; right: -14px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--blue-light); font-size: 18px; z-index: 1;
+}
+.step-col:last-child::after { display: none; }
+.step-num {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--navy); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; margin-bottom: 14px;
+  font-family: 'Playfair Display', serif;
+}
+.step-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.step-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+/* ACHIEVEMENTS */
+.achieve-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.achieve-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 24px;
+  transition: all 0.2s;
+}
+.achieve-card:hover { border-color: rgba(200,153,42,0.3); background: rgba(200,153,42,0.04); }
+.achieve-icon-wrap {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: rgba(200,153,42,0.1); border: 1px solid rgba(200,153,42,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 14px;
+}
+.achieve-num { font-size: 26px; font-weight: 700; color: var(--gold-light); font-family: 'Playfair Display', serif; margin-bottom: 4px; }
+.achieve-title { font-size: 14px; font-weight: 500; color: white; margin-bottom: 6px; }
+.achieve-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+/* CURRICULUM */
+.curr-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border-dark); margin-bottom: 32px; }
+.curr-tab {
+  padding: 10px 20px; font-size: 13px; cursor: pointer;
+  border-bottom: 2px solid transparent; color: var(--text-muted);
+  margin-bottom: -1px; transition: all 0.2s;
+}
+.curr-tab.active { color: var(--blue); border-bottom-color: var(--blue); font-weight: 500; }
+.curr-panel { display: none; }
+.curr-panel.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.curr-card {
+  background: white; border: 1px solid var(--border-dark); border-radius: 12px;
+  padding: 22px; cursor: pointer; transition: all 0.2s;
+}
+.curr-card:hover { border-color: var(--blue); box-shadow: 0 4px 20px rgba(30,94,184,0.08); }
+.curr-tag {
+  display: inline-block; font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 20px; margin-bottom: 12px;
+}
+.curr-name { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.curr-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+.curr-detail { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-dark); }
+.curr-detail li { font-size: 11px; color: var(--text-muted); margin-bottom: 3px; list-style: none; padding-left: 12px; position: relative; }
+.curr-detail li::before { content: '·'; color: var(--blue); position: absolute; left: 0; }
+
+/* LEARNING ZONE */
+.zone-header {
+  background: var(--navy2); border-radius: 12px;
+  padding: 20px 24px; margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.zone-login-info { font-size: 13px; color: rgba(255,255,255,0.6); }
+.zone-login-badges { display: flex; gap: 8px; }
+.zone-badge {
+  font-size: 11px; padding: 4px 12px; border-radius: 20px; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6);
+  background: transparent; font-family: inherit;
+  transition: all 0.2s;
+}
+.zone-badge:hover, .zone-badge.active { background: var(--blue); color: white; border-color: var(--blue); }
+.zone-badge.guest-active { background: rgba(255,255,255,0.1); color: white; }
+
+.zone-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border-dark); margin-bottom: 28px; }
+.ztab {
+  padding: 10px 22px; font-size: 13px; cursor: pointer;
+  border-bottom: 2px solid transparent; color: var(--text-muted);
+  margin-bottom: -1px; display: flex; align-items: center; gap: 6px;
+}
+.ztab.active { color: var(--blue); border-bottom-color: var(--blue); font-weight: 500; }
+.ztab-badge { font-size: 10px; padding: 1px 6px; border-radius: 10px; background: var(--blue); color: white; }
+.zpanel { display: none; }
+.zpanel.active { display: block; }
+
+/* EXAM BANK */
+.search-bar {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;
+  padding: 16px; background: var(--gray-light); border-radius: 10px;
+}
+.search-select {
+  padding: 8px 14px; border-radius: 6px;
+  border: 1px solid var(--border-dark);
+  background: white; color: var(--text);
+  font-size: 13px; font-family: inherit; cursor: pointer;
+}
+.search-btn {
+  padding: 8px 20px; border-radius: 6px;
+  background: var(--blue); color: white; border: none;
+  font-size: 13px; cursor: pointer; font-family: inherit;
+  transition: background 0.2s;
+}
+.search-btn:hover { background: var(--blue-light); }
+.exam-list { display: flex; flex-direction: column; gap: 8px; }
+.exam-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px; background: white; border: 1px solid var(--border-dark);
+  border-radius: 8px; cursor: pointer; transition: all 0.2s;
+}
+.exam-item:hover { border-color: var(--blue); }
+.exam-info { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.exam-school-tag {
+  font-size: 10px; padding: 2px 8px; border-radius: 10px;
+  background: #e8f0fe; color: #1a56db; font-weight: 500;
+}
+.exam-title { font-size: 13px; font-weight: 500; }
+.exam-meta { font-size: 11px; color: var(--text-muted); }
+.exam-actions { display: flex; gap: 6px; }
+.exam-btn {
+  font-size: 11px; padding: 4px 10px; border-radius: 4px; cursor: pointer;
+  border: 1px solid var(--border-dark); background: white;
+  color: var(--text-muted); font-family: inherit;
+}
+.exam-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+/* LISTENING LAB */
+.listen-levels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 24px; }
+.level-card {
+  padding: 16px; border: 1px solid var(--border-dark); border-radius: 10px;
+  text-align: center; cursor: pointer; transition: all 0.2s; background: white;
+}
+.level-card:hover, .level-card.active { border-color: var(--blue); background: #f0f6ff; }
+.level-card.featured { border-color: var(--gold); border-width: 2px; }
+.level-name { font-size: 13px; font-weight: 600; color: var(--blue); margin-bottom: 3px; }
+.level-desc { font-size: 11px; color: var(--text-muted); }
+.player-card {
+  background: var(--navy); border-radius: 12px; padding: 24px; margin-bottom: 20px;
+}
+.player-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.player-title { font-size: 15px; font-weight: 500; color: white; }
+.player-badge { font-size: 10px; padding: 3px 10px; border-radius: 10px; background: rgba(200,153,42,0.15); color: var(--gold-light); }
+.player-controls { display: flex; align-items: center; gap: 14px; }
+.play-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--gold); color: var(--navy); border: none;
+  cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.2s;
+}
+.play-btn:hover { background: var(--gold-light); transform: scale(1.05); }
+.progress-wrap {
+  flex: 1; height: 4px; background: rgba(255,255,255,0.15);
+  border-radius: 2px; cursor: pointer; position: relative;
+}
+.progress-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.1s; }
+.time-display { font-size: 12px; color: rgba(255,255,255,0.5); min-width: 80px; text-align: right; }
+.q-box {
+  background: var(--gray-light); border-radius: 10px; padding: 18px; margin-top: 16px;
+}
+.q-num { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+.q-text { font-size: 13px; line-height: 1.7; margin-bottom: 12px; }
+.q-options { display: flex; flex-direction: column; gap: 6px; }
+.q-opt {
+  font-size: 13px; padding: 10px 14px; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--border-dark); background: white; transition: all 0.2s;
+}
+.q-opt:hover { border-color: var(--blue); background: #f0f6ff; }
+.q-opt.correct { border-color: #16a34a; background: #f0fdf4; color: #166534; }
+.q-opt.wrong { border-color: #dc2626; background: #fef2f2; color: #991b1b; }
+
+/* MOCK EXAM */
+.exam-setup { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.exam-option {
+  background: white; border: 2px solid var(--border-dark); border-radius: 12px;
+  padding: 22px; cursor: pointer; transition: all 0.2s; text-align: center;
+}
+.exam-option:hover, .exam-option.selected { border-color: var(--blue); background: #f0f6ff; }
+.exam-option-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.exam-option-desc { font-size: 12px; color: var(--text-muted); }
+.exam-ui { background: white; border: 1px solid var(--border-dark); border-radius: 12px; padding: 24px; }
+.exam-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.exam-info { font-size: 14px; font-weight: 500; }
+.timer-box {
+  display: flex; align-items: center; gap: 6px;
+  background: #fef2f2; border: 1px solid #fecaca;
+  padding: 8px 14px; border-radius: 8px;
+  font-size: 16px; font-weight: 700; color: #dc2626;
+  font-family: monospace;
+}
+.num-grid { display: grid; grid-template-columns: repeat(9, 1fr); gap: 4px; margin-bottom: 20px; }
+.num-cell {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; border-radius: 4px; cursor: pointer;
+  border: 1px solid var(--border-dark); transition: all 0.15s;
+}
+.num-cell:hover { border-color: var(--blue); color: var(--blue); }
+.num-cell.done { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
+.num-cell.current { background: var(--navy); color: white; border-color: var(--navy); }
+.exam-q-box { background: var(--gray-light); border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+.exam-actions { display: flex; gap: 8px; }
+.exam-act-btn {
+  flex: 1; padding: 10px; border-radius: 6px; font-size: 13px; cursor: pointer;
+  border: 1px solid var(--border-dark); background: white; color: var(--text);
+  font-family: inherit; transition: all 0.2s;
+}
+.exam-act-btn.primary { background: var(--navy); color: white; border-color: var(--navy); }
+.exam-act-btn:hover { border-color: var(--blue); }
+.exam-act-btn.primary:hover { background: var(--navy3); }
+
+/* PARENT ZONE */
+.parent-card {
+  background: white; border: 1px solid var(--border-dark); border-radius: 12px; padding: 24px;
+}
+.parent-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.student-ava {
+  width: 50px; height: 50px; border-radius: 50%;
+  background: #dbeafe; color: #1e40af;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 600;
+}
+.student-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+.student-info { font-size: 12px; color: var(--text-muted); }
+.report-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+.metric-card {
+  background: var(--gray-light); border-radius: 8px; padding: 14px; text-align: center;
+}
+.metric-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+.metric-val { font-size: 24px; font-weight: 700; }
+.progress-track { margin-bottom: 20px; }
+.progress-track-title { font-size: 13px; font-weight: 500; margin-bottom: 10px; }
+.month-bars { display: flex; align-items: flex-end; gap: 6px; height: 80px; }
+.month-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.month-bar { width: 100%; border-radius: 3px 3px 0 0; background: var(--blue); min-height: 4px; transition: height 0.6s; }
+.month-lbl { font-size: 10px; color: var(--text-muted); }
+.teacher-comment {
+  background: #f0f6ff; border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0;
+  padding: 14px 16px; font-size: 13px; color: var(--text-muted); line-height: 1.6;
+}
+
+/* DICTIONARY FEATURE */
+.dict-feature {
+  background: var(--navy); border-radius: 16px; padding: 40px;
+  display: flex; gap: 48px; align-items: center;
+}
+.dict-text { flex: 1; }
+.dict-eyebrow { font-size: 11px; letter-spacing: 2px; color: var(--gold-light); text-transform: uppercase; margin-bottom: 12px; }
+.dict-title { font-family: 'Noto Serif KR', serif; font-size: 26px; color: white; margin-bottom: 12px; line-height: 1.4; }
+.dict-desc { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 24px; }
+.dict-features-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+.dict-feat { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.7); }
+.dict-feat::before { content: '✓'; color: var(--gold); font-weight: 700; }
+.dict-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold); color: var(--navy);
+  padding: 12px 24px; border-radius: 6px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  text-decoration: none; border: none; font-family: inherit;
+  transition: all 0.2s;
+}
+.dict-cta:hover { background: var(--gold-light); }
+.dict-preview {
+  flex: 0 0 320px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 20px;
+}
+.dict-search-wrap { display: flex; gap: 8px; margin-bottom: 16px; }
+.dict-search {
+  flex: 1; padding: 10px 14px; border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06);
+  color: white; font-size: 13px; font-family: inherit;
+  outline: none;
+}
+.dict-search::placeholder { color: rgba(255,255,255,0.3); }
+.dict-search:focus { border-color: var(--gold); }
+.dict-search-btn {
+  padding: 10px 16px; border-radius: 6px;
+  background: var(--gold); color: var(--navy);
+  border: none; cursor: pointer; font-size: 13px;
+  font-family: inherit; font-weight: 600;
+}
+.dict-result { }
+.dict-word { font-family: 'Playfair Display', serif; font-size: 22px; color: white; margin-bottom: 4px; }
+.dict-pron { font-size: 12px; color: var(--gold-light); margin-bottom: 10px; }
+.dict-meaning { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 8px; }
+.dict-example { font-size: 12px; color: rgba(255,255,255,0.4); font-style: italic; line-height: 1.5; }
+.dict-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.dict-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: rgba(200,153,42,0.15); color: var(--gold-light); }
+
+/* NEWS / INFO */
+.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.news-card {
+  background: white; border: 1px solid var(--border-dark); border-radius: 12px;
+  padding: 20px; cursor: pointer; transition: all 0.2s;
+}
+.news-card:hover { border-color: var(--blue); box-shadow: 0 4px 16px rgba(30,94,184,0.08); }
+.news-category {
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 8px; display: block;
+}
+.news-title { font-size: 14px; font-weight: 600; line-height: 1.5; margin-bottom: 8px; }
+.news-date { font-size: 11px; color: var(--text-muted); }
+.news-excerpt { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-top: 6px; }
+
+/* ADMISSIONS FLOW */
+.adm-flow { display: flex; align-items: stretch; gap: 0; margin-bottom: 40px; }
+.adm-step {
+  flex: 1; padding: 28px 24px; text-align: center;
+  border-right: 1px solid var(--border-dark);
+  position: relative;
+}
+.adm-step:last-child { border-right: none; }
+.adm-step::after {
+  content: '→'; position: absolute; right: -14px; top: 50%;
+  transform: translateY(-50%); color: var(--blue-light); font-size: 18px; z-index: 1;
+}
+.adm-step:last-child::after { display: none; }
+.adm-circle {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--navy); color: white; font-size: 16px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+  font-family: 'Playfair Display', serif;
+}
+.adm-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.adm-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+.adm-special {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy3) 100%);
+  border-radius: 12px; padding: 28px 32px;
+  display: flex; align-items: center; gap: 24px;
+}
+.adm-special-icon { font-size: 36px; }
+.adm-special-text { }
+.adm-special-title { font-size: 16px; font-weight: 600; color: white; margin-bottom: 6px; }
+.adm-special-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+/* LOCATION */
+.location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+.location-map {
+  background: var(--gray-light); border-radius: 12px; height: 260px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border-dark); overflow: hidden; position: relative;
+}
+.map-placeholder {
+  text-align: center;
+}
+.location-details { }
+.loc-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  margin-bottom: 16px; padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-dark);
+}
+.loc-item:last-child { border-bottom: none; margin-bottom: 0; }
+.loc-icon { font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+.loc-label { font-size: 11px; color: var(--text-muted); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+.loc-val { font-size: 14px; font-weight: 500; }
+.loc-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.consult-btn {
+  width: 100%; padding: 14px; border-radius: 8px;
+  background: var(--navy); color: white; border: none;
+  font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;
+  margin-top: 20px; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.consult-btn:hover { background: var(--navy3); }
+
+/* REVIEWS */
+.review-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.review-card {
+  background: white; border: 1px solid var(--border-dark); border-radius: 12px; padding: 22px;
+}
+.review-stars { color: var(--gold); font-size: 14px; margin-bottom: 10px; }
+.review-text { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin-bottom: 14px; font-style: italic; }
+.reviewer { display: flex; align-items: center; gap: 10px; }
+.reviewer-ava {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--navy); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+}
+.reviewer-name { font-size: 13px; font-weight: 500; }
+.reviewer-info { font-size: 11px; color: var(--text-muted); }
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  padding: 60px 40px 32px;
+  border-top: 1px solid rgba(200,153,42,0.15);
+}
+.footer-grid {
+  display: grid; grid-template-columns: 260px 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 48px;
+}
+.footer-brand { }
+.footer-logo { display: flex; align-items: baseline; gap: 2px; margin-bottom: 12px; }
+.footer-tagline { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.7; margin-bottom: 16px; }
+.footer-contact { display: flex; flex-direction: column; gap: 6px; }
+.footer-contact-item { font-size: 12px; color: rgba(255,255,255,0.5); display: flex; gap: 8px; }
+.footer-col h4 { font-size: 12px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 14px; }
+.footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer-links-list a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.footer-links-list a:hover { color: rgba(255,255,255,0.7); }
+.footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin-bottom: 24px; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+.footer-bottom-links { display: flex; gap: 20px; }
+.footer-bottom-links a { font-size: 12px; color: rgba(255,255,255,0.25); text-decoration: none; }
+
+/* LOGIN MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+  display: none; align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: white; border-radius: 16px; padding: 40px;
+  width: 400px; max-width: 90vw; position: relative;
+}
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted);
+}
+.modal-title { font-family: 'Noto Serif KR', serif; font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.modal-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; }
+.login-types { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+.login-type-btn {
+  padding: 14px; border-radius: 8px; cursor: pointer; text-align: center;
+  border: 2px solid var(--border-dark); background: white; font-family: inherit;
+  transition: all 0.2s;
+}
+.login-type-btn:hover, .login-type-btn.sel { border-color: var(--blue); background: #f0f6ff; }
+.login-type-icon { font-size: 24px; margin-bottom: 6px; }
+.login-type-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.login-type-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.form-field { margin-bottom: 14px; }
+.form-label { font-size: 12px; font-weight: 500; margin-bottom: 5px; display: block; color: var(--text-muted); }
+.form-input {
+  width: 100%; padding: 10px 14px; border-radius: 6px;
+  border: 1px solid var(--border-dark); font-size: 14px; font-family: inherit;
+  outline: none; transition: border-color 0.2s;
+}
+.form-input:focus { border-color: var(--blue); }
+.form-submit {
+  width: 100%; padding: 13px; border-radius: 8px;
+  background: var(--navy); color: white; border: none;
+  font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;
+  transition: background 0.2s;
+}
+.form-submit:hover { background: var(--navy3); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.fade-up { animation: fadeUp 0.5s ease forwards; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">대치동 영어 전문 학원 · 소수정예 원장 직강 · 2002년 설립</div>
+  <div class="topbar-right">
+    <span class="topbar-phone">📞 02-554-2212 &nbsp;|&nbsp; 010-7679-3338</span>
+    <div class="topbar-links">
+      <a href="#">네이버 블로그</a>
+      <a href="#">상담 문의</a>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS TICKER -->
+<div class="ticker">
+  <div class="ticker-badge">실시간</div>
+  <div class="ticker-track">
+    <div class="ticker-inner">
+      <span class="ticker-item"><span class="tag">[입시속보]</span>2026 수능 영어 절대평가 기조 유지 확정 — 젠파워 분석 리포트</span>
+      <span class="ticker-item"><span class="tag">[내신]</span>강남·서초권 주요 고교 1학기 중간고사 일정 업데이트</span>
+      <span class="ticker-item"><span class="tag">[특강]</span>2025 여름방학 수능 집중 특강 6월 모집 예정</span>
+      <span class="ticker-item"><span class="tag">[분석]</span>하나고·민사고 2025 영어 내신 출제 트렌드 심층 분석</span>
+      <span class="ticker-item"><span class="tag">[의대]</span>의대 정원 확대 시대 — 영어 1등급 전략 완전 가이드</span>
+      <span class="ticker-item"><span class="tag">[공지]</span>2025 1학기 중간고사 대비 특강 수강생 모집 중</span>
+      <span class="ticker-item"><span class="tag">[입시속보]</span>2026 수능 영어 절대평가 기조 유지 확정 — 젠파워 분석 리포트</span>
+      <span class="ticker-item"><span class="tag">[내신]</span>강남·서초권 주요 고교 1학기 중간고사 일정 업데이트</span>
+      <span class="ticker-item"><span class="tag">[특강]</span>2025 여름방학 수능 집중 특강 6월 모집 예정</span>
+      <span class="ticker-item"><span class="tag">[분석]</span>하나고·민사고 2025 영어 내신 출제 트렌드 심층 분석</span>
+      <span class="ticker-item"><span class="tag">[의대]</span>의대 정원 확대 시대 — 영어 1등급 전략 완전 가이드</span>
+      <span class="ticker-item"><span class="tag">[공지]</span>2025 1학기 중간고사 대비 특강 수강생 모집 중</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="#top" class="logo">
+    <span class="logo-zen">ZEN</span><span class="logo-power">POWER</span>
+    <span class="logo-eng">English</span>
+  </a>
+  <div class="nav-menu">
+    <a href="#about" class="nav-item">학원 소개</a>
+    <a href="#curriculum" class="nav-item">프로그램</a>
+    <a href="#zone" class="nav-item">학습 센터</a>
+    <a href="#info" class="nav-item">입시 정보</a>
+    <a href="#admissions" class="nav-item">입학 안내</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://service-252219997357.us-west1.run.app/" target="_blank" class="nav-dict-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+      </svg>
+      Word Action Master
+    </a>
+    <button class="nav-login-btn" onclick="openModal()">로그인</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-content fade-up">
+    <div class="hero-eyebrow">대치동 25년 · 소수정예 원장 직강</div>
+    <h1 class="hero-h1">
+      다니기만 하는 학원이 아닌<br>
+      <em>실력을 올리는 학원</em>
+    </h1>
+    <p class="hero-sub">
+      최연소 대성학원 부원장 출신 · 고려대 영문 &amp; 캐나다 UBC<br>
+      한 반 4명 소수정예로 중하위권을 의대·SKY로 이끈 검증된 시스템
+    </p>
+    <div class="hero-ctas">
+      <button class="cta-primary" onclick="document.getElementById('admissions').scrollIntoView({behavior:'smooth'})">레벨테스트 예약하기</button>
+      <button class="cta-outline" onclick="document.getElementById('zone').scrollIntoView({behavior:'smooth'})">학습 센터 입장</button>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><span class="trust-num">25</span><span class="trust-label">년 대치동 경력</span></div>
+      <div class="trust-item"><span class="trust-num">4명</span><span class="trust-label">소수정예 정원</span></div>
+      <div class="trust-item"><span class="trust-num">87%</span><span class="trust-label">1·2등급 배출</span></div>
+      <div class="trust-item"><span class="trust-num">SKY</span><span class="trust-label">·의대 다수 진학</span></div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <!-- 3D LEARNING SCENE -->
+    <svg class="scene" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg">
+      <!-- particles -->
+      <circle cx="340" cy="50" r="3" fill="rgba(200,153,42,0.3)"/>
+      <circle cx="20" cy="100" r="2" fill="rgba(133,183,235,0.25)"/>
+      <circle cx="355" cy="200" r="4" fill="rgba(93,202,165,0.15)"/>
+      <circle cx="15" cy="260" r="2.5" fill="rgba(200,153,42,0.2)"/>
+      <circle cx="350" cy="310" r="2" fill="rgba(133,183,235,0.2)"/>
+      <!-- desk top surface -->
+      <polygon points="40,285 335,240 335,262 40,307" fill="#0f2a50"/>
+      <polygon points="40,263 335,218 335,240 40,285" fill="#1a3a6e"/>
+      <!-- desk legs -->
+      <polygon points="40,263 62,263 62,360 40,360" fill="#091828"/>
+      <polygon points="313,218 335,218 335,315 313,315" fill="#091828"/>
+      <!-- notebook 3d -->
+      <polygon points="120,252 230,232 230,248 120,268" fill="#0d1f35"/>
+      <polygon points="120,233 230,213 230,232 120,252" fill="#162840"/>
+      <polygon points="126,172 224,154 224,215 126,233" fill="#0a1a2e"/>
+      <rect x="133" y="162" width="84" height="58" rx="2" fill="#0d2040"/>
+      <!-- screen graph -->
+      <line x1="140" y1="210" x2="140" y2="170" stroke="#378ADD" stroke-width="0.8" opacity="0.7"/>
+      <line x1="140" y1="210" x2="212" y2="210" stroke="#378ADD" stroke-width="0.8" opacity="0.7"/>
+      <polyline points="145,203 160,188 175,193 190,172 205,178" fill="none" stroke="#85B7EB" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="190" cy="172" r="3.5" fill="#85B7EB"/>
+      <text x="178" y="223" fill="rgba(133,183,235,0.6)" font-size="7" font-family="sans-serif" text-anchor="middle">성적 분석</text>
+      <!-- books stack -->
+      <polygon points="55,260 100,251 100,278 55,287" fill="#1e5eb8"/>
+      <polygon points="52,259 55,260 55,287 52,286" fill="#0f3070"/>
+      <polygon points="52,259 100,250 100,251 55,260" fill="#3a82d4"/>
+      <polygon points="64,256 109,247 109,274 64,283" fill="#0f6e56"/>
+      <polygon points="61,255 64,256 64,283 61,282" fill="#084535"/>
+      <polygon points="61,255 109,246 109,247 64,256" fill="#1d9e75"/>
+      <polygon points="73,252 118,243 118,270 73,279" fill="#854f0b"/>
+      <polygon points="70,251 73,252 73,279 70,278" fill="#412402"/>
+      <polygon points="70,251 118,242 118,243 73,252" fill="#c8992a"/>
+      <!-- pencil holder -->
+      <ellipse cx="290" cy="242" rx="17" ry="5.5" fill="#1a3a6e" opacity="0.7"/>
+      <rect x="273" y="242" width="34" height="26" fill="#0f2a50"/>
+      <ellipse cx="290" cy="268" rx="17" ry="5.5" fill="#091828"/>
+      <line x1="281" y1="224" x2="280" y2="242" stroke="#c8992a" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="289" y1="221" x2="289" y2="242" stroke="#e24b4a" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="298" y1="225" x2="299" y2="242" stroke="#5dcaa5" stroke-width="3.5" stroke-linecap="round"/>
+      <!-- floating report card -->
+      <g transform="rotate(-7, 205, 108)">
+        <rect x="155" y="75" width="120" height="80" rx="6" fill="white" opacity="0.97"/>
+        <rect x="155" y="75" width="120" height="22" rx="6" fill="#0a1628"/>
+        <rect x="155" y="88" width="120" height="9" fill="#0a1628"/>
+        <text x="215" y="90" fill="white" font-size="8" font-family="sans-serif" text-anchor="middle" font-weight="bold">젠파워 성적 리포트</text>
+        <text x="170" y="115" fill="#0a1628" font-size="9" font-family="sans-serif" font-weight="bold">어휘 테스트</text>
+        <text x="264" y="115" fill="#1e5eb8" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="end">98점</text>
+        <text x="170" y="130" fill="#0a1628" font-size="9" font-family="sans-serif" font-weight="bold">모의고사</text>
+        <text x="264" y="130" fill="#1e5eb8" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="end">92점</text>
+        <text x="170" y="145" fill="#0a1628" font-size="9" font-family="sans-serif" font-weight="bold">등급</text>
+        <text x="264" y="145" fill="#0f6e56" font-size="14" font-family="sans-serif" font-weight="bold" text-anchor="end">1등급 ✓</text>
+      </g>
+      <!-- word bubbles -->
+      <rect x="8" y="148" width="62" height="22" rx="11" fill="rgba(133,183,235,0.15)" stroke="rgba(133,183,235,0.3)" stroke-width="0.7"/>
+      <text x="39" y="163" fill="#85B7EB" font-size="9" font-family="sans-serif" text-anchor="middle">Vocabulary</text>
+      <rect x="302" y="128" width="60" height="22" rx="11" fill="rgba(93,202,165,0.12)" stroke="rgba(93,202,165,0.3)" stroke-width="0.7"/>
+      <text x="332" y="143" fill="#5dcaa5" font-size="9" font-family="sans-serif" text-anchor="middle">Grammar</text>
+      <rect x="5" y="193" width="54" height="22" rx="11" fill="rgba(200,153,42,0.12)" stroke="rgba(200,153,42,0.3)" stroke-width="0.7"/>
+      <text x="32" y="208" fill="#e8b84b" font-size="9" font-family="sans-serif" text-anchor="middle">Listening</text>
+      <rect x="308" y="175" width="54" height="22" rx="11" fill="rgba(175,169,236,0.15)" stroke="rgba(175,169,236,0.3)" stroke-width="0.7"/>
+      <text x="335" y="190" fill="#afa9ec" font-size="9" font-family="sans-serif" text-anchor="middle">Reading</text>
+      <!-- stars -->
+      <polygon points="358,72 361,80 369,80 363,85 365,93 358,88 351,93 353,85 347,80 355,80" fill="rgba(200,153,42,0.5)"/>
+      <polygon points="14,56 16,62 22,62 17,66 19,72 14,68 9,72 11,66 6,62 12,62" fill="rgba(93,202,165,0.4)"/>
+    </svg>
+  </div>
+</div>
+
+<!-- STATS RIBBON -->
+<div class="stats-ribbon">
+  <div class="ribbon-item"><div class="ribbon-num">25년</div><div class="ribbon-label">대치동 현장 경력</div></div>
+  <div class="ribbon-item"><div class="ribbon-num">4명</div><div class="ribbon-label">소수정예 정원</div></div>
+  <div class="ribbon-item"><div class="ribbon-num">87%</div><div class="ribbon-label">1·2등급 배출률</div></div>
+  <div class="ribbon-item"><div class="ribbon-num">SKY·의대</div><div class="ribbon-label">다수 진학 실적</div></div>
+</div>
+
+<!-- QUICK LINKS -->
+<div class="section">
+  <div class="quick-grid">
+    <a href="#admissions" class="quick-card">
+      <div class="quick-icon">📋</div>
+      <div class="quick-name">레벨테스트</div>
+      <div class="quick-desc">무료 진단 예약</div>
+    </a>
+    <a href="#zone" class="quick-card" onclick="setTimeout(()=>switchZone('exam'),400)">
+      <div class="quick-icon">📚</div>
+      <div class="quick-name">기출문제 은행</div>
+      <div class="quick-desc">학교별 기출 검색</div>
+    </a>
+    <a href="#zone" class="quick-card" onclick="setTimeout(()=>switchZone('listening'),400)">
+      <div class="quick-icon">🎧</div>
+      <div class="quick-name">듣기 평가실</div>
+      <div class="quick-desc">수능·TEPS·iBT</div>
+    </a>
+    <a href="#zone" class="quick-card" onclick="setTimeout(()=>switchZone('exam-test'),400)">
+      <div class="quick-icon">📝</div>
+      <div class="quick-name">모의고사</div>
+      <div class="quick-desc">실전 타이머</div>
+    </a>
+    <a href="https://service-252219997357.us-west1.run.app/" target="_blank" class="quick-card">
+      <div class="quick-icon">📖</div>
+      <div class="quick-name">영어 사전</div>
+      <div class="quick-desc">Word Action Master</div>
+    </a>
+    <a href="#admissions" class="quick-card">
+      <div class="quick-icon">📍</div>
+      <div class="quick-name">오시는 길</div>
+      <div class="quick-desc">대치역 1번 출구</div>
+    </a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section section-alt" id="about">
+  <div class="sec-eyebrow">학원 소개</div>
+  <div class="sec-title">Why ZenPower?</div>
+  <div class="sec-sub">25년 대치동 토박이의 통찰력과 검증된 시스템</div>
+  <div class="about-grid">
+    <div class="principal-card">
+      <div class="principal-avatar">ZP</div>
+      <div class="principal-name">젠파워 원장</div>
+      <div class="principal-title">대치동 영어 전문 · 원장 직강</div>
+      <div class="principal-badges">
+        <div class="p-badge">고려대학교 영문과</div>
+        <div class="p-badge">캐나다 UBC 졸업</div>
+        <div class="p-badge">최연소 대성학원 부원장</div>
+        <div class="p-badge">국제 변호 소송 담당 경력</div>
+        <div class="p-badge">대치동 25년 현장 강의</div>
+      </div>
+      <div class="principal-contact" onclick="document.getElementById('admissions').scrollIntoView({behavior:'smooth'})">
+        📞 상담 문의 02-554-2212
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="about-quote">
+        "기초가 없어도 대치동 식 교육으로 누구나 상위권 도약 가능하다"
+      </div>
+      <div class="about-points">
+        <div class="about-point">
+          <div class="point-icon">👥</div>
+          <div>
+            <div class="point-title">4명 소수정예</div>
+            <div class="point-desc">들러리가 아닌 주인공이 되는 수업. 학생별 학습 수준과 목표에 맞춘 개인화 진도 설계</div>
+          </div>
+        </div>
+        <div class="about-point">
+          <div class="point-icon">🎯</div>
+          <div>
+            <div class="point-title">원장 직강</div>
+            <div class="point-desc">강사 교체 없는 책임 지도. 입학부터 졸업까지 원장이 직접 가르치는 1:1 개별 클리닉</div>
+          </div>
+        </div>
+        <div class="about-point">
+          <div class="point-icon">📈</div>
+          <div>
+            <div class="point-title">검증된 실적</div>
+            <div class="point-desc">중하위권을 의대·SKY로 이끈 사례 다수. 타 학원에서 해결 어려운 킬러 문항 전문 클리닉</div>
+          </div>
+        </div>
+        <div class="about-point">
+          <div class="point-icon">🔬</div>
+          <div>
+            <div class="point-title">꼼꼼하면서 유쾌한 수업</div>
+            <div class="point-desc">이해하기 쉬운 명쾌한 설명으로 영어 거부감 해소. 학생 성취도와 흥미를 동시에 고취</div>
+          </div>
+        </div>
+      </div>
+      <!-- STEPS -->
+      <div style="margin-top:8px">
+        <div style="font-size:13px;font-weight:600;margin-bottom:14px;color:var(--text-muted);letter-spacing:0.5px;text-transform:uppercase">완전 학습 4단계 시스템</div>
+        <div class="steps-row">
+          <div class="step-col">
+            <div class="step-num">1</div>
+            <div class="step-title">개념</div>
+            <div class="step-desc">흔들림 없는 기초를 다지는 1:1 심층 개념 학습</div>
+          </div>
+          <div class="step-col">
+            <div class="step-num">2</div>
+            <div class="step-title">유형</div>
+            <div class="step-desc">개념을 적용하는 개인별 맞춤 유형 문제 풀이</div>
+          </div>
+          <div class="step-col">
+            <div class="step-num">3</div>
+            <div class="step-title">오답</div>
+            <div class="step-desc">취약점을 완벽히 보완하는 철저한 오답 재풀이</div>
+          </div>
+          <div class="step-col">
+            <div class="step-num">4</div>
+            <div class="step-title">기출</div>
+            <div class="step-desc">실전 감각을 극대화하는 학교별 기출 정복</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="section section-dark">
+  <div class="sec-eyebrow" style="color:var(--gold-light)"><span style="background:var(--gold);width:20px;height:1px;display:inline-block;vertical-align:middle;margin-right:8px"></span>검증된 결과</div>
+  <div class="sec-title light">불가능을 가능으로 바꾼 성적 향상</div>
+  <div class="sec-sub light">그 중심에 젠파워 영어가 있습니다</div>
+  <div class="achieve-grid">
+    <div class="achieve-card">
+      <div class="achieve-icon-wrap">🏥</div>
+      <div class="achieve-num">다수</div>
+      <div class="achieve-title">의대·치의대 진학</div>
+      <div class="achieve-desc">의예과 입학생을 꾸준히 배출. 수능 영어 킬러 문항 전문 클리닉으로 최상위권 진학 지원</div>
+    </div>
+    <div class="achieve-card">
+      <div class="achieve-icon-wrap">🎓</div>
+      <div class="achieve-num">SKY</div>
+      <div class="achieve-title">상위권 대학 진학</div>
+      <div class="achieve-desc">서울대·고려대·연세대 등 상위권 대학 진학이 대다수. 입시 실적이 젠파워를 증명합니다</div>
+    </div>
+    <div class="achieve-card">
+      <div class="achieve-icon-wrap">📈</div>
+      <div class="achieve-num">중→최상위</div>
+      <div class="achieve-title">성적 향상 사례</div>
+      <div class="achieve-desc">2개월 만에 4등급에서 1등급 달성 사례 다수. 타 학원에서 해결 못한 학생의 실력 향상</div>
+    </div>
+    <div class="achieve-card">
+      <div class="achieve-icon-wrap">🎯</div>
+      <div class="achieve-num">전문</div>
+      <div class="achieve-title">킬러 문항 클리닉</div>
+      <div class="achieve-desc">수능·내신 고난도 킬러 문항 분석 및 솔루션 전문 제공. 타 학원에서 해결 어려운 문항 특화</div>
+    </div>
+  </div>
+</div>
+
+<!-- CURRICULUM -->
+<div class="section" id="curriculum">
+  <div class="sec-eyebrow">프로그램</div>
+  <div class="sec-title">커리큘럼</div>
+  <div class="sec-sub">중등·고등·N수 정규반 + 시기별 자동 업데이트 특강</div>
+  <div class="curr-tabs">
+    <div class="curr-tab active" onclick="currTab('regular', this)">정규반</div>
+    <div class="curr-tab" onclick="currTab('naesin', this)">내신 대비</div>
+    <div class="curr-tab" onclick="currTab('special', this)">특강</div>
+    <div class="curr-tab" onclick="currTab('suneung', this)">수능 대비</div>
+  </div>
+  <div class="curr-panel active" id="curr-regular">
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#e8f0fe;color:#1a56db">정규</span>
+      <div class="curr-name">문법 완성반</div>
+      <div class="curr-desc">문법 최강을 자부하는 명쾌한 설명과 어법 문제 풀이 특화</div>
+      <ul class="curr-detail">
+        <li>주요 어법 포인트 체계적 정리</li>
+        <li>수능·내신 어법 문항 완전 정복</li>
+        <li>서술형 어법 연계 훈련</li>
+      </ul>
+    </div>
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#e8f0fe;color:#1a56db">정규</span>
+      <div class="curr-name">어휘 정복반</div>
+      <div class="curr-desc">필수/비필수 어휘 구별법, 다의어 쓰임 및 서술형 연계 암기</div>
+      <ul class="curr-detail">
+        <li>수능 필수 어휘 1,800개 완전 정복</li>
+        <li>다의어·유의어 실전 활용</li>
+        <li>어휘 서술형 완벽 대비</li>
+      </ul>
+    </div>
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#e8f0fe;color:#1a56db">정규</span>
+      <div class="curr-name">독해 심화반</div>
+      <div class="curr-desc">문학·비문학 지문 분석 및 선택지 분석 요령 집중 지도</div>
+      <ul class="curr-detail">
+        <li>빈칸 추론·순서 배열 전략</li>
+        <li>주제·요지·함의 파악 훈련</li>
+        <li>선택지 오답 소거 기술 터득</li>
+      </ul>
+    </div>
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#eaf3de;color:#276011">정규</span>
+      <div class="curr-name">듣기 평가반</div>
+      <div class="curr-desc">Level A~C 단계별 수능·TEPS·iBT 유형별 집중 훈련</div>
+      <ul class="curr-detail">
+        <li>수능 듣기 17문항 완전 정복</li>
+        <li>받아쓰기(Dictation) 훈련</li>
+        <li>실전 시간 내 풀이 연습</li>
+      </ul>
+    </div>
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#fbeaf0;color:#72243e">특화</span>
+      <div class="curr-name">서술형 집중반</div>
+      <div class="curr-desc">수행평가·서술형 완벽 대비 특화 클리닉</div>
+      <ul class="curr-detail">
+        <li>학교별 서술형 패턴 분석</li>
+        <li>영작 교정 및 피드백</li>
+        <li>수행평가 완벽 준비</li>
+      </ul>
+    </div>
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#fcebeb;color:#791f1f">수능</span>
+      <div class="curr-name">N수 집중반</div>
+      <div class="curr-desc">재수·N수생을 위한 수능 영어 완성 집중 과정</div>
+      <ul class="curr-detail">
+        <li>수능 전 유형 완전 분석</li>
+        <li>킬러 문항 특화 클리닉</li>
+        <li>1:1 개인 맞춤 지도</li>
+      </ul>
+    </div>
+  </div>
+  <div class="curr-panel" id="curr-naesin">
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#faeeda;color:#633806">내신</span>
+      <div class="curr-name">학교 내신 집중반</div>
+      <div class="curr-desc">강남·서초권 주요 학교별 기출 분석 및 맞춤 대비</div>
+      <ul class="curr-detail"><li>학교별 출제 패턴 완전 분석</li><li>서술형·수행평가 집중 대비</li><li>중간·기말 직전 특강 연계</li></ul>
+    </div>
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#faeeda;color:#633806">내신</span>
+      <div class="curr-name">자사고·과학고 대비반</div>
+      <div class="curr-desc">하나고·민사고·과학고 특성화 영어 내신 완벽 대비</div>
+      <ul class="curr-detail"><li>자사고 심화 어법·독해</li><li>영어 논술·에세이 대비</li><li>심화 어휘·구문 정복</li></ul>
+    </div>
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#faeeda;color:#633806">내신</span>
+      <div class="curr-name">중등 내신반</div>
+      <div class="curr-desc">중1~3 학교 내신 체계적 관리 및 고등 선행 연계</div>
+      <ul class="curr-detail"><li>중등 핵심 문법 완성</li><li>내신 시험 유형 적응 훈련</li><li>고등 선행 학습 병행</li></ul>
+    </div>
+  </div>
+  <div class="curr-panel" id="curr-special">
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#e1f5ee;color:#085041">특강</span>
+      <div class="curr-name">중간·기말 대비 특강</div>
+      <div class="curr-desc">시험 전 3~4주 집중 내신 완성 특강 (자동 업데이트)</div>
+      <ul class="curr-detail"><li>학교별 기출 집중 분석</li><li>예상 문제 풀이 및 오답 정리</li><li>서술형 최종 점검</li></ul>
+    </div>
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#e1f5ee;color:#085041">특강</span>
+      <div class="curr-name">여름방학 특강</div>
+      <div class="curr-desc">방학을 활용한 집중 심화 과정 (6월 모집 예정)</div>
+      <ul class="curr-detail"><li>수능 유형별 집중 공략</li><li>2학기 선행 및 내신 대비</li><li>킬러 문항 특화 클리닉</li></ul>
+    </div>
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#e1f5ee;color:#085041">특강</span>
+      <div class="curr-name">겨울방학 특강</div>
+      <div class="curr-desc">다음 학년 대비 완벽 준비 과정 (12월 모집 예정)</div>
+      <ul class="curr-detail"><li>다음 학년 선행 학습</li><li>수능 기초 다지기</li><li>어휘·문법 집중 완성</li></ul>
+    </div>
+  </div>
+  <div class="curr-panel" id="curr-suneung">
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#fcebeb;color:#791f1f">수능</span>
+      <div class="curr-name">수능 실전반</div>
+      <div class="curr-desc">수능 영어 전 유형 완전 분석 및 실전 감각 극대화</div>
+      <ul class="curr-detail"><li>수능 45문항 유형별 전략</li><li>실전 모의고사 정기 실시</li><li>등급 분석 및 피드백</li></ul>
+    </div>
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#fcebeb;color:#791f1f">수능</span>
+      <div class="curr-name">킬러 문항 클리닉</div>
+      <div class="curr-desc">고난도 킬러 문항 집중 분석 — 타 학원과 차별화된 솔루션</div>
+      <ul class="curr-detail"><li>빈칸·순서·함의 킬러 집중</li><li>오답 패턴 분석 및 대응 전략</li><li>1:1 취약 유형 맞춤 클리닉</li></ul>
+    </div>
+    <div class="curr-card">
+      <span class="curr-tag" style="background:#fcebeb;color:#791f1f">수능</span>
+      <div class="curr-name">듣기 완성반</div>
+      <div class="curr-desc">수능 듣기 17문항 만점 목표 — Level C 집중 과정</div>
+      <ul class="curr-detail"><li>수능 듣기 전 유형 정복</li><li>딕테이션 집중 훈련</li><li>실전 시간 관리 전략</li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- LEARNING ZONE -->
+<div class="section section-alt" id="zone">
+  <div class="sec-eyebrow">학습 센터</div>
+  <div class="sec-title">Learning Zone</div>
+  <div class="sec-sub">학생·학부모 전용 학습 공간 — 로그인 후 전체 기능을 이용하세요</div>
+
+  <div class="zone-header">
+    <div class="zone-login-info" id="zoneLoginInfo">게스트로 접속 중 — 일부 기능만 이용 가능합니다</div>
+    <div class="zone-login-badges">
+      <button class="zone-badge guest-active" id="zbGuest" onclick="setZoneUser('guest')">게스트</button>
+      <button class="zone-badge" id="zbStudent" onclick="setZoneUser('student')">학생 로그인</button>
+      <button class="zone-badge" id="zbParent" onclick="setZoneUser('parent')">학부모 로그인</button>
+    </div>
+  </div>
+
+  <div class="zone-tabs">
+    <div class="ztab active" id="zt-exam" onclick="switchZone('exam')">📚 기출문제 은행 <span class="ztab-badge">3,500+</span></div>
+    <div class="ztab" id="zt-listening" onclick="switchZone('listening')">🎧 듣기 평가실</div>
+    <div class="ztab" id="zt-exam-test" onclick="switchZone('exam-test')">📝 모의고사</div>
+    <div class="ztab" id="zt-parent" onclick="switchZone('parent')">👨‍👩‍👧 학부모 라운지</div>
+  </div>
+
+  <!-- 기출문제 은행 -->
+  <div class="zpanel active" id="zp-exam">
+    <div class="search-bar">
+      <select class="search-select"><option>학교 선택</option><option>강남고</option><option>개포고</option><option>휘문고</option><option>중동고</option><option>숙명여고</option><option>하나고</option><option>민사고</option><option>서울과학고</option></select>
+      <select class="search-select"><option>학년</option><option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option><option>고3</option></select>
+      <select class="search-select"><option>시험 종류</option><option>1학기 중간</option><option>1학기 기말</option><option>2학기 중간</option><option>2학기 기말</option><option>수능 기출</option></select>
+      <select class="search-select"><option>유형</option><option>빈칸 추론</option><option>순서 배열</option><option>어법·어휘</option><option>서술형</option><option>킬러 문항</option></select>
+      <button class="search-btn">검색</button>
+    </div>
+    <div class="exam-list">
+      <div class="exam-item">
+        <div class="exam-info">
+          <span class="exam-school-tag">강남고 고2</span>
+          <span class="exam-title">2024 1학기 중간 — 빈칸 추론 (킬러)</span>
+          <span class="exam-meta">난이도 ★★★★★ · 젠파워 분석 포함</span>
+        </div>
+        <div class="exam-actions">
+          <button class="exam-btn">풀기</button>
+          <button class="exam-btn">PDF ↓</button>
+        </div>
+      </div>
+      <div class="exam-item">
+        <div class="exam-info">
+          <span class="exam-school-tag">휘문고 고3</span>
+          <span class="exam-title">2024 수능 대비 — 순서 배열 & 어법 통합</span>
+          <span class="exam-meta">난이도 ★★★★☆ · 해설 포함</span>
+        </div>
+        <div class="exam-actions">
+          <button class="exam-btn">풀기</button>
+          <button class="exam-btn">PDF ↓</button>
+        </div>
+      </div>
+      <div class="exam-item">
+        <div class="exam-info">
+          <span class="exam-school-tag" style="background:#fef3c7;color:#92400e">수능 기출</span>
+          <span class="exam-title">2025 수능 영어 — 서술형 변형 (젠파워 자체 제작)</span>
+          <span class="exam-meta">난이도 ★★★★★ · 변형 문제</span>
+        </div>
+        <div class="exam-actions">
+          <button class="exam-btn">풀기</button>
+          <button class="exam-btn">PDF ↓</button>
+        </div>
+      </div>
+      <div class="exam-item">
+        <div class="exam-info">
+          <span class="exam-school-tag" style="background:#f0fdf4;color:#166534">개포고 고1</span>
+          <span class="exam-title">2024 1학기 기말 — 어법·어휘 종합</span>
+          <span class="exam-meta">난이도 ★★★☆☆ · 기초-중급</span>
+        </div>
+        <div class="exam-actions">
+          <button class="exam-btn">풀기</button>
+          <button class="exam-btn">PDF ↓</button>
+        </div>
+      </div>
+      <div class="exam-item">
+        <div class="exam-info">
+          <span class="exam-school-tag" style="background:#fdf4ff;color:#6b21a8">하나고 고2</span>
+          <span class="exam-title">2024 2학기 중간 — 심화 독해 & 서술형</span>
+          <span class="exam-meta">난이도 ★★★★★ · 자사고 특화</span>
+        </div>
+        <div class="exam-actions">
+          <button class="exam-btn">풀기</button>
+          <button class="exam-btn">PDF ↓</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 듣기 평가실 -->
+  <div class="zpanel" id="zp-listening">
+    <div class="listen-levels">
+      <div class="level-card active" onclick="setLevel(this)">
+        <div class="level-name">Level A</div>
+        <div class="level-desc">기초·중등</div>
+      </div>
+      <div class="level-card" onclick="setLevel(this)">
+        <div class="level-name">Level B</div>
+        <div class="level-desc">중급·고등</div>
+      </div>
+      <div class="level-card featured" onclick="setLevel(this)">
+        <div class="level-name">Level C</div>
+        <div class="level-desc">수능 대비</div>
+      </div>
+      <div class="level-card" onclick="setLevel(this)">
+        <div class="level-name">TEPS</div>
+        <div class="level-desc">고급</div>
+      </div>
+      <div class="level-card" onclick="setLevel(this)">
+        <div class="level-name">iBT</div>
+        <div class="level-desc">토플</div>
+      </div>
+    </div>
+    <div class="player-card">
+      <div class="player-header">
+        <span class="player-title">2025 수능 영어 — 듣기 1~17번</span>
+        <span class="player-badge">Level C · 수능 기출</span>
+      </div>
+      <div class="player-controls">
+        <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+        <div class="progress-wrap" onclick="seekProgress(event)">
+          <div class="progress-fill" id="progFill" style="width:18%"></div>
+        </div>
+        <span class="time-display" id="timeDisp">00:52 / 04:52</span>
+      </div>
+    </div>
+    <div class="q-box">
+      <div class="q-num">1번 — 대화를 듣고, 남자의 마지막 말에 대한 여자의 응답으로 가장 적절한 것을 고르시오.</div>
+      <div class="q-text">M: Honey, did you check the weather forecast for our camping trip this weekend?<br>W: Yes, it says it might rain on Saturday.<br>M: Oh no. Should we change our plans then?</div>
+      <div class="q-options" id="listenOpts">
+        <div class="q-opt" onclick="checkAnswer(this, false)">① I already packed the camping gear yesterday.</div>
+        <div class="q-opt" onclick="checkAnswer(this, false)">② We can reschedule to Sunday if it works for you.</div>
+        <div class="q-opt" onclick="checkAnswer(this, true)">③ Don't worry. The forecast said it'll clear up by noon.</div>
+        <div class="q-opt" onclick="checkAnswer(this, false)">④ I've never been to that campsite before.</div>
+        <div class="q-opt" onclick="checkAnswer(this, false)">⑤ Sure, let me buy a new tent for the trip.</div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button class="exam-act-btn" style="flex:1" onclick="alert('다음 문항으로 이동합니다.')">다음 문항 →</button>
+        <button class="exam-act-btn primary" style="flex:1" onclick="alert('정답 해설을 확인합니다.')">정답·해설 보기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모의고사 -->
+  <div class="zpanel" id="zp-exam-test">
+    <div class="exam-setup">
+      <div class="exam-option selected">
+        <div class="exam-option-title">2025 수능 대비 — 홀수형</div>
+        <div class="exam-option-desc">45문항 · 70분 · 자동 채점</div>
+      </div>
+      <div class="exam-option">
+        <div class="exam-option-title">2024 수능 실제 — 짝수형</div>
+        <div class="exam-option-desc">45문항 · 70분 · 해설 포함</div>
+      </div>
+    </div>
+    <div class="exam-ui">
+      <div class="exam-topbar">
+        <div class="exam-info">2025 수능 대비 모의고사 — 홀수형 | 45번</div>
+        <div class="timer-box" id="examTimer">⏱ 70:00</div>
+      </div>
+      <div class="num-grid" id="numGrid"></div>
+      <div class="exam-q-box">
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">45번 — 다음 빈칸에 들어갈 말로 가장 적절한 것은?</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:12px">
+          Innovation often requires a willingness to <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> established conventions and explore entirely new approaches, even when the risks seem substantial and the path forward remains uncertain.
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="q-opt" onclick="checkAnswer(this,false)">① maintain</div>
+          <div class="q-opt" onclick="checkAnswer(this,true)">② abandon</div>
+          <div class="q-opt" onclick="checkAnswer(this,false)">③ strengthen</div>
+          <div class="q-opt" onclick="checkAnswer(this,false)">④ observe</div>
+          <div class="q-opt" onclick="checkAnswer(this,false)">⑤ document</div>
+        </div>
+      </div>
+      <div class="exam-actions">
+        <button class="exam-act-btn" onclick="toggleExamTimer()">타이머 시작</button>
+        <button class="exam-act-btn" onclick="alert('이전 문항으로 이동합니다.')">← 이전</button>
+        <button class="exam-act-btn" onclick="alert('다음 문항으로 이동합니다.')">다음 →</button>
+        <button class="exam-act-btn primary" onclick="alert('채점 결과: 85점 (2등급) — 취약 유형: 빈칸 추론')">제출·채점</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 학부모 라운지 -->
+  <div class="zpanel" id="zp-parent">
+    <div class="parent-card">
+      <div class="parent-header">
+        <div class="student-ava">홍길</div>
+        <div>
+          <div class="student-name">홍길동 학생</div>
+          <div class="student-info">강남고 2학년 · 수능반 · 2024년 3월 입학</div>
+        </div>
+        <div style="margin-left:auto">
+          <span style="font-size:11px;padding:4px 12px;border-radius:20px;background:#dcfce7;color:#166534;font-weight:500">이번 주 업데이트</span>
+        </div>
+      </div>
+      <div class="report-metrics">
+        <div class="metric-card">
+          <div class="metric-label">어휘 테스트</div>
+          <div class="metric-val" style="color:#1e5eb8">96점</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">과제 수행도</div>
+          <div class="metric-val" style="color:#0f6e56">95%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">모의고사 등급</div>
+          <div class="metric-val" style="color:#1e5eb8">1등급</div>
+        </div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-track-title">성적 향상 추이 (입학 이후)</div>
+        <div class="month-bars">
+          <div class="month-wrap"><div class="month-bar" style="height:35%;opacity:0.4"></div><div class="month-lbl">3월</div></div>
+          <div class="month-wrap"><div class="month-bar" style="height:48%;opacity:0.5"></div><div class="month-lbl">4월</div></div>
+          <div class="month-wrap"><div class="month-bar" style="height:56%;opacity:0.6"></div><div class="month-lbl">5월</div></div>
+          <div class="month-wrap"><div class="month-bar" style="height:65%;opacity:0.7"></div><div class="month-lbl">6월</div></div>
+          <div class="month-wrap"><div class="month-bar" style="height:72%;opacity:0.75"></div><div class="month-lbl">7월</div></div>
+          <div class="month-wrap"><div class="month-bar" style="height:80%;opacity:0.85"></div><div class="month-lbl">8월</div></div>
+          <div class="month-wrap"><div class="month-bar" style="height:90%;opacity:0.9"></div><div class="month-lbl">9월</div></div>
+          <div class="month-wrap"><div class="month-bar" style="height:98%"></div><div class="month-lbl">10월</div></div>
+        </div>
+      </div>
+      <div class="teacher-comment">
+        <strong>원장 코멘트 (2025.04.14):</strong> 빈칸 추론 유형의 정확도가 지난 달 대비 크게 향상되었습니다. 이번 주는 순서 배열 집중 보완을 진행할 예정이며, 현재 추세라면 수능 1등급 유지가 충분히 가능합니다.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DICTIONARY INTEGRATION -->
+<div class="section">
+  <div class="dict-feature">
+    <div class="dict-text">
+      <div class="dict-eyebrow">젠파워 연동 서비스</div>
+      <div class="dict-title">Word Action Master<br>영어 학습 사전</div>
+      <div class="dict-desc">젠파워 영어에서 직접 개발한 영어 학습 전용 사전입니다. 수능·내신에 꼭 필요한 어휘를 중심으로 예문, 발음, 관련 표현까지 한눈에 확인하세요.</div>
+      <div class="dict-features-list">
+        <div class="dict-feat">수능·내신 핵심 어휘 완전 수록</div>
+        <div class="dict-feat">예문과 함께 문맥 속 활용법 학습</div>
+        <div class="dict-feat">발음 기호 및 동의어·반의어 제공</div>
+        <div class="dict-feat">젠파워 수업 연계 어휘 우선 제공</div>
+      </div>
+      <a href="https://service-252219997357.us-west1.run.app/" target="_blank" class="dict-cta">
+        사전 바로 열기 →
+      </a>
+    </div>
+    <div class="dict-preview">
+      <div class="dict-search-wrap">
+        <input class="dict-search" id="dictInput" type="text" placeholder="단어를 입력하세요..." onkeydown="if(event.key==='Enter')lookupWord()">
+        <button class="dict-search-btn" onclick="lookupWord()">검색</button>
+      </div>
+      <div class="dict-result" id="dictResult">
+        <div class="dict-word">abandon</div>
+        <div class="dict-pron">/əˈbændən/ · 동사</div>
+        <div class="dict-meaning">1. 버리다, 포기하다, 단념하다<br>2. (생각·계획 등을) 그만두다</div>
+        <div class="dict-example">"They had to abandon their original plans due to unexpected circumstances."</div>
+        <div class="dict-tags">
+          <span class="dict-tag">수능 필수</span>
+          <span class="dict-tag">빈칸 추론</span>
+          <span class="dict-tag">고빈도</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INFO CENTER -->
+<div class="section section-alt" id="info">
+  <div class="sec-eyebrow">입시 정보 센터</div>
+  <div class="sec-title">최신 입시 정보</div>
+  <div class="sec-sub">교육부 발표 · 강남권 학교 소식 · 대입 전략 — 매일 자동 업데이트</div>
+  <div class="news-grid">
+    <div class="news-card">
+      <span class="news-category" style="color:#dc2626">속보</span>
+      <div class="news-title">2026 수능 영어 절대평가 기조 유지 확정 — 젠파워 심층 분석</div>
+      <div class="news-date">2025.04.14</div>
+      <div class="news-excerpt">수능 영어의 절대평가 유지가 확정됨에 따라 1등급 컷과 학습 전략의 변화를 분석합니다.</div>
+    </div>
+    <div class="news-card">
+      <span class="news-category" style="color:#d97706">분석</span>
+      <div class="news-title">하나고·민사고 2025 영어 내신 출제 트렌드 심층 분석</div>
+      <div class="news-date">2025.04.10</div>
+      <div class="news-excerpt">자사고 영어 내신 출제 패턴의 변화와 2025년 예상 출제 방향을 분석합니다.</div>
+    </div>
+    <div class="news-card">
+      <span class="news-category" style="color:#059669">전략</span>
+      <div class="news-title">의대 정원 확대 시대 — 영어 1등급 전략 완전 가이드</div>
+      <div class="news-date">2025.04.05</div>
+      <div class="news-excerpt">의대 정원 확대에 따른 입시 지형 변화와 영어 영역 1등급 달성을 위한 핵심 전략을 정리했습니다.</div>
+    </div>
+    <div class="news-card">
+      <span class="news-category" style="color:#7c3aed">내신</span>
+      <div class="news-title">강남·서초권 주요 고교 1학기 중간고사 일정 총정리</div>
+      <div class="news-date">2025.04.01</div>
+      <div class="news-excerpt">강남·서초구 주요 고등학교의 2025년 1학기 중간고사 일정 및 범위를 정리합니다.</div>
+    </div>
+    <div class="news-card">
+      <span class="news-category" style="color:#1e5eb8">특강</span>
+      <div class="news-title">2025 여름방학 수능 집중 특강 — 6월 모집 예정 안내</div>
+      <div class="news-date">2025.03.28</div>
+      <div class="news-excerpt">여름방학을 활용한 수능 영어 집중 특강 커리큘럼과 모집 일정을 안내드립니다.</div>
+    </div>
+    <div class="news-card">
+      <span class="news-category" style="color:#0f6e56">공지</span>
+      <div class="news-title">2025 1학기 중간고사 대비 특강 수강생 모집 안내</div>
+      <div class="news-date">2025.03.20</div>
+      <div class="news-excerpt">강남권 주요 고교별 맞춤 1학기 중간고사 대비 특강 수강생을 모집합니다. 소수 정예로 진행됩니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="section">
+  <div class="sec-eyebrow">수강 후기</div>
+  <div class="sec-title">학생·학부모가 직접 말합니다</div>
+  <div class="sec-sub" style="margin-bottom:32px">과장 없는 실제 수강생 후기</div>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"2개월 만에 4등급에서 1등급으로 올랐습니다. 원장님의 꼼꼼한 오답 분석과 1:1 맞춤 지도가 정말 큰 도움이 됐어요. 타 학원에서 몇 달 동안 해결 못했던 킬러 문항을 여기서 단번에 해결했습니다."</div>
+      <div class="reviewer">
+        <div class="reviewer-ava">이</div>
+        <div>
+          <div class="reviewer-name">이지은 학생</div>
+          <div class="reviewer-info">세화여고 고2</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"4명 정원이라 제 아이 진도에 딱 맞게 가르쳐 주시는 게 눈에 보입니다. 매주 업데이트되는 평가서와 원장님 코멘트가 학부모로서 정말 신뢰가 됩니다. 성적 향상 그래프가 계속 오르고 있어요."</div>
+      <div class="reviewer">
+        <div class="reviewer-ava">김</div>
+        <div>
+          <div class="reviewer-name">학부모 김민준</div>
+          <div class="reviewer-info">휘문고 고1 자녀</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"원장님 강의 스타일이 명쾌하고 재밌어서 영어 거부감이 완전히 없어졌어요. 문법 설명이 특히 깔끔해서 헷갈렸던 부분들이 정리됐습니다. 의대 진학을 목표로 계속 다닐 예정입니다."</div>
+      <div class="reviewer">
+        <div class="reviewer-ava">박</div>
+        <div>
+          <div class="reviewer-name">박서준 학생</div>
+          <div class="reviewer-info">강남고 고3 · 의대 목표</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"25년 대치동 경력이 진짜임을 수업마다 느낍니다. 학교별 출제 패턴을 너무 잘 알고 계셔서 내신 대비가 정말 효과적이에요. 맛보기 수업 때 오답 풀이 해주시는 방식에 반해서 바로 등록했습니다."</div>
+      <div class="reviewer">
+        <div class="reviewer-ava">최</div>
+        <div>
+          <div class="reviewer-name">학부모 최수정</div>
+          <div class="reviewer-info">개포고 고2 자녀</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMISSIONS -->
+<div class="section section-alt" id="admissions">
+  <div class="sec-eyebrow">입학 안내</div>
+  <div class="sec-title">Admissions</div>
+  <div class="sec-sub">부담 없이 경험하고 결정하세요 — 맛보기 수업 후 등록 여부를 결정합니다</div>
+
+  <div style="border:1px solid var(--border-dark);border-radius:12px;overflow:hidden;margin-bottom:28px">
+    <div class="adm-flow">
+      <div class="adm-step">
+        <div class="adm-circle">1</div>
+        <div class="adm-title">예약</div>
+        <div class="adm-desc">전화·문자로<br>레벨테스트 예약<br><strong style="color:var(--blue)">02-554-2212</strong></div>
+      </div>
+      <div class="adm-step">
+        <div class="adm-circle">2</div>
+        <div class="adm-title">레벨테스트</div>
+        <div class="adm-desc">현재 실력 진단<br>취약 유형 파악</div>
+      </div>
+      <div class="adm-step">
+        <div class="adm-circle">3</div>
+        <div class="adm-title">맛보기 수업</div>
+        <div class="adm-desc">오답 풀이로<br>원장 직강 직접 체험</div>
+      </div>
+      <div class="adm-step">
+        <div class="adm-circle">4</div>
+        <div class="adm-title">등록 결정</div>
+        <div class="adm-desc">수업 체험 후<br>부담 없이 결정</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="adm-special">
+    <div class="adm-special-icon">✨</div>
+    <div class="adm-special-text">
+      <div class="adm-special-title">맛보기 수업 — 젠파워만의 특별한 입학 시스템</div>
+      <div class="adm-special-desc">레벨테스트 후 오답 풀이를 통해 원장님의 강의 스타일을 직접 체험합니다. 강의 방식이 마음에 들지 않으면 등록하지 않아도 됩니다. 실력으로 증명하는 젠파워의 자신감입니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- LOCATION -->
+<div class="section">
+  <div class="sec-eyebrow">오시는 길</div>
+  <div class="sec-title">위치 안내</div>
+  <div class="sec-sub" style="margin-bottom:32px">대치역에서 도보 2분 거리</div>
+  <div class="location-grid">
+    <div class="location-map">
+      <div class="map-placeholder">
+        <div style="font-size:40px;margin-bottom:12px">🗺️</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text)">대치역 1번 출구 100m</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px">래미안 대치팰리스 앞</div>
+        <a href="https://map.naver.com" target="_blank" style="display:inline-block;margin-top:12px;font-size:12px;color:var(--blue);text-decoration:none;border:1px solid var(--blue);padding:5px 14px;border-radius:20px">네이버 지도 열기 →</a>
+      </div>
+    </div>
+    <div class="location-details">
+      <div class="loc-item">
+        <div class="loc-icon">📍</div>
+        <div>
+          <div class="loc-label">주소</div>
+          <div class="loc-val">서울시 강남구 남부순환로 2917 청실종합상가 3층</div>
+          <div class="loc-sub">래미안 대치팰리스 정문 앞 흰색 건물</div>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-icon">🚇</div>
+        <div>
+          <div class="loc-label">지하철</div>
+          <div class="loc-val">3호선 대치역 1번 출구 도보 2분 (100m)</div>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-icon">📞</div>
+        <div>
+          <div class="loc-label">전화 상담</div>
+          <div class="loc-val">02-554-2212 / 010-7679-3338</div>
+          <div class="loc-sub">평일 14:00~22:00 · 토요일 10:00~18:00</div>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-icon">⏰</div>
+        <div>
+          <div class="loc-label">운영 시간</div>
+          <div class="loc-val">평일 14:00 ~ 22:00</div>
+          <div class="loc-sub">토요일 10:00~18:00 · 일요일 휴무</div>
+        </div>
+      </div>
+      <button class="consult-btn" onclick="openModal()">
+        📋 지금 바로 상담 예약하기
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="logo-zen">ZEN</span><span class="logo-power">POWER</span>
+        <span class="logo-eng">English</span>
+      </div>
+      <div class="footer-tagline">대치동 25년 노하우 · 소수정예 원장 직강<br>불가능을 가능으로 — 젠파워가 증명합니다<br>2002년 설립</div>
+      <div class="footer-contact">
+        <div class="footer-contact-item">📞 02-554-2212 / 010-7679-3338</div>
+        <div class="footer-contact-item">📍 강남구 남부순환로 2917 청실종합상가 3층</div>
+        <div class="footer-contact-item">🚇 대치역 1번 출구 100m</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>학원 안내</h4>
+      <ul class="footer-links-list">
+        <li><a href="#about">학원 소개</a></li>
+        <li><a href="#about">원장 프로필</a></li>
+        <li><a href="#curriculum">프로그램</a></li>
+        <li><a href="#admissions">입학 안내</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>학습 센터</h4>
+      <ul class="footer-links-list">
+        <li><a href="#zone">기출문제 은행</a></li>
+        <li><a href="#zone">듣기 평가실</a></li>
+        <li><a href="#zone">모의고사</a></li>
+        <li><a href="https://service-252219997357.us-west1.run.app/" target="_blank">Word Action Master 사전</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>바로가기</h4>
+      <ul class="footer-links-list">
+        <li><a href="#info">입시 정보 센터</a></li>
+        <li><a href="https://blog.naver.com/zenpower3338" target="_blank">네이버 블로그</a></li>
+        <li><a href="#admissions">레벨테스트 예약</a></li>
+        <li><a href="#admissions">오시는 길</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 ZenPower English Academy. All rights reserved. 사업자등록번호 000-00-00000</div>
+    <div class="footer-bottom-links">
+      <a href="#">개인정보처리방침</a>
+      <a href="#">이용약관</a>
+    </div>
+  </div>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">로그인</div>
+    <div class="modal-sub">이용 목적에 맞게 선택해 주세요</div>
+    <div class="login-types">
+      <button class="login-type-btn sel" onclick="selLoginType(this)">
+        <div class="login-type-icon">🎓</div>
+        <div class="login-type-name">학생</div>
+        <div class="login-type-desc">기출·듣기·모의고사</div>
+      </button>
+      <button class="login-type-btn" onclick="selLoginType(this)">
+        <div class="login-type-icon">👨‍👩‍👧</div>
+        <div class="login-type-name">학부모</div>
+        <div class="login-type-desc">자녀 평가서·성적</div>
+      </button>
+    </div>
+    <div class="form-field">
+      <label class="form-label">아이디 (학원 발급)</label>
+      <input class="form-input" type="text" placeholder="아이디를 입력하세요">
+    </div>
+    <div class="form-field">
+      <label class="form-label">비밀번호</label>
+      <input class="form-input" type="password" placeholder="비밀번호를 입력하세요">
+    </div>
+    <button class="form-submit" onclick="closeModal()">로그인</button>
+    <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--text-muted)">
+      계정이 없으신가요? <a href="tel:025542212" style="color:var(--blue)">02-554-2212로 문의</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// CURRICULUM TABS
+function currTab(name, el) {
+  document.querySelectorAll('.curr-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.curr-panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('curr-' + name).classList.add('active');
+}
+
+// ZONE TABS
+function switchZone(name) {
+  ['exam','listening','exam-test','parent'].forEach(t => {
+    document.getElementById('zt-' + t).classList.remove('active');
+    document.getElementById('zp-' + t).classList.remove('active');
+  });
+  document.getElementById('zt-' + name).classList.add('active');
+  document.getElementById('zp-' + name).classList.add('active');
+}
+
+function setZoneUser(type) {
+  document.querySelectorAll('.zone-badge').forEach(b => { b.classList.remove('active'); b.classList.remove('guest-active'); });
+  const info = document.getElementById('zoneLoginInfo');
+  if (type === 'guest') {
+    document.getElementById('zbGuest').classList.add('guest-active');
+    info.textContent = '게스트로 접속 중 — 일부 기능만 이용 가능합니다';
+  } else if (type === 'student') {
+    document.getElementById('zbStudent').classList.add('active');
+    info.textContent = '학생 로그인 완료 — 기출문제·듣기·모의고사 전체 이용 가능';
+    openModal();
+  } else {
+    document.getElementById('zbParent').classList.add('active');
+    info.textContent = '학부모 로그인 완료 — 자녀 평가서 및 성적 현황 확인 가능';
+    openModal();
+  }
+}
+
+function setLevel(el) {
+  document.querySelectorAll('.level-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// PLAYER
+var playing = false, prog = 18, total = 292;
+function togglePlay() {
+  playing = !playing;
+  document.getElementById('playBtn').textContent = playing ? '⏸' : '▶';
+  if (playing) {
+    var iv = setInterval(function() {
+      if (!playing) { clearInterval(iv); return; }
+      prog = Math.min(100, prog + 0.2);
+      document.getElementById('progFill').style.width = prog + '%';
+      var cur = Math.round(total * prog / 100);
+      var m = Math.floor(cur/60), s = cur%60, tm = Math.floor(total/60), ts = total%60;
+      document.getElementById('timeDisp').textContent =
+        (m<10?'0':'')+m+':'+(s<10?'0':'')+s+' / '+(tm<10?'0':'')+tm+':'+(ts<10?'0':'')+ts;
+      if (prog >= 100) { playing = false; clearInterval(iv); document.getElementById('playBtn').textContent = '▶'; }
+    }, 180);
+  }
+}
+function seekProgress(e) {
+  prog = (e.offsetX / e.currentTarget.offsetWidth) * 100;
+  document.getElementById('progFill').style.width = prog + '%';
+}
+function checkAnswer(el, correct) {
+  el.closest('.q-options, .exam-q-box').querySelectorAll('.q-opt').forEach(o => { o.classList.remove('correct','wrong'); o.style.cssText = ''; });
+  el.classList.add(correct ? 'correct' : 'wrong');
+}
+
+// EXAM TIMER
+var examOn = false, examSecs = 4200;
+function toggleExamTimer() {
+  examOn = !examOn;
+  if (examOn) {
+    var iv = setInterval(function() {
+      if (!examOn) { clearInterval(iv); return; }
+      examSecs = Math.max(0, examSecs - 1);
+      var m = Math.floor(examSecs/60), s = examSecs % 60;
+      document.getElementById('examTimer').textContent = '⏱ ' + (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      if (examSecs === 0) { examOn = false; clearInterval(iv); }
+    }, 1000);
+  }
+}
+
+// NUM GRID
+(function() {
+  var g = document.getElementById('numGrid');
+  if (!g) return;
+  for (var i = 1; i <= 45; i++) {
+    var d = document.createElement('div');
+    d.className = 'num-cell' + (i < 44 ? ' done' : i === 45 ? ' current' : '');
+    d.textContent = i;
+    g.appendChild(d);
+  }
+})();
+
+// DICTIONARY SEARCH
+var dictData = {
+  'abandon': { word: 'abandon', pron: '/əˈbændən/ · 동사', meaning: '1. 버리다, 포기하다, 단념하다\n2. (생각·계획 등을) 그만두다', example: '"They had to abandon their original plans due to unexpected circumstances."', tags: ['수능 필수','빈칸 추론','고빈도'] },
+  'innovative': { word: 'innovative', pron: '/ˈɪnəveɪtɪv/ · 형용사', meaning: '혁신적인, 획기적인, 창의적인', example: '"The company is known for its innovative approach to problem-solving."', tags: ['수능 필수','고난도'] },
+  'conventional': { word: 'conventional', pron: '/kənˈvenʃənl/ · 형용사', meaning: '1. 관습적인, 전통적인\n2. 평범한, 틀에 박힌', example: '"She preferred a conventional approach rather than taking risks."', tags: ['수능 필수','어법'] },
+  'significant': { word: 'significant', pron: '/sɪɡˈnɪfɪkənt/ · 형용사', meaning: '1. 중요한, 의미심장한\n2. 상당한, 현저한', example: '"There was a significant improvement in his test scores this semester."', tags: ['수능 필수','고빈도','내신'] },
+  'persist': { word: 'persist', pron: '/pəˈsɪst/ · 동사', meaning: '1. 지속되다, 계속되다\n2. 고집하다, 집요하게 추구하다', example: '"Despite failures, he continued to persist in pursuing his goals."', tags: ['수능','킬러 문항'] },
+};
+function lookupWord() {
+  var q = document.getElementById('dictInput').value.toLowerCase().trim();
+  var r = document.getElementById('dictResult');
+  var d = dictData[q];
+  if (!d) {
+    d = { word: q || '단어를 입력하세요', pron: '검색 결과 없음', meaning: 'Word Action Master에서 전체 사전을 확인하세요.', example: '', tags: [] };
+  }
+  var tagsHtml = d.tags.map(t => '<span class="dict-tag">' + t + '</span>').join('');
+  r.innerHTML = '<div class="dict-word">' + d.word + '</div>' +
+    '<div class="dict-pron">' + d.pron + '</div>' +
+    '<div class="dict-meaning">' + d.meaning.replace(/\n/g,'<br>') + '</div>' +
+    (d.example ? '<div class="dict-example">' + d.example + '</div>' : '') +
+    (d.tags.length ? '<div class="dict-tags">' + tagsHtml + '</div>' : '');
+}
+
+// MODAL
+function openModal() { document.getElementById('loginModal').classList.add('open'); }
+function closeModal() { document.getElementById('loginModal').classList.remove('open'); }
+function selLoginType(el) {
+  document.querySelectorAll('.login-type-btn').forEach(b => b.classList.remove('sel'));
+  el.classList.add('sel');
+}
+document.getElementById('loginModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
