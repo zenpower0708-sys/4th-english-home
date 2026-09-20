@@ -1695,7 +1695,7 @@ footer {
           <div class="loc-sub">토요일 10:00~18:00 · 일요일 휴무</div>
         </div>
       </div>
-      <button class="consult-btn" onclick="openModal()">
+      <button class="consult-btn" onclick="openConsultModal()">
         📋 지금 바로 상담 예약하기
       </button>
     </div>
@@ -1762,12 +1762,12 @@ footer {
     <div class="modal-title">로그인</div>
     <div class="modal-sub">이용 목적에 맞게 선택해 주세요</div>
     <div class="login-types">
-      <button class="login-type-btn sel" onclick="selLoginType(this)">
+      <button class="login-type-btn sel" id="btnTypeStudent" onclick="selLoginType(this, 'student')">
         <div class="login-type-icon">🎓</div>
         <div class="login-type-name">학생</div>
         <div class="login-type-desc">기출·듣기·모의고사</div>
       </button>
-      <button class="login-type-btn" onclick="selLoginType(this)">
+      <button class="login-type-btn" id="btnTypeParent" onclick="selLoginType(this, 'parent')">
         <div class="login-type-icon">👨‍👩‍👧</div>
         <div class="login-type-name">학부모</div>
         <div class="login-type-desc">자녀 평가서·성적</div>
@@ -1782,9 +1782,77 @@ footer {
       <input class="form-input" type="password" placeholder="비밀번호를 입력하세요">
     </div>
     <button class="form-submit" onclick="closeModal()">로그인</button>
-    <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--text-muted)">
-      계정이 없으신가요? <a href="tel:025542212" style="color:var(--blue)">02-554-2212로 문의</a>
+
+    <!-- 학부모 선택 시 노출되는 상담 예약 바로가기 배너 -->
+    <div id="parentConsultBox" style="display:none; margin-top:16px; padding:14px; background:#f0f6ff; border:1px solid #bfdbfe; border-radius:10px; text-align:center;">
+      <div style="font-size:13px; font-weight:700; color:#1e40af; margin-bottom:4px;">📋 학부모 1:1 상담 예약을 원하시나요?</div>
+      <div style="font-size:11px; color:#3b82f6; margin-bottom:10px;">로그인 없이도 즉시 학원 텔레그램으로 상담 예약을 전송하실 수 있습니다.</div>
+      <button type="button" onclick="closeModal(); openConsultModal();" style="background:var(--navy); color:white; border:none; padding:9px 18px; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer; font-family:inherit;">지금 바로 상담 예약하기 ↗</button>
     </div>
+
+    <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--text-muted)">
+      계정이 없으신가요? <a href="javascript:void(0)" onclick="closeModal(); openConsultModal();" style="color:var(--blue); font-weight:600;">상담 예약 신청하기</a> &nbsp;|&nbsp; <a href="tel:025542212" style="color:var(--text-muted)">02-554-2212</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONSULTATION RESERVATION MODAL (학부모 상담 예약 텔레그램 전송) -->
+<div class="modal-overlay" id="consultModal">
+  <div class="modal" style="width: 480px; max-width: 92vw; max-height: 90vh; overflow-y: auto;">
+    <button class="modal-close" onclick="closeConsultModal()">✕</button>
+    <div class="modal-title" style="display: flex; align-items: center; gap: 8px;">
+      <span>📋</span> 학부모 상담 예약 신청
+    </div>
+    <div class="modal-sub" style="margin-bottom: 20px; font-size: 13px; line-height: 1.6;">
+      작성해주신 상담 예약 내용은 <strong>학원 텔레그램으로 즉시 전송</strong>되어 원장님이 직접 확인 후 기재해주신 연락처로 연락드립니다.
+    </div>
+
+    <form id="consultForm" onsubmit="sendConsultTelegram(event)">
+      <div class="form-field" style="margin-bottom: 14px;">
+        <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 6px;">학생이름 <span style="color:#e24b4a">*</span></label>
+        <input class="form-input" type="text" id="csName" placeholder="예: 김도현" required style="padding: 10px 14px;">
+      </div>
+
+      <div class="form-field" style="margin-bottom: 14px;">
+        <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 6px;">학교 학년 <span style="color:#e24b4a">*</span></label>
+        <input class="form-input" type="text" id="csSchool" placeholder="예: 대청중 2학년 / 경기고 1학년" required style="padding: 10px 14px;">
+      </div>
+
+      <div class="form-field" style="margin-bottom: 14px;">
+        <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 6px;">연락처 <span style="color:#e24b4a">*</span></label>
+        <input class="form-input" type="tel" id="csPhone" placeholder="예: 010-1234-5678" required style="padding: 10px 14px;">
+      </div>
+
+      <div class="form-field" style="margin-bottom: 14px;">
+        <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 6px;">상담통화가능시간</label>
+        <div style="display: flex; gap: 16px; margin-bottom: 8px; padding: 4px 0;">
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer;">
+            <input type="radio" name="csTimeType" value="any" checked onchange="toggleTimeDetail()">
+            상관없음
+          </label>
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer;">
+            <input type="radio" name="csTimeType" value="custom" onchange="toggleTimeDetail()">
+            시간지정
+          </label>
+        </div>
+        <div id="csTimeDetailWrap" style="display: none; margin-top: 6px;">
+          <input class="form-input" type="text" id="csTimeDetail" placeholder="예: 평일 16:00~18:00 또는 토요일 오전" style="padding: 10px 14px;">
+        </div>
+      </div>
+
+      <div class="form-field" style="margin-bottom: 18px;">
+        <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 6px;">상담내용</label>
+        <textarea class="form-input" id="csContent" rows="3" placeholder="자녀의 현재 성적, 학습 고민(문법/수능/내신 등), 상담 희망 내용을 적어주세요." style="padding: 10px 14px; resize: vertical;"></textarea>
+      </div>
+
+      <button type="submit" class="form-submit" id="csSubmitBtn" style="background: var(--navy); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; padding: 14px; font-weight: 700; width: 100%;">
+        <span>📨</span> 학원 텔레그램으로 예약 전송하기
+      </button>
+
+      <div style="text-align: center; margin-top: 12px; font-size: 11px; color: var(--text-muted);">
+        🔒 신청 즉시 원장님 텔레그램으로 안전하게 알림이 전송됩니다.
+      </div>
+    </form>
   </div>
 </div>
 
@@ -1819,8 +1887,8 @@ function setZoneUser(type) {
     openModal();
   } else {
     document.getElementById('zbParent').classList.add('active');
-    info.textContent = '학부모 로그인 완료 — 자녀 평가서 및 성적 현황 확인 가능';
-    openModal();
+    info.textContent = '학부모 전용 — 자녀 평가서·성적 확인 및 1:1 상담 예약';
+    openModal('parent');
   }
 }
 
@@ -1906,15 +1974,112 @@ function lookupWord() {
     (d.tags.length ? '<div class="dict-tags">' + tagsHtml + '</div>' : '');
 }
 
-// MODAL
-function openModal() { document.getElementById('loginModal').classList.add('open'); }
+// MODAL & CONSULTATION
+function openModal(defaultType) {
+  document.getElementById('loginModal').classList.add('open');
+  if (defaultType === 'parent') {
+    var btn = document.getElementById('btnTypeParent');
+    if (btn) selLoginType(btn, 'parent');
+  } else {
+    var btn = document.getElementById('btnTypeStudent');
+    if (btn) selLoginType(btn, 'student');
+  }
+}
 function closeModal() { document.getElementById('loginModal').classList.remove('open'); }
-function selLoginType(el) {
+
+function openConsultModal() {
+  closeModal();
+  document.getElementById('consultModal').classList.add('open');
+}
+function closeConsultModal() {
+  document.getElementById('consultModal').classList.remove('open');
+}
+
+function selLoginType(el, type) {
   document.querySelectorAll('.login-type-btn').forEach(b => b.classList.remove('sel'));
   el.classList.add('sel');
+  var box = document.getElementById('parentConsultBox');
+  if (box) {
+    box.style.display = (type === 'parent') ? 'block' : 'none';
+  }
 }
+
+function toggleTimeDetail() {
+  var checkedRadio = document.querySelector('input[name="csTimeType"]:checked');
+  var isCustom = checkedRadio && checkedRadio.value === 'custom';
+  var wrap = document.getElementById('csTimeDetailWrap');
+  if (wrap) {
+    wrap.style.display = isCustom ? 'block' : 'none';
+    if (isCustom) document.getElementById('csTimeDetail').focus();
+  }
+}
+
+async function sendConsultTelegram(e) {
+  e.preventDefault();
+  var btn = document.getElementById('csSubmitBtn');
+  var name = document.getElementById('csName').value.trim();
+  var school = document.getElementById('csSchool').value.trim();
+  var phone = document.getElementById('csPhone').value.trim();
+  var checkedRadio = document.querySelector('input[name="csTimeType"]:checked');
+  var timeType = checkedRadio ? checkedRadio.value : 'any';
+  var timeDetail = document.getElementById('csTimeDetail').value.trim();
+  var content = document.getElementById('csContent').value.trim() || '별도 기재 없음';
+
+  var timeStr = timeType === 'any' ? '상관없음' : (timeDetail ? '시간지정 (' + timeDetail + ')' : '시간지정 (추후 조율)');
+
+  if (!name || !school || !phone) {
+    alert('학생이름, 학교 학년, 연락처를 모두 입력해 주세요.');
+    return;
+  }
+
+  var now = new Date();
+  var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0') + ' ' + String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+
+  var msg = '📋 [젠파워 학부모 상담 예약 신청]\n\n' +
+            '• 학생이름: ' + name + '\n' +
+            '• 학교 학년: ' + school + '\n' +
+            '• 연락처: ' + phone + '\n' +
+            '• 상담통화가능시간: ' + timeStr + '\n' +
+            '• 상담내용:\n' + content + '\n\n' +
+            '⏰ 접수일시: ' + dateStr;
+
+  btn.disabled = true;
+  btn.innerHTML = '⏳ 텔레그램 전송 중...';
+
+  try {
+    var botToken = '8101883523:AAE2gWNWIla8I0LR0nRs77TzErJw-p4yNV4';
+    var chatId = '8551745319';
+    var res = await fetch('https://api.telegram.org/bot' + botToken + '/sendMessage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: msg
+      })
+    });
+    var data = await res.json();
+    if (data.ok) {
+      alert('✅ 학원 텔레그램으로 상담 예약이 성공적으로 접수되었습니다!\n원장님이 확인 후 기재해주신 연락처로 연락드리겠습니다.');
+      closeConsultModal();
+      document.getElementById('consultForm').reset();
+      toggleTimeDetail();
+    } else {
+      throw new Error(data.description || '전송 실패');
+    }
+  } catch (err) {
+    console.error('Telegram send error:', err);
+    alert('전송 중 오류가 발생했습니다. 학원 전화(02-554-2212)로 문의 부탁드립니다.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<span>📨</span> 학원 텔레그램으로 예약 전송하기';
+  }
+}
+
 document.getElementById('loginModal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
+});
+document.getElementById('consultModal').addEventListener('click', function(e) {
+  if (e.target === this) closeConsultModal();
 });
 </script>
 </body>
