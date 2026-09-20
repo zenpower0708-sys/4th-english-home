@@ -853,18 +853,18 @@ footer {
             <div style="font-size: 11px; color: #94a3b8;">대치동 젠파워 영어 전문학원 Official Lyric Music Video</div>
           </div>
         </div>
-        <!-- 음소거 토글 버튼 -->
-        <button id="heroMvMuteBtn" onclick="toggleHeroMvMute()" style="background: linear-gradient(135deg, #e11d48, #be123c); color: white; border: none; padding: 6px 12px; border-radius: 9999px; font-size: 11.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(225, 29, 72, 0.4); font-family: inherit;">
-          <span id="heroMvMuteIcon">🔈</span>
-          <span id="heroMvMuteText">음소거 해제</span>
+        <!-- 음소거 토글 버튼 (로고송 소리가 먼저 나오고 음소거 버튼으로 설정) -->
+        <button id="heroMvMuteBtn" onclick="toggleHeroMvMute()" style="background: linear-gradient(135deg, #e11d48, #be123c); color: white; border: none; padding: 6px 14px; border-radius: 9999px; font-size: 12px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 2px 8px rgba(225, 29, 72, 0.4); font-family: inherit;" title="소리가 켜져 있습니다. 클릭 시 소리를 끕니다 (음소거)">
+          <span id="heroMvMuteIcon">🔇</span>
+          <span id="heroMvMuteText">음소거</span>
         </button>
       </div>
 
       <!-- Video Player Wrap (2번 사진 비디오 영역) -->
       <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden;">
         
-        <!-- 음악 소리 켜기 플로팅 버튼 -->
-        <div id="heroMvUnmuteFloat" onclick="unmuteHeroMv()" style="position: absolute; top: 12px; right: 12px; z-index: 25; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px); border: 1.5px solid #38bdf8; color: #38bdf8; padding: 6px 12px; border-radius: 9999px; font-size: 12px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);">
+        <!-- 음악 소리 켜기 플로팅 버튼 (소리가 켜져 있을 땐 숨김) -->
+        <div id="heroMvUnmuteFloat" onclick="unmuteHeroMv()" style="position: absolute; top: 12px; right: 12px; z-index: 25; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px); border: 1.5px solid #38bdf8; color: #38bdf8; padding: 6px 12px; border-radius: 9999px; font-size: 12px; font-weight: 800; cursor: pointer; display: none; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);">
           <span>🔊 음악 소리 켜기</span>
         </div>
 
@@ -876,8 +876,8 @@ footer {
           </button>
         </div>
 
-        <!-- Video Element -->
-        <video id="heroMvVideo" playsinline autoplay muted loop preload="auto" controls style="width: 100%; height: 100%; object-fit: contain; display: block;">
+        <!-- Video Element (로고송이 먼저 나오도록 설정) -->
+        <video id="heroMvVideo" playsinline autoplay loop preload="auto" controls style="width: 100%; height: 100%; object-fit: contain; display: block;">
           <source src="assets/video/ZenPower_Lyric_MusicVideo.mp4" type="video/mp4">
           <source src="https://zenstu114.vercel.app/assets/video/zenpower_logosong_mv.mp4" type="video/mp4">
           브라우저가 비디오 태그를 지원하지 않습니다.
@@ -2132,16 +2132,16 @@ function closeModal() {
   pendingStudentService = null;
 }
 
-// HERO MV VIDEO PLAYER CONTROLS (2번 사진 기능)
+// HERO MV VIDEO PLAYER CONTROLS (2번 사진 기능: 로고송 소리 우선 재생 및 음소거 설정)
 function toggleHeroMvMute() {
   var v = document.getElementById('heroMvVideo');
   if (!v) return;
-  v.muted = !v.muted;
-  if (!v.muted) {
-    v.volume = 1.0;
-    v.play().catch(function(e){ console.log(e); });
+  if (v.muted) {
+    unmuteHeroMv();
+  } else {
+    v.muted = true;
+    updateHeroMvAudioUI();
   }
-  updateHeroMvAudioUI();
 }
 
 function unmuteHeroMv() {
@@ -2155,6 +2155,7 @@ function unmuteHeroMv() {
 
 function updateHeroMvAudioUI() {
   var v = document.getElementById('heroMvVideo');
+  var btn = document.getElementById('heroMvMuteBtn');
   var btnText = document.getElementById('heroMvMuteText');
   var btnIcon = document.getElementById('heroMvMuteIcon');
   var floatBtn = document.getElementById('heroMvUnmuteFloat');
@@ -2162,13 +2163,56 @@ function updateHeroMvAudioUI() {
   if (v.muted) {
     if (btnText) btnText.textContent = '음소거 해제';
     if (btnIcon) btnIcon.textContent = '🔈';
+    if (btn) {
+      btn.style.background = 'linear-gradient(135deg, #475569, #334155)';
+      btn.title = '소리가 꺼져 있습니다. 클릭 시 소리를 켭니다.';
+    }
     if (floatBtn) floatBtn.style.display = 'flex';
   } else {
     if (btnText) btnText.textContent = '음소거';
     if (btnIcon) btnIcon.textContent = '🔇';
+    if (btn) {
+      btn.style.background = 'linear-gradient(135deg, #e11d48, #be123c)';
+      btn.title = '소리가 켜져 있습니다. 클릭 시 소리를 끕니다 (음소거).';
+    }
     if (floatBtn) floatBtn.style.display = 'none';
   }
 }
+
+// 로고송이 먼저 나오도록 자동 재생 (음소거 없이 재생 시도)
+function startHeroMvWithAudio() {
+  var v = document.getElementById('heroMvVideo');
+  if (!v) return;
+  v.muted = false;
+  v.volume = 1.0;
+  var promise = v.play();
+  if (promise !== undefined) {
+    promise.then(function() {
+      // 소리와 함께 즉시 자동 재생 성공!
+      updateHeroMvAudioUI();
+    }).catch(function(err) {
+      // 브라우저 정책으로 소리 있는 자동재생이 차단된 경우, 임시 음소거 재생 후 첫 클릭/터치/스크롤 시 즉시 소리 켬
+      console.log('Autoplay with sound paused by browser, falling back to muted autoplay:', err);
+      v.muted = true;
+      v.play().catch(function(e){ console.log(e); });
+      updateHeroMvAudioUI();
+    });
+  }
+}
+
+// 브라우저 차단 시 페이지 첫 상호작용(클릭/터치/스크롤)에서 즉시 로고송 소리 켜기
+var hasTriggeredAutoSound = false;
+function triggerSoundOnFirstInteraction() {
+  if (hasTriggeredAutoSound) return;
+  var v = document.getElementById('heroMvVideo');
+  if (v && v.muted) {
+    unmuteHeroMv();
+    hasTriggeredAutoSound = true;
+  }
+}
+['click', 'touchstart', 'pointerdown', 'keydown'].forEach(function(evt) {
+  window.addEventListener(evt, triggerSoundOnFirstInteraction, { once: true, passive: true });
+});
 
 function handleMvCenterAction() {
   var v = document.getElementById('heroMvVideo');
@@ -2399,9 +2443,10 @@ function toggleReviewsMore() {
   }
 }
 
-// 최초 렌더링 및 로그인 상태 초기화
+// 최초 렌더링 및 로그인 상태, 로고송 오디오 자동재생 초기화
 renderReviews();
 updateStudentLoginUI();
+startHeroMvWithAudio();
 
 document.getElementById('loginModal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
