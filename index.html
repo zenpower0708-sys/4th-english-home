@@ -1839,7 +1839,7 @@ footer {
       </div>
 
       <button type="submit" class="form-submit" id="csSubmitBtn" style="background: var(--navy); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; padding: 14px; font-weight: 700; width: 100%;">
-        <span>📨</span> 학원 텔레그램으로 예약 전송하기
+        <span>📨</span> 상담예약전송하기
       </button>
 
       <div style="text-align: center; margin-top: 12px; font-size: 11px; color: var(--text-muted);">
@@ -2275,7 +2275,7 @@ async function sendConsultTelegram(e) {
     alert('전송 중 오류가 발생했습니다. 학원 전화(02-554-2212)로 문의 부탁드립니다.');
   } finally {
     btn.disabled = false;
-    btn.innerHTML = '<span>📨</span> 학원 텔레그램으로 예약 전송하기';
+    btn.innerHTML = '<span>📨</span> 상담예약전송하기';
   }
 }
 
