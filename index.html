@@ -185,13 +185,11 @@ body { font-family: 'Noto Sans KR', sans-serif; color: var(--text); background: 
 .trust-label { font-size: 12px; color: rgba(255,255,255,0.45); }
 
 .hero-visual {
-  flex: 0 0 420px;
+  flex: 1 1 480px;
+  max-width: 560px;
   display: flex; align-items: center; justify-content: center;
-  padding: 40px; z-index: 2; position: relative;
+  padding: 30px 40px 30px 20px; z-index: 2; position: relative;
 }
-
-/* 3D SCENE SVG */
-.scene { width: 100%; max-width: 380px; }
 
 /* STATS RIBBON */
 .stats-ribbon {
@@ -843,74 +841,79 @@ footer {
   </div>
 
   <div class="hero-visual">
-    <!-- 3D LEARNING SCENE -->
-    <svg class="scene" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg">
-      <!-- particles -->
-      <circle cx="340" cy="50" r="3" fill="rgba(200,153,42,0.3)"/>
-      <circle cx="20" cy="100" r="2" fill="rgba(133,183,235,0.25)"/>
-      <circle cx="355" cy="200" r="4" fill="rgba(93,202,165,0.15)"/>
-      <circle cx="15" cy="260" r="2.5" fill="rgba(200,153,42,0.2)"/>
-      <circle cx="350" cy="310" r="2" fill="rgba(133,183,235,0.2)"/>
-      <!-- desk top surface -->
-      <polygon points="40,285 335,240 335,262 40,307" fill="#0f2a50"/>
-      <polygon points="40,263 335,218 335,240 40,285" fill="#1a3a6e"/>
-      <!-- desk legs -->
-      <polygon points="40,263 62,263 62,360 40,360" fill="#091828"/>
-      <polygon points="313,218 335,218 335,315 313,315" fill="#091828"/>
-      <!-- notebook 3d -->
-      <polygon points="120,252 230,232 230,248 120,268" fill="#0d1f35"/>
-      <polygon points="120,233 230,213 230,232 120,252" fill="#162840"/>
-      <polygon points="126,172 224,154 224,215 126,233" fill="#0a1a2e"/>
-      <rect x="133" y="162" width="84" height="58" rx="2" fill="#0d2040"/>
-      <!-- screen graph -->
-      <line x1="140" y1="210" x2="140" y2="170" stroke="#378ADD" stroke-width="0.8" opacity="0.7"/>
-      <line x1="140" y1="210" x2="212" y2="210" stroke="#378ADD" stroke-width="0.8" opacity="0.7"/>
-      <polyline points="145,203 160,188 175,193 190,172 205,178" fill="none" stroke="#85B7EB" stroke-width="2" stroke-linecap="round"/>
-      <circle cx="190" cy="172" r="3.5" fill="#85B7EB"/>
-      <text x="178" y="223" fill="rgba(133,183,235,0.6)" font-size="7" font-family="sans-serif" text-anchor="middle">성적 분석</text>
-      <!-- books stack -->
-      <polygon points="55,260 100,251 100,278 55,287" fill="#1e5eb8"/>
-      <polygon points="52,259 55,260 55,287 52,286" fill="#0f3070"/>
-      <polygon points="52,259 100,250 100,251 55,260" fill="#3a82d4"/>
-      <polygon points="64,256 109,247 109,274 64,283" fill="#0f6e56"/>
-      <polygon points="61,255 64,256 64,283 61,282" fill="#084535"/>
-      <polygon points="61,255 109,246 109,247 64,256" fill="#1d9e75"/>
-      <polygon points="73,252 118,243 118,270 73,279" fill="#854f0b"/>
-      <polygon points="70,251 73,252 73,279 70,278" fill="#412402"/>
-      <polygon points="70,251 118,242 118,243 73,252" fill="#c8992a"/>
-      <!-- pencil holder -->
-      <ellipse cx="290" cy="242" rx="17" ry="5.5" fill="#1a3a6e" opacity="0.7"/>
-      <rect x="273" y="242" width="34" height="26" fill="#0f2a50"/>
-      <ellipse cx="290" cy="268" rx="17" ry="5.5" fill="#091828"/>
-      <line x1="281" y1="224" x2="280" y2="242" stroke="#c8992a" stroke-width="3.5" stroke-linecap="round"/>
-      <line x1="289" y1="221" x2="289" y2="242" stroke="#e24b4a" stroke-width="3.5" stroke-linecap="round"/>
-      <line x1="298" y1="225" x2="299" y2="242" stroke="#5dcaa5" stroke-width="3.5" stroke-linecap="round"/>
-      <!-- floating report card -->
-      <g transform="rotate(-7, 205, 108)">
-        <rect x="155" y="75" width="120" height="80" rx="6" fill="white" opacity="0.97"/>
-        <rect x="155" y="75" width="120" height="22" rx="6" fill="#0a1628"/>
-        <rect x="155" y="88" width="120" height="9" fill="#0a1628"/>
-        <text x="215" y="90" fill="white" font-size="8" font-family="sans-serif" text-anchor="middle" font-weight="bold">젠파워 성적 리포트</text>
-        <text x="170" y="115" fill="#0a1628" font-size="9" font-family="sans-serif" font-weight="bold">어휘 테스트</text>
-        <text x="264" y="115" fill="#1e5eb8" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="end">98점</text>
-        <text x="170" y="130" fill="#0a1628" font-size="9" font-family="sans-serif" font-weight="bold">모의고사</text>
-        <text x="264" y="130" fill="#1e5eb8" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="end">92점</text>
-        <text x="170" y="145" fill="#0a1628" font-size="9" font-family="sans-serif" font-weight="bold">등급</text>
-        <text x="264" y="145" fill="#0f6e56" font-size="14" font-family="sans-serif" font-weight="bold" text-anchor="end">1등급 ✓</text>
-      </g>
-      <!-- word bubbles -->
-      <rect x="8" y="148" width="62" height="22" rx="11" fill="rgba(133,183,235,0.15)" stroke="rgba(133,183,235,0.3)" stroke-width="0.7"/>
-      <text x="39" y="163" fill="#85B7EB" font-size="9" font-family="sans-serif" text-anchor="middle">Vocabulary</text>
-      <rect x="302" y="128" width="60" height="22" rx="11" fill="rgba(93,202,165,0.12)" stroke="rgba(93,202,165,0.3)" stroke-width="0.7"/>
-      <text x="332" y="143" fill="#5dcaa5" font-size="9" font-family="sans-serif" text-anchor="middle">Grammar</text>
-      <rect x="5" y="193" width="54" height="22" rx="11" fill="rgba(200,153,42,0.12)" stroke="rgba(200,153,42,0.3)" stroke-width="0.7"/>
-      <text x="32" y="208" fill="#e8b84b" font-size="9" font-family="sans-serif" text-anchor="middle">Listening</text>
-      <rect x="308" y="175" width="54" height="22" rx="11" fill="rgba(175,169,236,0.15)" stroke="rgba(175,169,236,0.3)" stroke-width="0.7"/>
-      <text x="335" y="190" fill="#afa9ec" font-size="9" font-family="sans-serif" text-anchor="middle">Reading</text>
-      <!-- stars -->
-      <polygon points="358,72 361,80 369,80 363,85 365,93 358,88 351,93 353,85 347,80 355,80" fill="rgba(200,153,42,0.5)"/>
-      <polygon points="14,56 16,62 22,62 17,66 19,72 14,68 9,72 11,66 6,62 12,62" fill="rgba(93,202,165,0.4)"/>
-    </svg>
+    <!-- 젠파워 공식 로고송 뮤직비디오 플레이어 (2번 사진 UI) -->
+    <div class="hero-mv-card" style="width: 100%; max-width: 530px; background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(56, 189, 248, 0.2); display: flex; flex-direction: column;">
+      
+      <!-- Header Bar (2번 사진 상단) -->
+      <div style="padding: 12px 16px; background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 18px;">🎵</span>
+          <div>
+            <div style="font-size: 14px; font-weight: 800; color: #ffffff; letter-spacing: -0.2px;">젠파워 공식 로고송 • Fly High, 젠파워 (Full MV)</div>
+            <div style="font-size: 11px; color: #94a3b8;">대치동 젠파워 영어 전문학원 Official Lyric Music Video</div>
+          </div>
+        </div>
+        <!-- 음소거 토글 버튼 -->
+        <button id="heroMvMuteBtn" onclick="toggleHeroMvMute()" style="background: linear-gradient(135deg, #e11d48, #be123c); color: white; border: none; padding: 6px 12px; border-radius: 9999px; font-size: 11.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(225, 29, 72, 0.4); font-family: inherit;">
+          <span id="heroMvMuteIcon">🔈</span>
+          <span id="heroMvMuteText">음소거 해제</span>
+        </button>
+      </div>
+
+      <!-- Video Player Wrap (2번 사진 비디오 영역) -->
+      <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden;">
+        
+        <!-- 음악 소리 켜기 플로팅 버튼 -->
+        <div id="heroMvUnmuteFloat" onclick="unmuteHeroMv()" style="position: absolute; top: 12px; right: 12px; z-index: 25; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px); border: 1.5px solid #38bdf8; color: #38bdf8; padding: 6px 12px; border-radius: 9999px; font-size: 12px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);">
+          <span>🔊 음악 소리 켜기</span>
+        </div>
+
+        <!-- 2번 사진 중앙: 학습관 입장하기 (닫기/이동) 버튼 -->
+        <div id="heroMvCenterActionWrap" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20;">
+          <button onclick="handleMvCenterAction()" style="background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); border: 1.5px solid rgba(255, 255, 255, 0.4); color: white; padding: 10px 20px; border-radius: 9999px; font-size: 13.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.6); font-family: inherit; transition: all 0.2s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+            <span style="font-size: 16px; color: #93c5fd; font-weight: 900;">✕</span>
+            <span>학습관 입장하기 (닫기)</span>
+          </button>
+        </div>
+
+        <!-- Video Element -->
+        <video id="heroMvVideo" playsinline autoplay muted loop preload="auto" controls style="width: 100%; height: 100%; object-fit: contain; display: block;">
+          <source src="assets/video/ZenPower_Lyric_MusicVideo.mp4" type="video/mp4">
+          <source src="https://zenstu114.vercel.app/assets/video/zenpower_logosong_mv.mp4" type="video/mp4">
+          브라우저가 비디오 태그를 지원하지 않습니다.
+        </video>
+      </div>
+
+      <!-- Lyrics Title Bar & Accordion (2번 사진 하단 가사) -->
+      <div style="background: #0b0f19; border-top: 1px solid rgba(255,255,255,0.08);">
+        <div onclick="toggleHeroLyrics()" style="padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none;">
+          <span style="font-size: 12.5px; font-weight: 800; color: #fcd34d;">📜 Fly High, 젠파워 (Official Lyrics)</span>
+          <span id="heroLyricsToggleIcon" style="font-size: 11px; color: #94a3b8;">가사 보기 ▾</span>
+        </div>
+        <div id="heroLyricsBody" style="display: none; padding: 0 16px 14px; max-height: 160px; overflow-y: auto; font-size: 12px; line-height: 1.7; color: #cbd5e1; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 10px;">
+          <div style="margin-bottom: 8px;">
+            <span style="font-size: 10px; font-weight: 800; color: #818cf8; text-transform: uppercase;">Intro &amp; Hook</span>
+            <p style="color: #38bdf8; font-weight: 800; margin: 2px 0;">Fly High, 젠파워 (Zenpower!)</p>
+            <p style="margin: 0;">음~음~음~ 에~에~에~ 젠파워 함께 달려가!</p>
+          </div>
+          <div style="margin-bottom: 8px;">
+            <span style="font-size: 10px; font-weight: 800; color: #818cf8; text-transform: uppercase;">Verse 1</span>
+            <p style="margin: 0;">어둡고 험한 길 가끔 숨이 차올라 / 쉬운 길 편한 길 자꾸 눈에 보이지</p>
+            <p style="color: #fcd34d; font-weight: 800; margin: 0;">하지만 참아낸 시간 인내의 순간이 더 높은 꿈을 이룰 확률을 높여가</p>
+          </div>
+          <div style="margin-bottom: 8px;">
+            <span style="font-size: 10px; font-weight: 800; color: #818cf8; text-transform: uppercase;">Rap &amp; Build-up</span>
+            <p style="color: #fcd34d; font-weight: 800; margin: 0;">지금 편한 선택? Later 후회할 길! 쉬운 길만 쫓다간 내 미래가 흔들려</p>
+            <p style="color: #38bdf8; font-weight: 800; margin: 0;">땀방울이 만든 가치 절대 거짓말 안 해 오늘의 인내가 내일의 날 만들어!</p>
+          </div>
+          <div>
+            <span style="font-size: 10px; font-weight: 800; color: #818cf8; text-transform: uppercase;">Chorus</span>
+            <p style="color: #38bdf8; font-weight: 800; margin: 2px 0;">젠파워가 언제나 함께 뛰어줄 거야! 너의 실력을 바위처럼 높여줄 젠파워!</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -2127,6 +2130,60 @@ function closeModal() {
   var alertBox = document.getElementById('studentLoginAlert');
   if (alertBox) alertBox.style.display = 'none';
   pendingStudentService = null;
+}
+
+// HERO MV VIDEO PLAYER CONTROLS (2번 사진 기능)
+function toggleHeroMvMute() {
+  var v = document.getElementById('heroMvVideo');
+  if (!v) return;
+  v.muted = !v.muted;
+  if (!v.muted) {
+    v.volume = 1.0;
+    v.play().catch(function(e){ console.log(e); });
+  }
+  updateHeroMvAudioUI();
+}
+
+function unmuteHeroMv() {
+  var v = document.getElementById('heroMvVideo');
+  if (!v) return;
+  v.muted = false;
+  v.volume = 1.0;
+  v.play().catch(function(e){ console.log(e); });
+  updateHeroMvAudioUI();
+}
+
+function updateHeroMvAudioUI() {
+  var v = document.getElementById('heroMvVideo');
+  var btnText = document.getElementById('heroMvMuteText');
+  var btnIcon = document.getElementById('heroMvMuteIcon');
+  var floatBtn = document.getElementById('heroMvUnmuteFloat');
+  if (!v) return;
+  if (v.muted) {
+    if (btnText) btnText.textContent = '음소거 해제';
+    if (btnIcon) btnIcon.textContent = '🔈';
+    if (floatBtn) floatBtn.style.display = 'flex';
+  } else {
+    if (btnText) btnText.textContent = '음소거';
+    if (btnIcon) btnIcon.textContent = '🔇';
+    if (floatBtn) floatBtn.style.display = 'none';
+  }
+}
+
+function handleMvCenterAction() {
+  var v = document.getElementById('heroMvVideo');
+  if (v) v.pause();
+  var zone = document.getElementById('zone');
+  if (zone) zone.scrollIntoView({ behavior: 'smooth' });
+}
+
+function toggleHeroLyrics() {
+  var body = document.getElementById('heroLyricsBody');
+  var icon = document.getElementById('heroLyricsToggleIcon');
+  if (!body) return;
+  var isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  if (icon) icon.textContent = isOpen ? '가사 보기 ▾' : '가사 닫기 ▴';
 }
 
 function openConsultModal() {
