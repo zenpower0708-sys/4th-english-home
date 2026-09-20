@@ -814,7 +814,7 @@ footer {
       </svg>
       Word Action Master
     </a>
-    <button class="nav-login-btn" onclick="openModal()">로그인</button>
+    <button class="nav-login-btn" id="navLoginBtn" onclick="handleNavLoginClick()">로그인</button>
   </div>
 </nav>
 
@@ -930,19 +930,19 @@ footer {
       <div class="quick-name">레벨테스트</div>
       <div class="quick-desc">무료 예약 신청 ↗</div>
     </a>
-    <a href="https://school-mock-exam-app.vercel.app" target="_blank" rel="noopener noreferrer" class="quick-card" title="젠파워 실전모의고사 학교별 기출 앱으로 이동">
+    <a href="javascript:void(0)" onclick="accessStudentService('exam')" class="quick-card" id="qc-exam" title="기출문제 은행 (학생 로그인 후 입장)">
       <div class="quick-icon">📚</div>
-      <div class="quick-name">기출문제 은행</div>
+      <div class="quick-name" style="display:flex; align-items:center; justify-content:center; gap:4px;">기출문제 은행 <span class="qc-lock" id="qc-lock-exam" style="font-size:12px;">🔒</span></div>
       <div class="quick-desc">학교별 기출 검색 ↗</div>
     </a>
-    <a href="https://zenpower-app.vercel.app" target="_blank" rel="noopener noreferrer" class="quick-card" title="젠파워 모바일 학습 앱 (듣기평가·데일리미션)으로 이동">
+    <a href="javascript:void(0)" onclick="accessStudentService('listening')" class="quick-card" id="qc-listening" title="듣기 평가실 (학생 로그인 후 입장)">
       <div class="quick-icon">🎧</div>
-      <div class="quick-name">듣기 평가실</div>
+      <div class="quick-name" style="display:flex; align-items:center; justify-content:center; gap:4px;">듣기 평가실 <span class="qc-lock" id="qc-lock-listening" style="font-size:12px;">🔒</span></div>
       <div class="quick-desc">수능·TEPS·iBT ↗</div>
     </a>
-    <a href="#zone" class="quick-card" onclick="setTimeout(()=>switchZone('exam-test'),400)">
+    <a href="javascript:void(0)" onclick="accessStudentService('exam-test')" class="quick-card" id="qc-exam-test" title="모의고사 (학생 로그인 후 입장)">
       <div class="quick-icon">📝</div>
-      <div class="quick-name">모의고사</div>
+      <div class="quick-name" style="display:flex; align-items:center; justify-content:center; gap:4px;">모의고사 <span class="qc-lock" id="qc-lock-exam-test" style="font-size:12px;">🔒</span></div>
       <div class="quick-desc">실전 타이머</div>
     </a>
     <a href="https://service-252219997357.us-west1.run.app/" target="_blank" class="quick-card">
@@ -1244,7 +1244,7 @@ footer {
         </div>
         <div style="font-size: 12px; opacity: 0.85;">개원중·개포중·구룡중·대명중 등 중학교 26개교 및 고등학교 19개교 실전 기출 시험지 응시 가능</div>
       </div>
-      <a href="https://school-mock-exam-app.vercel.app" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; background:#c8992a; color:#0a1628; padding:10px 18px; border-radius:8px; font-size:13px; font-weight:700; text-decoration:none; white-space:nowrap;">
+      <a href="javascript:void(0)" onclick="accessStudentService('exam')" style="display:inline-flex; align-items:center; gap:6px; background:#c8992a; color:#0a1628; padding:10px 18px; border-radius:8px; font-size:13px; font-weight:700; text-decoration:none; white-space:nowrap; cursor:pointer;">
         앱 바로가기 ↗
       </a>
     </div>
@@ -1325,7 +1325,7 @@ footer {
         </div>
         <div style="font-size: 12px; opacity: 0.85;">스마트폰으로 간편하게 매일 듣기평가, 데일리 보카, 문법·작문 미션을 수행하세요.</div>
       </div>
-      <a href="https://zenpower-app.vercel.app" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; background:#c8992a; color:#0a1628; padding:10px 18px; border-radius:8px; font-size:13px; font-weight:700; text-decoration:none; white-space:nowrap;">
+      <a href="javascript:void(0)" onclick="accessStudentService('listening')" style="display:inline-flex; align-items:center; gap:6px; background:#c8992a; color:#0a1628; padding:10px 18px; border-radius:8px; font-size:13px; font-weight:700; text-decoration:none; white-space:nowrap; cursor:pointer;">
         학습 앱 열기 ↗
       </a>
     </div>
@@ -1753,15 +1753,25 @@ footer {
         <div class="login-type-desc">자녀 평가서·성적</div>
       </button>
     </div>
-    <div class="form-field">
-      <label class="form-label">아이디 (학원 발급)</label>
-      <input class="form-input" type="text" placeholder="아이디를 입력하세요">
+    <!-- 학생 전용 서비스 안내 배너 -->
+    <div id="studentLoginAlert" style="display:none; margin-bottom:16px; padding:12px 14px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; font-size:12.5px; color:#1e40af; line-height:1.5; text-align:left;">
     </div>
-    <div class="form-field">
-      <label class="form-label">비밀번호</label>
-      <input class="form-input" type="password" placeholder="비밀번호를 입력하세요">
-    </div>
-    <button class="form-submit" onclick="closeModal()">로그인</button>
+
+    <form id="loginForm" onsubmit="handleLoginFormSubmit(event)">
+      <div class="form-field">
+        <label class="form-label">아이디 (학원 발급)</label>
+        <input class="form-input" id="loginId" type="text" placeholder="아이디 또는 학생 이름 (예: student 또는 김도현)" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label">비밀번호</label>
+        <input class="form-input" id="loginPw" type="password" placeholder="비밀번호를 입력하세요 (체험용: 1234)" required>
+      </div>
+      <div style="font-size:11px; color:#64748b; margin-top:-6px; margin-bottom:14px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px;">
+        <span>💡 학원 등록 계정 또는 이름으로 로그인</span>
+        <span style="color:#2563eb; font-weight:600;">체험 계정: student / 1234</span>
+      </div>
+      <button type="submit" class="form-submit" id="btnLoginSubmit">로그인</button>
+    </form>
 
     <!-- 학부모 선택 시 노출되는 상담 예약 바로가기 배너 -->
     <div id="parentConsultBox" style="display:none; margin-top:16px; padding:14px; background:#f0f6ff; border:1px solid #bfdbfe; border-radius:10px; text-align:center;">
@@ -1856,18 +1866,19 @@ function switchZone(name) {
 }
 
 function setZoneUser(type) {
-  document.querySelectorAll('.zone-badge').forEach(b => { b.classList.remove('active'); b.classList.remove('guest-active'); });
-  const info = document.getElementById('zoneLoginInfo');
   if (type === 'guest') {
-    document.getElementById('zbGuest').classList.add('guest-active');
-    info.textContent = '게스트로 접속 중 — 일부 기능만 이용 가능합니다';
+    logoutStudent(false);
   } else if (type === 'student') {
-    document.getElementById('zbStudent').classList.add('active');
-    info.textContent = '학생 로그인 완료 — 기출문제·듣기·모의고사 전체 이용 가능';
-    openModal();
+    if (isStudentLoggedIn()) {
+      alert('이미 ' + getStudentName() + ' 학생으로 로그인되어 있습니다.');
+    } else {
+      openModal('student', '🔒 <strong>학생 전용 학습 공간</strong>입니다. 학생 로그인 후 기출문제·듣기·모의고사를 자유롭게 이용하세요.');
+    }
   } else {
+    document.querySelectorAll('.zone-badge').forEach(b => { b.classList.remove('active'); b.classList.remove('guest-active'); });
     document.getElementById('zbParent').classList.add('active');
-    info.textContent = '학부모 전용 — 자녀 평가서·성적 확인 및 1:1 상담 예약';
+    const info = document.getElementById('zoneLoginInfo');
+    if (info) info.textContent = '학부모 전용 — 자녀 평가서·성적 확인 및 1:1 상담 예약';
     openModal('parent');
   }
 }
@@ -1954,9 +1965,150 @@ function lookupWord() {
     (d.tags.length ? '<div class="dict-tags">' + tagsHtml + '</div>' : '');
 }
 
-// MODAL & CONSULTATION
-function openModal(defaultType) {
+// MODAL & STUDENT AUTHENTICATION & CONSULTATION
+var pendingStudentService = null;
+var currentLoginType = 'student';
+
+function isStudentLoggedIn() {
+  return localStorage.getItem('zp_student_logged') === 'true';
+}
+
+function getStudentName() {
+  return localStorage.getItem('zp_student_name') || '학생';
+}
+
+function updateStudentLoginUI() {
+  var navBtn = document.getElementById('navLoginBtn');
+  var zoneInfo = document.getElementById('zoneLoginInfo');
+  var zbStudent = document.getElementById('zbStudent');
+  var zbGuest = document.getElementById('zbGuest');
+
+  if (isStudentLoggedIn()) {
+    var sName = getStudentName();
+    if (navBtn) {
+      navBtn.innerHTML = '🎓 ' + sName + ' <span style="font-size:11px; opacity:0.8; margin-left:4px;">(로그아웃)</span>';
+      navBtn.style.background = '#1a3a6e';
+    }
+    if (zoneInfo) {
+      zoneInfo.textContent = sName + ' 학생 로그인 완료 — 기출문제·듣기·모의고사 전체 이용 가능';
+    }
+    if (zbStudent) zbStudent.classList.add('active');
+    if (zbGuest) zbGuest.classList.remove('guest-active');
+    document.querySelectorAll('.qc-lock').forEach(function(el) {
+      el.textContent = '🔓';
+      el.title = '학생 로그인 완료 (이용 가능)';
+    });
+  } else {
+    if (navBtn) {
+      navBtn.innerHTML = '로그인';
+      navBtn.style.background = '';
+    }
+    if (zoneInfo) {
+      zoneInfo.textContent = '게스트로 접속 중 — 일부 기능만 이용 가능합니다';
+    }
+    if (zbGuest) zbGuest.classList.add('guest-active');
+    if (zbStudent) zbStudent.classList.remove('active');
+    document.querySelectorAll('.qc-lock').forEach(function(el) {
+      el.textContent = '🔒';
+      el.title = '학생 로그인 필요';
+    });
+  }
+}
+
+function handleNavLoginClick() {
+  if (isStudentLoggedIn()) {
+    if (confirm(getStudentName() + ' 학생 계정에서 로그아웃 하시겠습니까?')) {
+      logoutStudent(true);
+    }
+  } else {
+    openModal('student');
+  }
+}
+
+function logoutStudent(showAlert) {
+  localStorage.removeItem('zp_student_logged');
+  localStorage.removeItem('zp_student_name');
+  updateStudentLoginUI();
+  if (showAlert) {
+    alert('로그아웃 되었습니다.');
+  }
+}
+
+// 1번 사진 2번, 3번, 4번 학생 로그인 후 입장 분기
+function accessStudentService(service) {
+  if (isStudentLoggedIn()) {
+    executeStudentService(service);
+  } else {
+    pendingStudentService = service;
+    var svcNames = {
+      'exam': '기출문제 은행 (학교별 기출 검색)',
+      'listening': '듣기 평가실 (수능·TEPS·iBT)',
+      'exam-test': '모의고사 (실전 타이머)'
+    };
+    var name = svcNames[service] || '선택하신 학습 서비스';
+    openModal('student', '🔒 <strong>[' + name + ']</strong> 서비스는 <strong>학생 로그인 후 입장</strong>하실 수 있습니다.<br>로그인하시면 선택하신 화면으로 바로 자동 이동합니다.');
+  }
+}
+
+function executeStudentService(service) {
+  if (service === 'exam') {
+    window.open('https://school-mock-exam-app.vercel.app', '_blank', 'noopener,noreferrer');
+  } else if (service === 'listening') {
+    window.open('https://zenpower-app.vercel.app', '_blank', 'noopener,noreferrer');
+  } else if (service === 'exam-test') {
+    var zone = document.getElementById('zone');
+    if (zone) zone.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(function() {
+      switchZone('exam-test');
+    }, 400);
+  }
+}
+
+function handleLoginFormSubmit(e) {
+  e.preventDefault();
+  if (currentLoginType === 'student') {
+    var idInput = document.getElementById('loginId');
+    var idVal = idInput ? idInput.value.trim() : '';
+    var pwInput = document.getElementById('loginPw');
+    var pwVal = pwInput ? pwInput.value.trim() : '';
+
+    if (!idVal || !pwVal) {
+      alert('아이디와 비밀번호를 모두 입력해 주세요.\n(체험용: student / 1234)');
+      return;
+    }
+
+    var displayName = (idVal === 'student') ? '수강생' : idVal;
+    localStorage.setItem('zp_student_logged', 'true');
+    localStorage.setItem('zp_student_name', displayName);
+
+    closeModal();
+    updateStudentLoginUI();
+
+    if (pendingStudentService) {
+      var target = pendingStudentService;
+      pendingStudentService = null;
+      alert('🎓 ' + displayName + ' 학생 로그인 완료!\n선택하신 서비스로 바로 이동합니다.');
+      executeStudentService(target);
+    } else {
+      alert('🎓 ' + displayName + ' 학생으로 로그인되었습니다.\n기출문제 은행, 듣기 평가실, 모의고사를 자유롭게 이용하세요.');
+    }
+  } else {
+    closeModal();
+    alert('학부모 계정으로 확인되었습니다.');
+  }
+}
+
+function openModal(defaultType, alertHtml) {
   document.getElementById('loginModal').classList.add('open');
+  var alertBox = document.getElementById('studentLoginAlert');
+  if (alertBox) {
+    if (alertHtml) {
+      alertBox.innerHTML = alertHtml;
+      alertBox.style.display = 'block';
+    } else {
+      alertBox.style.display = 'none';
+    }
+  }
   if (defaultType === 'parent') {
     var btn = document.getElementById('btnTypeParent');
     if (btn) selLoginType(btn, 'parent');
@@ -1964,8 +2116,18 @@ function openModal(defaultType) {
     var btn = document.getElementById('btnTypeStudent');
     if (btn) selLoginType(btn, 'student');
   }
+  setTimeout(function() {
+    var idInput = document.getElementById('loginId');
+    if (idInput && (!alertHtml || !idInput.value)) idInput.focus();
+  }, 120);
 }
-function closeModal() { document.getElementById('loginModal').classList.remove('open'); }
+
+function closeModal() {
+  document.getElementById('loginModal').classList.remove('open');
+  var alertBox = document.getElementById('studentLoginAlert');
+  if (alertBox) alertBox.style.display = 'none';
+  pendingStudentService = null;
+}
 
 function openConsultModal() {
   closeModal();
@@ -1976,11 +2138,16 @@ function closeConsultModal() {
 }
 
 function selLoginType(el, type) {
-  document.querySelectorAll('.login-type-btn').forEach(b => b.classList.remove('sel'));
+  currentLoginType = type;
+  document.querySelectorAll('.login-type-btn').forEach(function(b) { b.classList.remove('sel'); });
   el.classList.add('sel');
   var box = document.getElementById('parentConsultBox');
   if (box) {
     box.style.display = (type === 'parent') ? 'block' : 'none';
+  }
+  var alertBox = document.getElementById('studentLoginAlert');
+  if (type === 'parent' && alertBox) {
+    alertBox.style.display = 'none';
   }
 }
 
@@ -2175,8 +2342,9 @@ function toggleReviewsMore() {
   }
 }
 
-// 최초 렌더링 실행
+// 최초 렌더링 및 로그인 상태 초기화
 renderReviews();
+updateStudentLoginUI();
 
 document.getElementById('loginModal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
