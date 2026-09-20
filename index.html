@@ -1551,55 +1551,29 @@ footer {
 </div>
 
 <!-- REVIEWS -->
-<div class="section">
+<div class="section" id="reviews">
   <div class="sec-eyebrow">수강 후기</div>
   <div class="sec-title">학생·학부모가 직접 말합니다</div>
-  <div class="sec-sub" style="margin-bottom:32px">과장 없는 실제 수강생 후기</div>
-  <div class="review-grid">
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">"2개월 만에 4등급에서 1등급으로 올랐습니다. 원장님의 꼼꼼한 오답 분석과 1:1 맞춤 지도가 정말 큰 도움이 됐어요. 타 학원에서 몇 달 동안 해결 못했던 킬러 문항을 여기서 단번에 해결했습니다."</div>
-      <div class="reviewer">
-        <div class="reviewer-ava">이</div>
-        <div>
-          <div class="reviewer-name">이지은 학생</div>
-          <div class="reviewer-info">세화여고 고2</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">"4명 정원이라 제 아이 진도에 딱 맞게 가르쳐 주시는 게 눈에 보입니다. 매주 업데이트되는 평가서와 원장님 코멘트가 학부모로서 정말 신뢰가 됩니다. 성적 향상 그래프가 계속 오르고 있어요."</div>
-      <div class="reviewer">
-        <div class="reviewer-ava">김</div>
-        <div>
-          <div class="reviewer-name">학부모 김민준</div>
-          <div class="reviewer-info">휘문고 고1 자녀</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">"원장님 강의 스타일이 명쾌하고 재밌어서 영어 거부감이 완전히 없어졌어요. 문법 설명이 특히 깔끔해서 헷갈렸던 부분들이 정리됐습니다. 의대 진학을 목표로 계속 다닐 예정입니다."</div>
-      <div class="reviewer">
-        <div class="reviewer-ava">박</div>
-        <div>
-          <div class="reviewer-name">박서준 학생</div>
-          <div class="reviewer-info">단대부고 고3 · 의대 목표</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">"25년 대치동 경력이 진짜임을 수업마다 느낍니다. 학교별 출제 패턴을 너무 잘 알고 계셔서 내신 대비가 정말 효과적이에요. 맛보기 수업 때 오답 풀이 해주시는 방식에 반해서 바로 등록했습니다."</div>
-      <div class="reviewer">
-        <div class="reviewer-ava">최</div>
-        <div>
-          <div class="reviewer-name">학부모 최수정</div>
-          <div class="reviewer-info">개포고 고2 자녀</div>
-        </div>
-      </div>
-    </div>
+  <div class="sec-sub" style="margin-bottom:24px">과장 없는 100% 실제 수강생·학부모 카톡 및 문자 후기 50선</div>
+
+  <!-- 후기 카테고리 필터 탭 -->
+  <div class="curr-tabs" style="margin-bottom:24px; flex-wrap:wrap; gap:6px;">
+    <div class="curr-tab active" id="rtab-all" onclick="filterReviews('all', this)">전체보기 (50)</div>
+    <div class="curr-tab" id="rtab-care" onclick="filterReviews('care', this)">1:1 밀착 & 케어 (10)</div>
+    <div class="curr-tab" id="rtab-naesin" onclick="filterReviews('naesin', this)">내신 & 서술형 적중 (10)</div>
+    <div class="curr-tab" id="rtab-grammar" onclick="filterReviews('grammar', this)">문법 & 구문독해 정복 (10)</div>
+    <div class="curr-tab" id="rtab-suneung" onclick="filterReviews('suneung', this)">수능모의 & 방학특강 (10)</div>
+    <div class="curr-tab" id="rtab-habit" onclick="filterReviews('habit', this)">공부습관 & 동기부여 (10)</div>
+  </div>
+
+  <div class="review-grid" id="reviewsContainer">
+    <!-- 자바스크립트로 50개 후기 동적 렌더링 -->
+  </div>
+
+  <div style="text-align:center; margin-top:32px;">
+    <button id="btnReviewMore" onclick="toggleReviewsMore()" style="background:white; color:var(--navy); border:2px solid var(--navy); padding:13px 36px; border-radius:30px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; transition:all 0.2s; box-shadow:0 4px 15px rgba(0,0,0,0.05);">
+      💬 실제 수강 후기 44개 더보기 ▾
+    </button>
   </div>
 </div>
 
@@ -2080,6 +2054,129 @@ async function sendConsultTelegram(e) {
     btn.innerHTML = '<span>📨</span> 학원 텔레그램으로 예약 전송하기';
   }
 }
+
+// REVIEWS 50 DATA & DYNAMIC SYSTEM
+var reviewsData = [
+  { no: 1, cat: 'care', tag: '1:1 밀착 케어', text: '선생님~ 아이가 대형학원 다닐 때는 질문도 못 하고 멍하니 앉아있다 오더니, 학원에서 1:1로 부족한 부분만 딱 짚어 주시니까 성적이 바로 오르네요! 아이 맞춤형으로 꼼꼼히 지도해 주셔서 감사해요^^', name: '학부모 김OO', info: '대치동 중등 학부모', ava: '김' },
+  { no: 2, cat: 'care', tag: '관계대명사 정복', text: '원장님, 이번 8회 수업 동안 아이가 제일 어렵다던 관계대명사랑 파트 완전 정복했다고 신나하네요. 소수정예라 그런지 집중도 잘 되고 밀착 케어가 진짜 최고입니다. 다음 달도 잘 부탁드려요!', name: '학부모 이OO', info: '중3 자녀 학부모', ava: '이' },
+  { no: 3, cat: 'care', tag: '자신감 회복', text: '선생님! 저희 애가 부끄럼이 많아서 모르는 게 있어도 질문을 잘 못하는 편인데, 선생님께서 먼저 캐치하고 1:1로 설명해 주셔서 영어에 자신감이 많이 생겼대요. 늘 정성스럽게 챙겨주셔서 감사합니다❤️', name: '학부모 박OO', info: '중등 자녀 학부모', ava: '박' },
+  { no: 4, cat: 'care', tag: '첫 90점 돌파', text: '쌤!! 저 다른 학원에선 딴생각만 했는데 쌤이 제 수준에 맞게 단어랑 진도 맞춰주셔서 이번에 처음으로 90점 넘어봤어요 😭 1:1로 피드백해 주신 게 진짜 큰 도움 됐습니당!!', name: '최OO 학생', info: '중3 · 첫 90점 돌파', ava: '최' },
+  { no: 5, cat: 'care', tag: '1:1 문장 클리닉', text: '선생님 저 오늘 학원에서 1:1로 모르는 문장 풀어주실 때 소름 돋았어요 ㅋㅋㅋ 혼자 풀 땐 절대 안 풀리던 건데 쌤 설명 한 번 들으니까 바로 이해는 것 같아요^^ 열심히 하겠습니다!', name: '정OO 학생', info: '고1 수강생', ava: '정' },
+  { no: 6, cat: 'naesin', tag: '내신 100점 💯', text: '선생님~ OO중 내신 이번에 워낙 까다롭게 나와서 걱정했는데 100점 맞았대요! 💯 서술형 조건 까다로운 것도 학원에서 꼼꼼히 훈련받은 덕분이라고 아이가 너무 기뻐하네요. 선생님 감사합니다!', name: '학부모 윤OO', info: '대청중 자녀 학부모', ava: '윤' },
+  { no: 7, cat: 'naesin', tag: '조건 영작 99점', text: '원장님, 주관식 스펠링 하나 아깝게 틀려서 1점 깎이고 99점 받았다고 연락받았습니다^^ 서술형 감점 거의 없이 다 맞춘 건 다 선생님께서 조건 영작 연습을 철저히 시켜주신 덕분이에요. 감사합니다!', name: '학부모 강OO', info: '중동고 자녀 학부모', ava: '강' },
+  { no: 8, cat: 'naesin', tag: '직보 변형지문 적중', text: '선생님! 이번 시험에 학원에서 직전 보강 때 집어주신 변형 지문이 그대로 나왔대요 ㅋㅋㅋ 아이가 시험지 받자마자 선생님 생각났다면서 신나서 들어왔습니다. 계속 잘 부탁드립니다👍', name: '학부모 최OO', info: '단대부고 자녀 학부모', ava: '최' },
+  { no: 9, cat: 'naesin', tag: '서술형 1등급', text: '쌤!! 서술형 마지막 문제 쌤이 찍어준 문장 구조 그대로 나와서 막힘없이 다 썼어요 😆 제출하기 전에 두 번 검토했는데 감점될 거 하나도 없음 ㅋㅋㅋ 이번에 1등급 가능할 것 같아요!!', name: '김OO 학생', info: '휘문고 고1', ava: '김' },
+  { no: 10, cat: 'naesin', tag: '변형지문 완벽대비', text: '선생님 이번 시험 외부지문이랑 변형 엄청 많이 나와서 애들 다 패닉 왔는데 저는 학원에서 훈련한 대로 풀었어요 🔥 쌤 내신 대비 자료가 진짜 미쳤습니다... 감사해용!!', name: '이OO 학생', info: '고2 내신 대비', ava: '이' },
+  { no: 11, cat: 'grammar', tag: '문법 원리 이해', text: '원장님~ 아이가 전에는 문법을 무작정 외우느라 영어에 질려했었는데, 학원에서 원리 위주로 체계적으로 배우더니 이제는 문법이 제일 쉽다고 하네요! 틀을 잘 잡아주셔서 감사합니다^^', name: '학부모 조OO', info: '중2 자녀 학부모', ava: '조' },
+  { no: 12, cat: 'grammar', tag: '구문분석 속도향상', text: '선생님, 아이가 긴 문장만 보면 헤맸었는데 이제는 끊어 읽기 하면서 구문 분석을 스스로 잘 하더라고요. 영어 구조를 아니까 해석 속도가 훨씬 빨라졌대요. 잘 가르쳐 주셔서 감사드립니다!', name: '학부모 한OO', info: '고1 자녀 학부모', ava: '한' },
+  { no: 13, cat: 'grammar', tag: '문법 종합노트', text: '선생님! 아이가 학원에서 작성한 문법 정합 노트를 집에서 보는데 진짜 깔끔하게 잘 정리되어 있더라고요. 개념이 명확해지니까 문제 풀 때 헷갈리는 게 확 줄었다고 좋아합니다.', name: '학부모 오OO', info: '중3 자녀 학부모', ava: '오' },
+  { no: 14, cat: 'grammar', tag: '독해속도 2배', text: '쌤!! 저 예전엔 긴 문장 나오면 감으로 대충 해석했는데, 쌤한테 구문독해 배우고 나니까 문장 구조가 한눈에 보여요 😲 독해 속도 진짜 2배는 빨라진 듯 ㅋㅋㅋ 감점 안 당할 것 같아요!', name: '박OO 학생', info: '세화여고 고2', ava: '박' },
+  { no: 15, cat: 'grammar', tag: '기말 문법 만점', text: '선생님!! 저 문법 문제 항상 다 틀려서 포기했었는데, 쌤이 알려주신 공식대로 적용하니까 답이 그냥 보여요 ㅋㅋㅋ 이번 기말 문법 문제는 하나도 안 틀렸습니다! 🔥', name: '송OO 학생', info: '고1 수강생', ava: '송' },
+  { no: 16, cat: 'grammar', tag: '이과생 올백 💯', text: '선생님~ 저희 애가 이과 성향이라 영어를 은근히 제일 부담스러워하고 걱정했었는데, 이번 기말에서 올백 맞았어요! 😭 수학만큼 영어도 논리적으로 설명해 주셔서 이해가 쏙쏙 됐대요!', name: '학부모 서OO', info: '이과 자녀 학부모', ava: '서' },
+  { no: 17, cat: 'grammar', tag: '논리적 구문분석', text: '원장님, 이과 아이라 감성적인 영어 독해나 무조건 암기를 힘들어했었는데, 학원에서 구문 구조를 입체적으로 분석해 주시니 논리적으로 딱 납득하더라고요. 이제 영어 걱정 덜었습니다^^', name: '학부모 배OO', info: '영동고 자녀 학부모', ava: '배' },
+  { no: 18, cat: 'grammar', tag: '영어 96점 달성', text: '선생님! 아이가 수학 점수만 자랑하던 애였는데, 오늘 처음으로 영어 96점 맞았다고 자랑하네요 ㅋㅋㅋ 이과 애들 특성에 맞게 깔끔하고 효율적으로 지도해 주셔서 감사해요!', name: '학부모 안OO', info: '개포고 자녀 학부모', ava: '안' },
+  { no: 19, cat: 'grammar', tag: '영어 전교 1등', text: '쌤 저 원래 국어나 영어 같은 글 읽는 거 진짜 싫어하고 수학만 좋아했잖아요 ㅋㅋㅋ 근데 쌤이 영어 지문을 수학 공식처럼 구조화해서 설명해 주시니까 완전 재밌음... 이번에 영어 1등 함!!', name: '임OO 학생', info: '고1 수강생', ava: '임' },
+  { no: 20, cat: 'grammar', tag: '원리이해 98점', text: '선생님 통째로 외우는 공부법 너무 싫어해서 영어 버리려고 했었는데, 쌤 수업 듣고 원리 이해하니까 안 외워도 저절로 답이 보여요 😆 이번 기말 98점 받았습니당!!', name: '권OO 학생', info: '중3 수강생', ava: '권' },
+  { no: 21, cat: 'care', tag: '92점 대역전', text: '선생님!! 저희 애 영알못 수준이라 학원 보내면서도 큰 기대 안 했었는데, 92점 맞아와서 집안이 경사났습니다 ㅋㅋㅋ 점수 얘기 절대 안 하던 애가 신나서 자랑하네요. 장족의 발전입니다! ❤️', name: '학부모 장OO', info: '중2 자녀 학부모', ava: '장' },
+  { no: 22, cat: 'care', tag: '자신감 급상승', text: '원장님, 아이가 영어 시험만 보면 울상이었는데 이번에 성적 오르고 나서 표정이 완전히 달라졌어요. 학원에서 자신감 먼저 올려주시고 칭찬 많이 해주신 덕분입니다. 진심으로 감사드립니다.', name: '학부모 신OO', info: '중3 자녀 학부모', ava: '신' },
+  { no: 23, cat: 'care', tag: '두 단계 성적도약', text: '선생님~ 기초가 너무 부족해서 따라갈 수 있을까 염려했는데, 아이 눈높이에 맞춰 차근차근 가르쳐 주신 덕에 성적이 두 단계나 뛰어올랐네요. 선생님 안 만났으면 어쩔 뻔했나 싶어요^^', name: '학부모 류OO', info: '고1 자녀 학부모', ava: '류' },
+  { no: 24, cat: 'care', tag: '54점➔91점 대반전', text: '쌤 ㅠㅠㅠㅠ 저 지난번 54점이었는데 이번에 91점 나왔어요 미친 거 아닌가요😭 쌤이 저 포기 안 하고 기초부터 빡세게 잡아주신 덕분이에요... 평생 쌤만 믿고 갈게요💖', name: '황OO 학생', info: '중2 · 37점 수직상승', ava: '황' },
+  { no: 25, cat: 'care', tag: '영어 흥미 100%', text: '선생님 저 진짜 영알못이라 영어 시간마다 잤었는데 쌤 수업은 1분도 안 졸림 ㅋㅋㅋ 영어가 재미있어질 줄은 꿈에도 몰랐어요 😆 다음 시험엔 100점 도전해 볼게요!!', name: '문OO 학생', info: '중2 수강생', ava: '문' },
+  { no: 26, cat: 'suneung', tag: '모의고사 자신감', text: '원장님, 지은이가 이번 모의고사 치르고 나서 영어가 제일 할 만했다고 너무 자신감 넘쳐 하네요^^ 학원에서 평소에 고3 난이도 지문으로 대비시켜 주신 덕분입니다. 감사합니다!', name: '학부모 전OO', info: '고2 지은이 학부모', ava: '전' },
+  { no: 27, cat: 'suneung', tag: '모의평가 안정 1등급', text: '선생님~ 아이가 고난도 빈칸 추론이나 순서 배열 문제에서 매번 오답이 나왔었는데, 학원 심화반 수업 듣고 체계가 잡히더니 6월 모의고사도 안정적으로 1등급 나왔습니다^^', name: '학부모 유OO', info: '고3 자녀 학부모', ava: '유' },
+  { no: 28, cat: 'suneung', tag: '고등 모의고사 대비', text: '선생님! 중등 내신뿐만 아니라 고등 모의고사 형태까지 미리 탄탄하게 대비해 주셔서 이번에 고교 진학 후 첫 모의고사에서 좋은 결과 얻었네요. 늘 원장님의 앞선 커리큘럼에 신뢰가 갑니다.', name: '학부모 고OO', info: '고1 자녀 학부모', ava: '고' },
+  { no: 29, cat: 'suneung', tag: '빈칸 킬러 올킬 1등급', text: '쌤!! 이번 모의고사 빈칸 31~34번 진짜 어려웠는데 쌤이랑 연습했던 논리 전개 방식으로 푸니까 다 맞았어요 😎 남들 다 틀린 킬러 문제 맞히고 1등급 받아서 기분 대박 좋습니다!!', name: '백OO 학생', info: '고3 수험생', ava: '백' },
+  { no: 30, cat: 'suneung', tag: '시간단축 96점', text: '선생님 저 원래 모의고사 볼 때 항상 장문 독해 5문제 남기고 찍었었잖아요 ㅠㅠ 근데 쌤이 알려주신 유형별 풀이 전략 쓰니까 10분 남고 96점 나왔어요 🔥 수능 때까지 계속 갈게요!', name: '홍OO 학생', info: '고2 수강생', ava: '홍' },
+  { no: 31, cat: 'habit', tag: '자연스러운 영어발화', text: '원장님~ 요새 아이가 집에서 영어로 말을 가끔 중얼거리는데, 문법에 맞게 말을 하니 너무 신기하고 대견해요!! 😮 어릴 때 유치원 방과후 배울 때보다 훨씬 정확해졌어요. 감사합니다!', name: '학부모 양OO', info: '중1 자녀 학부모', ava: '양' },
+  { no: 32, cat: 'habit', tag: '원서 자발적 독서', text: '선생님, 아이가 학원 다닌 이후로 시키지도 않았는데 집에서 영어 원서나 원어 지문을 읽더라고요. 영어를 단순 과목이 아니라 즐거운 언어로 받아들이게 해 주셔서 감사드립니다^^', name: '학부모 주OO', info: '중등 자녀 학부모', ava: '주' },
+  { no: 33, cat: 'habit', tag: '입과 귀가 열림', text: '선생님! 일상생활 속에서 툭툭 나오는 영어 표현들이 문맥에 딱 맞아서 깜짝 놀랄 때가 많아요 ㅎㅎ 체계적인 문법+표현 수업 덕분에 입과 귀가 동시에 열리는 느낌입니다.', name: '학부모 진OO', info: '중2 자녀 학부모', ava: '진' },
+  { no: 34, cat: 'habit', tag: '자막 없이 리스닝', text: '쌤!! 저 어제 유튜브 보는데 자막 없이도 영어 대사가 들리더라구요 ㅎㅎ 학원에서 단어랑 구문 훈련 많이 한 보람이 있네요 😆', name: '손OO 학생', info: '고1 수강생', ava: '손' },
+  { no: 35, cat: 'habit', tag: '영어 문장 사고', text: '선생님 저 요즘 집에서 혼자 생각할 때 영어 문장으로 바꿔서 중얼거려요 ㅋㅋㅋ 엄마가 보고 신기하다고 함!! 쌤이 영어 재미붙게 해주셔서 감사해용 💖', name: '노OO 학생', info: '중3 수강생', ava: '노' },
+  { no: 36, cat: 'naesin', tag: '시간배분 10분 남음', text: '선생님~ 아이가 전에는 늘 시간이 부족해서 막판에 허겁지겁 풀고 실수하곤 했는데, 학원에서 실전 시간 배분 훈련을 받더니 이번엔 10분이나 남아서 검토까지 완벽하게 했다네요^^', name: '학부모 채OO', info: '고1 자녀 학부모', ava: '채' },
+  { no: 37, cat: 'naesin', tag: '실수 제로 100점', text: '원장님! 덤벙거리는 성격이라 아는 문제도 실수로 틀려 오던 아이였는데, 학원에서 답안지 체크 및 재검토 습관을 잘 잡아주셔서 이번엔 실수 한 개도 없이 100점 맞았습니다!', name: '학부모 남OO', info: '중2 자녀 학부모', ava: '남' },
+  { no: 38, cat: 'naesin', tag: '실전 모의훈련 98점', text: '선생님, 시험 전에 아이가 덜 긴장하도록 멘탈 잡아주시고 실전 모의훈련 해주신 게 큰 도움이 되었어요. 떨지 않고 제 실력 발휘하고 와서 98점 받았습니다. 감사해요!', name: '학부모 구OO', info: '중3 자녀 학부모', ava: '구' },
+  { no: 39, cat: 'naesin', tag: '서술형 3회 검토', text: '쌤!! 저 다 푸니까 10분 남아서 OMR 체크하고 서술형 세 번 검토하고 나왔어용 ㅋㅋㅋ 옛날 같았으면 시간 부족해서 쫓겼을 텐데 쌤이 시간 훈련 시켜주신 게 신의 한 수였음...👍', name: '하OO 학생', info: '고2 내신 대비', ava: '하' },
+  { no: 40, cat: 'naesin', tag: '실수 0개 100점 만점', text: '선생님 저 항상 아는 거 실수로 틀려서 80점대 나왔는데, 쌤이 알려주신 검토 프로세스 그대로 하니까 실수 0개 ㅋㅋㅋ 드디어 100점 찍었습니다 🔥', name: '지OO 학생', info: '중3 수강생', ava: '지' },
+  { no: 41, cat: 'habit', tag: '스스로 가는 학원', text: '원장님~ 저희 애가 딴 학원은 가기 싫다고 떼쓰는데, 영어 학원은 수업이 너무 즐겁다면서 스스로 시계 보고 챙겨가요 ㅎㅎ 아이가 좋아하니 부모로서 너무 뿌듯합니다. 늘 감사해요!', name: '학부모 곽OO', info: '중등 자녀 학부모', ava: '곽' },
+  { no: 42, cat: 'habit', tag: '잔소리 없는 습관', text: '선생님, 매일 집에서 영어 단어 테스트 준비하느라 스스로 책상에 앉아있는 모습을 보니 너무 신기하네요. 잔소리 안 해도 알아서 공부하는 습관을 만들어주셔서 감사드립니다^^', name: '학부모 엄OO', info: '중1 자녀 학부모', ava: '엄' },
+  { no: 43, cat: 'habit', tag: '공부 태도 변화', text: '선생님! 학원에서 숙제 검사나 출결을 꼼꼼하게 관리해 주시니 아이가 책임감을 가지고 임하더라고요. 성적은 물론이고 공부 태도까지 바르게 잡아주셔서 만족스럽습니다.', name: '학부모 방OO', info: '중3 자녀 학부모', ava: '방' },
+  { no: 44, cat: 'habit', tag: '수업 몰입도 최고', text: '선생님! 영어 재미있게 가르쳐주셔서 감사합니다 😃 앞으로 지각 절대 안 하고 숙제도 안 미루고 완벽하게 해갈게요!! 일요일에 늦지 않게 가겠습니다!! 😉💖', name: '천OO 학생', info: '고1 수강생', ava: '천' },
+  { no: 45, cat: 'habit', tag: '단어 암기 만점', text: '쌤 저 예전엔 단어 외우는 거 진짜 세상에서 제일 싫어했는데, 쌤 단어 암기법으로 외워서 단어 시험 다 맞았어요 저 대견하죠!! 😆', name: '민OO 학생', info: '중2 수강생', ava: '민' },
+  { no: 46, cat: 'suneung', tag: '방학특강 후 20점↑', text: '원장님~ 지난 겨울방학 특강 때 빡세게 문법이랑 단어 돌린 보람이 있네요! 이번 학기 첫 시험에서 바로 20점이나 올랐습니다. 방학 알차게 보내게 해주셔서 정말 감사합니다!', name: '학부모 성OO', info: '중3 자녀 학부모', ava: '성' },
+  { no: 47, cat: 'suneung', tag: '단기 약점 완벽보완', text: '선생님, 방학 동안 짧은 기간이었지만 집중적으로 약점을 보완해 주셔서 아이 실력이 부쩍 늘었음을 느낍니다. 학기 중에도 특강 때 보여주신 열정 그대로 잘 부탁드립니다^^', name: '학부모 도OO', info: '고1 자녀 학부모', ava: '도' },
+  { no: 48, cat: 'suneung', tag: '고등 영어 두려움 극복', text: '선생님! 방학 특강 무사히 끝나고 나니 아이가 고등 영어에 대한 두려움이 어느정도사라졌대요. 알찬 수업 구성과 밀착 관리에 깊이 감사드립니다.', name: '학부모 현OO', info: '예비고1 학부모', ava: '현' },
+  { no: 49, cat: 'suneung', tag: '반배치고사 지문 적중', text: '쌤!! 방학 특강 때 쌤이랑 지문 100개 분석했던 게 도움이 된 것 같아요 반배치고사에 그대로 나왔어요 시험지 풀면서 쌤 얼굴 계속 떠오름 😆!!', name: '표OO 학생', info: '고1 반배치고사 우수', ava: '표' },
+  { no: 50, cat: 'suneung', tag: '성적 수직 떡상 🔥', text: '선생님 저 방학 동안 쌤이 시키는 대로만 했는데 성적 떡상했어요 ㅋㅋㅋ 이번 학기도 열심히 할게요🔥🔥', name: '우OO 학생', info: '고2 수강생', ava: '우' }
+];
+
+var curRevCat = 'all';
+var isRevExpanded = false;
+
+function renderReviews() {
+  var container = document.getElementById('reviewsContainer');
+  if (!container) return;
+  var filtered = reviewsData.filter(function(r) {
+    return curRevCat === 'all' || r.cat === curRevCat;
+  });
+
+  var showCount = isRevExpanded ? filtered.length : Math.min(6, filtered.length);
+  var list = filtered.slice(0, showCount);
+
+  var html = list.map(function(r) {
+    return '<div class="review-card" style="display:flex; flex-direction:column; justify-content:space-between; background:white; border:1px solid var(--border-dark); border-radius:12px; padding:22px; transition:all 0.2s;">' +
+      '<div>' +
+        '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">' +
+          '<div class="review-stars">★★★★★</div>' +
+          '<span style="font-size:11px; font-weight:700; color:var(--blue); background:#e8f0fe; padding:3px 10px; border-radius:12px;">' + r.tag + '</span>' +
+        '</div>' +
+        '<div class="review-text" style="font-size:13.5px; line-height:1.75; color:#334155; margin-bottom:18px; word-break:keep-all; font-style:normal;">“' + r.text + '”</div>' +
+      '</div>' +
+      '<div class="reviewer" style="border-top:1px solid #f1f5f9; padding-top:12px; margin-top:auto; display:flex; align-items:center; gap:10px;">' +
+        '<div class="reviewer-ava">' + r.ava + '</div>' +
+        '<div>' +
+          '<div class="reviewer-name">' + r.name + '</div>' +
+          '<div class="reviewer-info">' + r.info + '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  container.innerHTML = html;
+
+  var btn = document.getElementById('btnReviewMore');
+  if (btn) {
+    if (filtered.length <= 6) {
+      btn.style.display = 'none';
+    } else {
+      btn.style.display = 'inline-block';
+      if (isRevExpanded) {
+        btn.innerHTML = '접기 ▴';
+      } else {
+        var remain = filtered.length - 6;
+        btn.innerHTML = '💬 실제 수강 후기 ' + remain + '개 더보기 ▾';
+      }
+    }
+  }
+}
+
+function filterReviews(cat, el) {
+  curRevCat = cat;
+  isRevExpanded = (cat !== 'all');
+  document.querySelectorAll('#reviews .curr-tab').forEach(function(t) { t.classList.remove('active'); });
+  if (el) el.classList.add('active');
+  renderReviews();
+}
+
+function toggleReviewsMore() {
+  isRevExpanded = !isRevExpanded;
+  renderReviews();
+  if (!isRevExpanded) {
+    document.getElementById('reviews').scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// 최초 렌더링 실행
+renderReviews();
 
 document.getElementById('loginModal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
