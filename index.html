@@ -767,7 +767,7 @@ footer {
     <span class="topbar-phone">📞 <a href="tel:02-554-2212" style="color:inherit;text-decoration:none">02-554-2212</a> &nbsp;|&nbsp; <a href="tel:010-7679-3338" style="color:inherit;text-decoration:none">010-7679-3338</a></span>
     <div class="topbar-links">
       <a href="https://blog.naver.com/zenpower3338" target="_blank">네이버 블로그</a>
-      <a href="#location">상담 문의</a>
+      <a href="javascript:void(0)" onclick="openConsultModal()">상담 문의</a>
     </div>
   </div>
 </div>
@@ -831,7 +831,7 @@ footer {
       한 반 4명 소수정예로 중하위권을 의대·SKY로 이끈 검증된 시스템
     </p>
     <div class="hero-ctas">
-      <button class="cta-primary" onclick="document.getElementById('admissions').scrollIntoView({behavior:'smooth'})">레벨테스트 예약하기</button>
+      <button class="cta-primary" onclick="openConsultModal()">레벨테스트 예약하기</button>
       <button class="cta-outline" onclick="document.getElementById('zone').scrollIntoView({behavior:'smooth'})">학습 센터 입장</button>
     </div>
     <div class="hero-trust">
@@ -925,10 +925,10 @@ footer {
 <!-- QUICK LINKS -->
 <div class="section">
   <div class="quick-grid">
-    <a href="#admissions" class="quick-card">
+    <a href="javascript:void(0)" onclick="openConsultModal()" class="quick-card" title="무료 레벨테스트 & 1:1 상담 예약">
       <div class="quick-icon">📋</div>
       <div class="quick-name">레벨테스트</div>
-      <div class="quick-desc">무료 진단 예약</div>
+      <div class="quick-desc">무료 예약 신청 ↗</div>
     </a>
     <a href="https://school-mock-exam-app.vercel.app" target="_blank" rel="noopener noreferrer" class="quick-card" title="젠파워 실전모의고사 학교별 기출 앱으로 이동">
       <div class="quick-icon">📚</div>
@@ -975,8 +975,8 @@ footer {
         <div class="p-badge">국제 변호 소송 담당 경력</div>
         <div class="p-badge">대치동 25년 현장 강의</div>
       </div>
-      <div class="principal-contact" onclick="document.getElementById('admissions').scrollIntoView({behavior:'smooth'})">
-        📞 상담 문의 02-554-2212
+      <div class="principal-contact" onclick="openConsultModal()" title="1:1 상담 예약 신청">
+        📞 1:1 상담 예약 & 문의 신청 ↗
       </div>
     </div>
     <div class="about-content">
@@ -1646,6 +1646,12 @@ footer {
       <div class="adm-special-title">맛보기 수업 — 젠파워만의 특별한 입학 시스템</div>
       <div class="adm-special-desc">레벨테스트 후 오답 풀이를 통해 원장님의 강의 스타일을 직접 체험합니다. 강의 방식이 마음에 들지 않으면 등록하지 않아도 됩니다. 실력으로 증명하는 젠파워의 자신감입니다.</div>
     </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 32px;">
+    <button class="cta-primary" onclick="openConsultModal()" style="font-size: 15px; padding: 15px 36px; border-radius: 8px; box-shadow: 0 6px 20px rgba(200,153,42,0.25); cursor: pointer;">
+      📋 무료 레벨테스트 & 1:1 상담 예약 신청하기 ↗
+    </button>
   </div>
 </div>
 
