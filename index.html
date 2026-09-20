@@ -637,9 +637,13 @@ body { font-family: 'Noto Sans KR', sans-serif; color: var(--text); background: 
 /* LOCATION */
 .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
 .location-map {
-  background: var(--gray-light); border-radius: 12px; height: 260px;
+  background: white; border-radius: 12px; min-height: 260px;
   display: flex; align-items: center; justify-content: center;
   border: 1px solid var(--border-dark); overflow: hidden; position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+.location-map img {
+  width: 100%; height: auto; display: block; border-radius: 12px;
 }
 .map-placeholder {
   text-align: center;
@@ -1652,12 +1656,12 @@ footer {
   <div class="sec-sub" style="margin-bottom:32px">대치역에서 도보 2분 거리</div>
   <div class="location-grid">
     <div class="location-map">
-      <div class="map-placeholder">
-        <div style="font-size:40px;margin-bottom:12px">🗺️</div>
-        <div style="font-size:14px;font-weight:600;color:var(--text)">대치역 1번 출구 100m</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:4px">래미안 대치팰리스 앞</div>
-        <a href="https://map.naver.com/p/entry/place/1088012944" target="_blank" style="display:inline-block;margin-top:12px;font-size:12px;color:var(--blue);text-decoration:none;border:1px solid var(--blue);padding:5px 14px;border-radius:20px">네이버 지도 열기 →</a>
-      </div>
+      <a href="https://map.naver.com/p/entry/place/1088012944" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; position:relative; text-decoration:none;" title="네이버 지도에서 젠파워 영어 보기">
+        <img src="map.png" alt="젠파워 영어 오시는 길 약도" style="width:100%; height:auto; display:block;">
+        <div style="position:absolute; bottom:12px; right:12px; background:rgba(10,22,40,0.85); backdrop-filter:blur(6px); color:white; font-size:11px; font-weight:600; padding:6px 14px; border-radius:20px; display:flex; align-items:center; gap:6px; box-shadow:0 2px 10px rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.15);">
+          <span>🗺️ 네이버 지도 열기 ↗</span>
+        </div>
+      </a>
     </div>
     <div class="location-details">
       <div class="loc-item">
