@@ -931,10 +931,10 @@ footer {
       <div class="quick-name">기출문제 은행</div>
       <div class="quick-desc">학교별 기출 검색 ↗</div>
     </a>
-    <a href="#zone" class="quick-card" onclick="setTimeout(()=>switchZone('listening'),400)">
+    <a href="https://zenpower-app.vercel.app" target="_blank" rel="noopener noreferrer" class="quick-card" title="젠파워 모바일 학습 앱 (듣기평가·데일리미션)으로 이동">
       <div class="quick-icon">🎧</div>
       <div class="quick-name">듣기 평가실</div>
-      <div class="quick-desc">수능·TEPS·iBT</div>
+      <div class="quick-desc">수능·TEPS·iBT ↗</div>
     </a>
     <a href="#zone" class="quick-card" onclick="setTimeout(()=>switchZone('exam-test'),400)">
       <div class="quick-icon">📝</div>
@@ -1312,6 +1312,19 @@ footer {
 
   <!-- 듣기 평가실 -->
   <div class="zpanel" id="zp-listening">
+    <div style="background: linear-gradient(135deg, #0f2040, #1a3a6e); border-radius: 12px; padding: 18px 24px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; color: white; box-shadow: 0 4px 15px rgba(15,32,64,0.15); flex-wrap: wrap; gap: 12px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+          <span style="font-size:18px;">🎧</span>
+          <strong style="font-size: 15px;">젠파워 모바일 학습 전용 앱 (Daily Listening)</strong>
+          <span style="font-size:10px; background:rgba(200,153,42,0.3); color:#e8b84b; padding:2px 8px; border-radius:12px; font-weight:700;">모바일 최적화</span>
+        </div>
+        <div style="font-size: 12px; opacity: 0.85;">스마트폰으로 간편하게 매일 듣기평가, 데일리 보카, 문법·작문 미션을 수행하세요.</div>
+      </div>
+      <a href="https://zenpower-app.vercel.app" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; background:#c8992a; color:#0a1628; padding:10px 18px; border-radius:8px; font-size:13px; font-weight:700; text-decoration:none; white-space:nowrap;">
+        학습 앱 열기 ↗
+      </a>
+    </div>
     <div class="listen-levels">
       <div class="level-card active" onclick="setLevel(this)">
         <div class="level-name">Level A</div>
