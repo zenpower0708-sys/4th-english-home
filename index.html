@@ -925,10 +925,10 @@ footer {
       <div class="quick-name">레벨테스트</div>
       <div class="quick-desc">무료 진단 예약</div>
     </a>
-    <a href="#zone" class="quick-card" onclick="setTimeout(()=>switchZone('exam'),400)">
+    <a href="https://school-mock-exam-app.vercel.app" target="_blank" rel="noopener noreferrer" class="quick-card" title="젠파워 실전모의고사 학교별 기출 앱으로 이동">
       <div class="quick-icon">📚</div>
       <div class="quick-name">기출문제 은행</div>
-      <div class="quick-desc">학교별 기출 검색</div>
+      <div class="quick-desc">학교별 기출 검색 ↗</div>
     </a>
     <a href="#zone" class="quick-card" onclick="setTimeout(()=>switchZone('listening'),400)">
       <div class="quick-icon">🎧</div>
@@ -1230,6 +1230,19 @@ footer {
 
   <!-- 기출문제 은행 -->
   <div class="zpanel active" id="zp-exam">
+    <div style="background: linear-gradient(135deg, #1e5eb8, #0f2040); border-radius: 12px; padding: 18px 24px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; color: white; box-shadow: 0 4px 15px rgba(30,94,184,0.15); flex-wrap: wrap; gap: 12px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+          <span style="font-size:18px;">🏛️</span>
+          <strong style="font-size: 15px;">젠파워 실전모의고사 학교별 전용 앱</strong>
+          <span style="font-size:10px; background:rgba(200,153,42,0.3); color:#e8b84b; padding:2px 8px; border-radius:12px; font-weight:700;">강남 3구 45+개교</span>
+        </div>
+        <div style="font-size: 12px; opacity: 0.85;">개원중·개포중·구룡중·대명중 등 중학교 26개교 및 고등학교 19개교 실전 기출 시험지 응시 가능</div>
+      </div>
+      <a href="https://school-mock-exam-app.vercel.app" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; background:#c8992a; color:#0a1628; padding:10px 18px; border-radius:8px; font-size:13px; font-weight:700; text-decoration:none; white-space:nowrap;">
+        앱 바로가기 ↗
+      </a>
+    </div>
     <div class="search-bar">
       <select class="search-select"><option>학교 선택</option><option>단대부고</option><option>개포고</option><option>휘문고</option><option>중동고</option><option>숙명여고</option><option>하나고</option><option>민사고</option><option>서울과학고</option></select>
       <select class="search-select"><option>학년</option><option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option><option>고3</option></select>
