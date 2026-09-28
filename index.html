@@ -1738,54 +1738,224 @@ footer {
   </div>
 </footer>
 
-<!-- LOGIN MODAL -->
+<!-- LOGIN MODAL (ISA-Prod 3D 보석 간편가입 / 로그인 & 통합 인증 모달) -->
 <div class="modal-overlay" id="loginModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-title">로그인</div>
-    <div class="modal-sub">이용 목적에 맞게 선택해 주세요</div>
-    <div class="login-types">
-      <button class="login-type-btn sel" id="btnTypeStudent" onclick="selLoginType(this, 'student')">
-        <div class="login-type-icon">🎓</div>
-        <div class="login-type-name">학생</div>
-        <div class="login-type-desc">기출·듣기·모의고사</div>
-      </button>
-      <button class="login-type-btn" id="btnTypeParent" onclick="selLoginType(this, 'parent')">
-        <div class="login-type-icon">👨‍👩‍👧</div>
-        <div class="login-type-name">학부모</div>
-        <div class="login-type-desc">자녀 평가서·성적</div>
-      </button>
-    </div>
-    <!-- 학생 전용 서비스 안내 배너 -->
-    <div id="studentLoginAlert" style="display:none; margin-bottom:16px; padding:12px 14px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; font-size:12.5px; color:#1e40af; line-height:1.5; text-align:left;">
+  <div class="modal" style="width: 440px; max-width: 92vw; border-radius: 28px; padding: 32px 28px 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.18); border: 1px solid #e2e8f0; background: #ffffff; max-height: 92vh; overflow-y: auto;">
+    <button class="modal-close" onclick="closeModal()" style="position: absolute; top: 20px; right: 20px; color: #94a3b8; font-size: 20px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: none; background: transparent; cursor: pointer;">✕</button>
+
+    <!-- Modal Header (로고 엠블럼 + 타이틀 + 서브텍스트) -->
+    <div style="text-align: center; margin-bottom: 18px;">
+      <div style="width: 68px; height: 68px; border-radius: 18px; overflow: hidden; border: 1px solid #bfdbfe; background: #000000; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);">
+        <img src="images/zenpower_emblem.png" alt="젠파워 로고" style="width: 100%; height: 100%; object-fit: contain; display: block; padding: 4px;">
+      </div>
+      <h3 id="loginTitle" style="font-size: 22px; font-weight: 900; color: #0f172a; margin-bottom: 4px; letter-spacing: -0.5px;">젠파워 영어 로그인</h3>
+      <p id="loginSub" style="font-size: 12px; color: #64748b; font-weight: 500;">학생과 학부모를 위한 맞춤형 통합 회원 서비스</p>
     </div>
 
-    <form id="loginForm" onsubmit="handleLoginFormSubmit(event)">
-      <div class="form-field">
-        <label class="form-label">아이디 (학원 발급)</label>
-        <input class="form-input" id="loginId" type="text" placeholder="아이디 또는 학생 이름 (예: student 또는 김도현)" required>
+    <!-- 학생 전용 서비스 안내 배너 (기출문제 은행, 듣기 평가실, 모의고사 클릭 시) -->
+    <div id="studentLoginAlert" style="display: none; margin-bottom: 14px; padding: 11px 14px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; font-size: 12px; color: #1e40af; line-height: 1.5; text-align: left;"></div>
+
+    <!-- 3D 보석 간편가입 / 로그인 버튼 3종 -->
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 9px; width: 100%; margin-bottom: 4px;" id="socialLoginBlock">
+      <!-- 1. 카카오 3D 골드 버튼 -->
+      <button type="button" onclick="handleSocialLogin('kakao')" style="width: 244px; max-width: 100%; padding: 0; border: 1px solid rgba(245,158,11,0.35); background: transparent; border-radius: 10px; overflow: hidden; cursor: pointer; transition: transform 0.18s, box-shadow 0.18s; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="images/kakao_3d_front_login_bar.jpg" alt="카카오로 간편가입 / 로그인" style="width: 100%; height: auto; display: block; pointer-events: none; user-select: none;">
+      </button>
+
+      <!-- 2. 네이버 3D 에메랄드 그린 버튼 -->
+      <button type="button" onclick="handleSocialLogin('naver')" style="width: 244px; max-width: 100%; padding: 0; border: 1px solid rgba(16,185,129,0.35); background: transparent; border-radius: 10px; overflow: hidden; cursor: pointer; transition: transform 0.18s, box-shadow 0.18s; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="images/naver_3d_front_login_bar.jpg" alt="네이버로 간편가입 / 로그인" style="width: 100%; height: auto; display: block; pointer-events: none; user-select: none;">
+      </button>
+
+      <!-- 3. Google 3D 실버/다이아몬드 버튼 -->
+      <button type="button" onclick="handleSocialLogin('google')" style="width: 244px; max-width: 100%; padding: 0; border: 1px solid rgba(203,213,225,0.8); background: transparent; border-radius: 10px; overflow: hidden; cursor: pointer; transition: transform 0.18s, box-shadow 0.18s; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: block;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="images/google_3d_front_login_bar.jpg" alt="Google로 간편가입 / 로그인" style="width: 100%; height: auto; display: block; pointer-events: none; user-select: none;">
+      </button>
+    </div>
+
+    <!-- Divider (구분선) -->
+    <div style="position: relative; display: flex; align-items: center; justify-content: center; margin: 16px 0 14px;">
+      <div style="border-top: 1px solid #e2e8f0; width: 100%;"></div>
+      <span style="position: absolute; background: #ffffff; padding: 0 12px; font-size: 11px; color: #94a3b8; font-weight: 600;">또는 이메일 계정</span>
+    </div>
+
+    <!-- 회원 구분 (학생 / 학부모) 선택 탭 -->
+    <div class="login-types" id="loginTypeTabs" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px;">
+      <button type="button" class="login-type-btn sel" id="btnTypeStudent" onclick="selLoginType(this, 'student')" style="padding: 10px; border-radius: 10px; border: 2px solid #2563eb; background: #eff6ff; cursor: pointer; text-align: center; transition: all 0.2s;">
+        <div style="font-size: 15px;">🎓</div>
+        <div style="font-size: 13px; font-weight: 700; color: #1e3a8a;">학생 회원</div>
+        <div style="font-size: 10.5px; color: #3b82f6;">기출·듣기·모의고사</div>
+      </button>
+      <button type="button" class="login-type-btn" id="btnTypeParent" onclick="selLoginType(this, 'parent')" style="padding: 10px; border-radius: 10px; border: 1px solid #cbd5e1; background: #f8fafc; cursor: pointer; text-align: center; transition: all 0.2s;">
+        <div style="font-size: 15px;">👨‍👩‍👧</div>
+        <div style="font-size: 13px; font-weight: 700; color: #475569;">학부모 회원</div>
+        <div style="font-size: 10.5px; color: #64748b;">상담예약·평가서</div>
+      </button>
+    </div>
+
+    <!-- 이메일 로그인 / 회원가입 폼 -->
+    <form id="loginForm" onsubmit="handleLoginFormSubmit(event)" style="padding: 0;">
+      <!-- 회원가입 모드 전용 필드 -->
+      <div id="signupFields" style="display: none; margin-bottom: 10px;">
+        <div class="form-group" style="margin-bottom: 10px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">성명 / 실명 *</label>
+          <input type="text" id="signupName" placeholder="홍길동 (학생 또는 학부모 이름)" style="width: 100%; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 14px; background: #f8fafc; color: #0f172a; outline: none; box-sizing: border-box;">
+        </div>
+        <div class="form-group" style="margin-bottom: 10px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">휴대폰 번호 *</label>
+          <input type="tel" id="signupPhone" placeholder="010-0000-0000" style="width: 100%; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 14px; background: #f8fafc; color: #0f172a; outline: none; box-sizing: border-box;">
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">생년월일</label>
+            <input type="text" id="signupBirth" placeholder="YYMMDD" maxlength="6" style="width: 100%; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 14px; background: #f8fafc; color: #0f172a; outline: none; box-sizing: border-box;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">성별</label>
+            <select id="signupGender" style="width: 100%; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 12px; background: #f8fafc; color: #0f172a; outline: none; box-sizing: border-box;">
+              <option value="M">남성 (Male)</option>
+              <option value="F">여성 (Female)</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div class="form-field">
-        <label class="form-label">비밀번호</label>
-        <input class="form-input" id="loginPw" type="password" placeholder="비밀번호를 입력하세요 (체험용: 1234)" required>
+
+      <!-- 이메일 / 아이디 주소 * -->
+      <div class="form-group" style="margin-bottom: 10px;">
+        <label id="lblLoginId" style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">이메일 또는 아이디 *</label>
+        <input type="text" id="loginId" required placeholder="user@example.com 또는 학생이름 (체험: student)" style="width: 100%; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 14px; background: #f8fafc; color: #0f172a; outline: none; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#059669'" onblur="this.style.borderColor='#cbd5e1'">
       </div>
-      <div style="font-size:11px; color:#64748b; margin-top:-6px; margin-bottom:14px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px;">
-        <span>💡 학원 등록 계정 또는 이름으로 로그인</span>
-        <span style="color:#2563eb; font-weight:600;">체험 계정: student / 1234</span>
+
+      <!-- 비밀번호 * -->
+      <div class="form-group" style="margin-bottom: 10px;">
+        <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">비밀번호 *</label>
+        <input type="password" id="loginPw" required placeholder="비밀번호 입력 (체험: 1234)" style="width: 100%; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 14px; background: #f8fafc; color: #0f172a; outline: none; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#059669'" onblur="this.style.borderColor='#cbd5e1'">
       </div>
-      <button type="submit" class="form-submit" id="btnLoginSubmit">로그인</button>
+
+      <!-- 회원가입 시 비밀번호 확인 & 약관 동의 -->
+      <div id="signupFieldsAfter" style="display: none; margin-bottom: 10px;">
+        <div class="form-group" style="margin-bottom: 10px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">비밀번호 확인 *</label>
+          <input type="password" id="signupPwConfirm" placeholder="비밀번호 재입력" style="width: 100%; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 12px; padding: 10px 14px; background: #f8fafc; color: #0f172a; outline: none; box-sizing: border-box;">
+        </div>
+        <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; padding: 10px 12px;">
+          <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 11px; color: #065f46;">
+            <input type="checkbox" id="signupAgree" style="accent-color: #059669; width: 16px; height: 16px;">
+            <span>[필수] 개인정보 수집 및 이용 약관에 동의합니다.</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 로그인 상태 유지 (30일) 체크박스 및 비밀번호 찾기 -->
+      <div id="loginKeepBox" style="display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #64748b; padding: 2px 0 12px;">
+        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none;">
+          <input type="checkbox" id="keepLoginCheck" checked style="accent-color: #059669; width: 15px; height: 15px;">
+          <span>로그인 상태 유지 (30일)</span>
+        </label>
+        <button type="button" onclick="toggleFindPw()" id="findPwToggle" style="color: #64748b; font-size: 11px; text-decoration: underline; border: none; background: none; cursor: pointer;">비밀번호 찾기</button>
+      </div>
+
+      <div id="loginMsg" style="display: none; margin-bottom: 8px; font-size: 12px; text-align: center; padding: 6px; border-radius: 6px;"></div>
+
+      <!-- 3번 사진 ISA-Prod 스타일의 에메랄드 그린 로그인하기 버튼 -->
+      <button type="submit" id="loginSubmitBtn" style="width: 100%; background: #059669; color: #ffffff; font-weight: 800; font-size: 14px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(5,150,105,0.3); transition: background 0.2s, transform 0.15s; display: flex; align-items: center; justify-content: center; gap: 6px;" onmouseover="this.style.background='#047857'" onmouseout="this.style.background='#059669'">
+        <span style="font-size: 16px;">➔]</span>
+        <span id="loginSubmitText">로그인하기</span>
+      </button>
     </form>
 
-    <!-- 학부모 선택 시 노출되는 상담 예약 바로가기 배너 -->
-    <div id="parentConsultBox" style="display:none; margin-top:16px; padding:14px; background:#f0f6ff; border:1px solid #bfdbfe; border-radius:10px; text-align:center;">
-      <div style="font-size:13px; font-weight:700; color:#1e40af; margin-bottom:4px;">📋 학부모 1:1 상담 예약을 원하시나요?</div>
-      <div style="font-size:11px; color:#3b82f6; margin-bottom:10px;">로그인 없이도 즉시 학원 텔레그램으로 상담 예약을 전송하실 수 있습니다.</div>
-      <button type="button" onclick="closeModal(); openConsultModal();" style="background:var(--navy); color:white; border:none; padding:9px 18px; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer; font-family:inherit;">지금 바로 상담 예약하기 ↗</button>
+    <!-- 비밀번호 찾기 영역 -->
+    <div id="findPwSection" style="display: none; padding: 12px 0 8px;">
+      <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+        <input type="text" id="findPwEmail" placeholder="가입하신 이메일 또는 이름 입력" style="flex: 1; padding: 10px 14px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; color: #0f172a; font-size: 13px; outline: none; box-sizing: border-box;">
+        <button type="button" onclick="submitFindPassword()" style="padding: 10px 16px; background: #059669; border: none; border-radius: 10px; color: white; font-weight: 700; font-size: 13px; cursor: pointer; white-space: nowrap;">발송</button>
+      </div>
+      <div id="findPwMsg" style="font-size: 12px; text-align: center; min-height: 18px;"></div>
     </div>
 
-    <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--text-muted)">
-      계정이 없으신가요? <a href="javascript:void(0)" onclick="closeModal(); openConsultModal();" style="color:var(--blue); font-weight:600;">상담 예약 신청하기</a> &nbsp;|&nbsp; <a href="tel:025542212" style="color:var(--text-muted)">02-554-2212</a>
+    <!-- 학부모 선택 시 노출되는 상담 예약 안내 배너 -->
+    <div id="parentConsultBox" style="display: none; margin-top: 14px; padding: 12px; background: #f0f6ff; border: 1px solid #bfdbfe; border-radius: 10px; text-align: center;">
+      <div style="font-size: 12.5px; font-weight: 700; color: #1e40af; margin-bottom: 3px;">📋 학부모 1:1 상담 예약을 원하시나요?</div>
+      <div style="font-size: 11px; color: #3b82f6; margin-bottom: 8px;">로그인 없이도 즉시 학원 텔레그램으로 상담 예약을 전송하실 수 있습니다.</div>
+      <button type="button" onclick="closeModal(); openConsultModal();" style="background: var(--navy); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 11.5px; font-weight: 700; cursor: pointer; font-family: inherit;">상담 예약 전송하기 ↗</button>
     </div>
+
+    <!-- 하단 모드 전환 (로그인 <-> 무료 회원가입) -->
+    <div style="text-align: center; padding-top: 14px; margin-top: 12px; border-top: 1px solid #f1f5f9; font-size: 12px; color: #64748b;">
+      <span id="loginTogglePrompt">아직 회원이 아니신가요?</span>
+      <button type="button" onclick="toggleLoginMode()" id="loginToggleText" style="color: #059669; font-weight: 800; border: none; background: none; cursor: pointer; margin-left: 4px; text-decoration: underline;">
+        무료 회원가입
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Social Login Extra Info Modal (3번 사진 사이트 ISA-Prod와 동일한 간편가입 필수정보 입력 모달) -->
+<div class="modal-overlay" id="socialExtraModal">
+  <div class="modal" style="width: 440px; max-width: 92vw; border-radius: 24px; padding: 28px 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.18); border: 1px solid #e2e8f0; background: #ffffff; max-height: 90vh; overflow-y: auto;">
+    <button class="modal-close" onclick="closeSocialExtraModal()" style="position: absolute; top: 18px; right: 18px; color: #94a3b8; font-size: 20px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: none; background: transparent; cursor: pointer;">✕</button>
+    
+    <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 14px; margin-bottom: 16px;">
+      <div style="font-size: 17px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px;">
+        <span>📋</span> 간편가입 필수 정보 입력
+      </div>
+      <p style="font-size: 12px; color: #64748b; margin-top: 6px; line-height: 1.4;">
+        학습 관리 및 맞춤 상담 서비스를 위해 <strong>실명 및 필수 정보</strong>를 입력해주세요.
+      </p>
+    </div>
+
+    <!-- 계정 정보 표시 배지 -->
+    <div style="display: flex; align-items: center; gap: 8px; background: #f8fafc; padding: 10px 14px; border-radius: 10px; margin-bottom: 16px; border: 1px solid #e2e8f0;">
+      <span id="extraProviderBadge" style="font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; background: #FEE500; color: #3C1E1E;">카카오</span>
+      <span id="extraAccountEmail" style="font-size: 12.5px; font-weight: 600; color: #0f172a; word-break: break-all;">kakao_user@kakao.com</span>
+    </div>
+
+    <form id="socialExtraForm" onsubmit="handleSocialExtraSubmit(event)">
+      <input type="hidden" id="extraProvider" value="kakao">
+
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">회원 구분 <span style="color: #ef4444;">*</span></label>
+        <select id="extraUserType" style="width: 100%; padding: 10px 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 13px; color: #0f172a; outline: none; box-sizing: border-box;">
+          <option value="student">🎓 학생 (기출·듣기·모의고사 학습)</option>
+          <option value="parent">👨‍👩‍👧 학부모 (상담 예약 및 자녀 학습 확인)</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">이름 (실명) <span style="color: #ef4444;">*</span></label>
+        <input type="text" id="extraName" required placeholder="학생 또는 학부모 실명" style="width: 100%; padding: 10px 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 13px; color: #0f172a; outline: none; box-sizing: border-box;">
+      </div>
+
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">휴대폰 번호 <span style="color: #ef4444;">*</span></label>
+        <input type="tel" id="extraPhone" required placeholder="010-0000-0000" style="width: 100%; padding: 10px 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 13px; color: #0f172a; outline: none; box-sizing: border-box;">
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;">
+        <div>
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">생년월일</label>
+          <input type="text" id="extraBirth" placeholder="YYMMDD" maxlength="6" style="width: 100%; padding: 10px 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 13px; color: #0f172a; outline: none; box-sizing: border-box;">
+        </div>
+        <div>
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">성별</label>
+          <select id="extraGender" style="width: 100%; padding: 10px 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 13px; color: #0f172a; outline: none; box-sizing: border-box;">
+            <option value="M">남성</option>
+            <option value="F">여성</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; padding: 10px 12px; margin-bottom: 16px;">
+        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 11px; color: #065f46;">
+          <input type="checkbox" id="extraAgree" checked required style="accent-color: #059669; width: 16px; height: 16px;">
+          <span>[필수] 개인정보 수집 및 이용 약관에 동의합니다.</span>
+        </label>
+      </div>
+
+      <button type="submit" style="width: 100%; background: #059669; color: white; font-weight: 800; font-size: 14px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(5,150,105,0.3);">
+        간편가입 및 로그인 완료
+      </button>
+    </form>
   </div>
 </div>
 
@@ -2067,8 +2237,215 @@ function executeStudentService(service) {
   }
 }
 
+// ===== 3D 보석 로그인 & 회원가입 / 소셜인증 통합 시스템 (3번 사진 ISA-Prod 동일 설정) =====
+var isLoginMode = true; // true: 로그인, false: 회원가입
+
+function toggleLoginMode() {
+  isLoginMode = !isLoginMode;
+  var title = document.getElementById('loginTitle');
+  var sub = document.getElementById('loginSub');
+  var togglePrompt = document.getElementById('loginTogglePrompt');
+  var toggleText = document.getElementById('loginToggleText');
+  var signupFields = document.getElementById('signupFields');
+  var signupFieldsAfter = document.getElementById('signupFieldsAfter');
+  var keepBox = document.getElementById('loginKeepBox');
+  var submitText = document.getElementById('loginSubmitText');
+  var lblId = document.getElementById('lblLoginId');
+  var findPwSec = document.getElementById('findPwSection');
+  
+  if (findPwSec) findPwSec.style.display = 'none';
+
+  if (!isLoginMode) {
+    if (title) title.textContent = '젠파워 영어 간편 회원가입';
+    if (sub) sub.textContent = '젠파워의 맞춤형 기출문제, 듣기평가, 모의고사 학습을 시작하세요';
+    if (togglePrompt) togglePrompt.textContent = '이미 회원이신가요?';
+    if (toggleText) toggleText.textContent = '기존 계정으로 로그인';
+    if (signupFields) signupFields.style.display = 'block';
+    if (signupFieldsAfter) signupFieldsAfter.style.display = 'block';
+    if (keepBox) keepBox.style.display = 'none';
+    if (submitText) submitText.textContent = '회원가입 완료';
+    if (lblId) lblId.textContent = '이메일 주소 (아이디로 사용) *';
+  } else {
+    if (title) title.textContent = '젠파워 영어 로그인';
+    if (sub) sub.textContent = '학생과 학부모를 위한 맞춤형 통합 회원 서비스';
+    if (togglePrompt) togglePrompt.textContent = '아직 회원이 아니신가요?';
+    if (toggleText) toggleText.textContent = '무료 회원가입';
+    if (signupFields) signupFields.style.display = 'none';
+    if (signupFieldsAfter) signupFieldsAfter.style.display = 'none';
+    if (keepBox) keepBox.style.display = 'flex';
+    if (submitText) submitText.textContent = '로그인하기';
+    if (lblId) lblId.textContent = '이메일 또는 아이디 *';
+  }
+}
+
+// 비밀번호 찾기 토글
+function toggleFindPw() {
+  var sec = document.getElementById('findPwSection');
+  var btn = document.getElementById('findPwToggle');
+  var form = document.getElementById('loginForm');
+  if (!sec) return;
+  var isOpen = sec.style.display !== 'none';
+  sec.style.display = isOpen ? 'none' : 'block';
+  if (btn) btn.textContent = isOpen ? '비밀번호 찾기' : '로그인으로 돌아가기';
+  if (form) form.style.display = isOpen ? 'block' : 'none';
+  var msg = document.getElementById('findPwMsg');
+  if (msg) msg.textContent = '';
+}
+
+function submitFindPassword() {
+  var email = document.getElementById('findPwEmail').value.trim();
+  var msg = document.getElementById('findPwMsg');
+  if (!email) {
+    if (msg) {
+      msg.style.color = '#ef4444';
+      msg.textContent = '이메일 또는 이름을 입력해주세요.';
+    }
+    return;
+  }
+  if (msg) {
+    msg.style.color = '#059669';
+    msg.textContent = '입력하신 [' + email + '] 계정으로 임시 비밀번호 재설정 링크가 발송되었습니다.';
+  }
+  setTimeout(function() {
+    toggleFindPw();
+  }, 2500);
+}
+
+// 3D 보석 소셜 버튼 핸들러 (카카오, 네이버, 구글)
+function handleSocialLogin(provider) {
+  var modal = document.getElementById('socialExtraModal');
+  var badge = document.getElementById('extraProviderBadge');
+  var email = document.getElementById('extraAccountEmail');
+  var provInput = document.getElementById('extraProvider');
+  if (!modal) return;
+
+  if (provInput) provInput.value = provider;
+  if (provider === 'kakao') {
+    if (badge) {
+      badge.textContent = '카카오 간편인증';
+      badge.style.background = '#FEE500';
+      badge.style.color = '#3C1E1E';
+      badge.style.border = 'none';
+    }
+    if (email) email.textContent = 'kakao_user@kakao.com';
+  } else if (provider === 'naver') {
+    if (badge) {
+      badge.textContent = '네이버 간편인증';
+      badge.style.background = '#03C75A';
+      badge.style.color = '#ffffff';
+      badge.style.border = 'none';
+    }
+    if (email) email.textContent = 'naver_user@naver.com';
+  } else {
+    if (badge) {
+      badge.textContent = 'Google 간편인증';
+      badge.style.background = '#ffffff';
+      badge.style.color = '#3c4043';
+      badge.style.border = '1px solid #dadce0';
+    }
+    if (email) email.textContent = 'google_user@gmail.com';
+  }
+
+  // 기존 로그인 모달 닫고 소셜 필수정보 모달 열기
+  closeModal();
+  modal.classList.add('open');
+}
+
+function closeSocialExtraModal() {
+  var modal = document.getElementById('socialExtraModal');
+  if (modal) modal.classList.remove('open');
+}
+
+function handleSocialExtraSubmit(e) {
+  e.preventDefault();
+  var userType = document.getElementById('extraUserType').value;
+  var name = document.getElementById('extraName').value.trim();
+  var phone = document.getElementById('extraPhone').value.trim();
+  var provider = document.getElementById('extraProvider').value;
+
+  if (!name || !phone) {
+    alert('이름과 휴대폰 번호는 필수 입력 항목입니다.');
+    return;
+  }
+
+  var provName = provider === 'kakao' ? '카카오' : (provider === 'naver' ? '네이버' : 'Google');
+
+  if (userType === 'student') {
+    localStorage.setItem('zp_student_logged', 'true');
+    localStorage.setItem('zp_student_name', name);
+    localStorage.setItem('zp_student_phone', phone);
+    closeSocialExtraModal();
+    updateStudentLoginUI();
+
+    if (pendingStudentService) {
+      var target = pendingStudentService;
+      pendingStudentService = null;
+      alert('🎓 ' + provName + ' 간편인증 완료!\n[' + name + '] 학생으로 로그인되어 선택하신 서비스로 자동 이동합니다.');
+      executeStudentService(target);
+    } else {
+      alert('🎓 ' + provName + ' 간편인증 완료!\n' + name + ' 학생으로 로그인되었습니다. 모든 학습 서비스를 자유롭게 이용하세요.');
+    }
+  } else {
+    localStorage.setItem('zp_parent_logged', 'true');
+    localStorage.setItem('zp_parent_name', name);
+    localStorage.setItem('zp_parent_phone', phone);
+    closeSocialExtraModal();
+    alert('👨‍👩‍👧 ' + provName + ' 간편인증 완료!\n' + name + ' 학부모님으로 로그인되었습니다.');
+  }
+}
+
 function handleLoginFormSubmit(e) {
   e.preventDefault();
+  
+  if (!isLoginMode) {
+    // 회원가입 모드
+    var name = document.getElementById('signupName').value.trim();
+    var phone = document.getElementById('signupPhone').value.trim();
+    var email = document.getElementById('loginId').value.trim();
+    var pw = document.getElementById('loginPw').value;
+    var pwConfirm = document.getElementById('signupPwConfirm').value;
+    var agree = document.getElementById('signupAgree').checked;
+
+    if (!name || !phone || !email || !pw) {
+      alert('필수 입력 항목(성명, 휴대폰, 이메일, 비밀번호)을 모두 입력해 주세요.');
+      return;
+    }
+    if (pw !== pwConfirm) {
+      alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+      return;
+    }
+    if (!agree) {
+      alert('개인정보 수집 및 이용 약관에 동의해 주세요.');
+      return;
+    }
+
+    if (currentLoginType === 'student') {
+      localStorage.setItem('zp_student_logged', 'true');
+      localStorage.setItem('zp_student_name', name);
+      localStorage.setItem('zp_student_phone', phone);
+      localStorage.setItem('zp_student_email', email);
+      closeModal();
+      updateStudentLoginUI();
+
+      if (pendingStudentService) {
+        var target = pendingStudentService;
+        pendingStudentService = null;
+        alert('🎉 회원가입 완료!\n' + name + ' 학생 계정으로 자동 로그인되어 선택하신 서비스로 이동합니다.');
+        executeStudentService(target);
+      } else {
+        alert('🎉 회원가입 및 로그인이 완료되었습니다!\n' + name + ' 학생, 환영합니다!');
+      }
+    } else {
+      localStorage.setItem('zp_parent_logged', 'true');
+      localStorage.setItem('zp_parent_name', name);
+      localStorage.setItem('zp_parent_phone', phone);
+      closeModal();
+      alert('🎉 학부모 회원가입 및 로그인이 완료되었습니다.\n' + name + ' 학부모님, 환영합니다!');
+    }
+    return;
+  }
+
+  // 로그인 모드
   if (currentLoginType === 'student') {
     var idInput = document.getElementById('loginId');
     var idVal = idInput ? idInput.value.trim() : '';
@@ -2096,12 +2473,21 @@ function handleLoginFormSubmit(e) {
       alert('🎓 ' + displayName + ' 학생으로 로그인되었습니다.\n기출문제 은행, 듣기 평가실, 모의고사를 자유롭게 이용하세요.');
     }
   } else {
+    var idVal = document.getElementById('loginId').value.trim();
+    localStorage.setItem('zp_parent_logged', 'true');
+    localStorage.setItem('zp_parent_name', idVal || '학부모님');
     closeModal();
-    alert('학부모 계정으로 확인되었습니다.');
+    alert('👨‍👩‍👧 ' + (idVal || '학부모') + ' 계정으로 로그인되었습니다.');
   }
 }
 
 function openModal(defaultType, alertHtml) {
+  if (!isLoginMode) toggleLoginMode(); // 기본 로그인 화면으로 초기화
+  var sec = document.getElementById('findPwSection');
+  if (sec) sec.style.display = 'none';
+  var form = document.getElementById('loginForm');
+  if (form) form.style.display = 'block';
+
   document.getElementById('loginModal').classList.add('open');
   var alertBox = document.getElementById('studentLoginAlert');
   if (alertBox) {
@@ -2450,6 +2836,9 @@ startHeroMvWithAudio();
 
 document.getElementById('loginModal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
+});
+document.getElementById('socialExtraModal').addEventListener('click', function(e) {
+  if (e.target === this) closeSocialExtraModal();
 });
 document.getElementById('consultModal').addEventListener('click', function(e) {
   if (e.target === this) closeConsultModal();
