@@ -2346,15 +2346,16 @@ function closeSocialExtraModal() {
 }
 
 // ===== 젠파워영어 회원관리 구글 스프레드시트 실시간 연동 모듈 =====
-var ZP_SHEET_API_URL = localStorage.getItem('zp_member_sheet_url') || '';
+var ZP_DEFAULT_SHEET_URL = 'https://script.google.com/macros/s/AKfycbz4wugk4sOcXV8NLp0AFt-QrHieARrciAH171rny_c2D-vTQKt1eBMOYplPRBq7MQU/exec';
+var ZP_SHEET_API_URL = localStorage.getItem('zp_member_sheet_url') || ZP_DEFAULT_SHEET_URL;
 
 function promptSheetApiUrl() {
-  var cur = localStorage.getItem('zp_member_sheet_url') || '';
+  var cur = localStorage.getItem('zp_member_sheet_url') || ZP_DEFAULT_SHEET_URL;
   var input = prompt(
     '【젠파워영어 회원관리 구글 시트 Web App 배포 URL 설정】\n\n' +
     '구글 스프레드시트(1FcfTZsKJ-C9_E4NuHOgJwc2DzOIZ563Hc7A1mqvMdhk)의\n' +
-    'Apps Script에서 배포하신 [웹 앱 URL]을 입력해 주세요.\n\n' +
-    '현재 설정값: ' + (cur ? cur : '(미설정 - 로컬큐 보관 중)'),
+    'Apps Script에서 배포하신 [웹 앱 URL]을 확인 또는 변경하실 수 있습니다.\n\n' +
+    '현재 연동 URL: ' + cur,
     cur
   );
   if (input !== null) {
@@ -2366,8 +2367,8 @@ function promptSheetApiUrl() {
       flushMemberSyncQueue();
     } else {
       localStorage.removeItem('zp_member_sheet_url');
-      ZP_SHEET_API_URL = '';
-      alert('구글 시트 연동 URL이 초기화되었습니다.');
+      ZP_SHEET_API_URL = ZP_DEFAULT_SHEET_URL;
+      alert('기본 구글 시트 연동 URL로 복원되었습니다.');
     }
   }
 }
