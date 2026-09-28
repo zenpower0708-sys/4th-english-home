@@ -1872,6 +1872,9 @@ footer {
       <button type="button" onclick="toggleLoginMode()" id="loginToggleText" style="color: #059669; font-weight: 800; border: none; background: none; cursor: pointer; margin-left: 4px; text-decoration: underline;">
         무료 회원가입
       </button>
+      <div style="margin-top: 8px; font-size: 11px;">
+        <a href="javascript:void(0)" onclick="promptSheetApiUrl()" style="color: #94a3b8; text-decoration: none;" title="구글 스프레드시트 Web App API URL 설정">📊 회원관리 구글시트 연동설정</a>
+      </div>
     </div>
   </div>
 </div>
@@ -2342,12 +2345,103 @@ function closeSocialExtraModal() {
   if (modal) modal.classList.remove('open');
 }
 
+// ===== 젠파워영어 회원관리 구글 스프레드시트 실시간 연동 모듈 =====
+var ZP_SHEET_API_URL = localStorage.getItem('zp_member_sheet_url') || '';
+
+function promptSheetApiUrl() {
+  var cur = localStorage.getItem('zp_member_sheet_url') || '';
+  var input = prompt(
+    '【젠파워영어 회원관리 구글 시트 Web App 배포 URL 설정】\n\n' +
+    '구글 스프레드시트(1FcfTZsKJ-C9_E4NuHOgJwc2DzOIZ563Hc7A1mqvMdhk)의\n' +
+    'Apps Script에서 배포하신 [웹 앱 URL]을 입력해 주세요.\n\n' +
+    '현재 설정값: ' + (cur ? cur : '(미설정 - 로컬큐 보관 중)'),
+    cur
+  );
+  if (input !== null) {
+    var trimmed = input.trim();
+    if (trimmed) {
+      localStorage.setItem('zp_member_sheet_url', trimmed);
+      ZP_SHEET_API_URL = trimmed;
+      alert('✅ 구글 시트 연동 URL이 성공적으로 등록되었습니다!\n앞으로 모든 회원가입 및 로그인 내역이 구글 시트에 실시간 정리됩니다.');
+      flushMemberSyncQueue();
+    } else {
+      localStorage.removeItem('zp_member_sheet_url');
+      ZP_SHEET_API_URL = '';
+      alert('구글 시트 연동 URL이 초기화되었습니다.');
+    }
+  }
+}
+
+window.setMemberSheetApiUrl = function(url) {
+  if (url) {
+    localStorage.setItem('zp_member_sheet_url', url.trim());
+    ZP_SHEET_API_URL = url.trim();
+    console.log('✅ 젠파워 회원관리 구글 시트 연동 URL 설정 완료:', url.trim());
+    flushMemberSyncQueue();
+  }
+};
+
+function syncMemberToGoogleSheet(data) {
+  var apiUrl = localStorage.getItem('zp_member_sheet_url') || ZP_SHEET_API_URL;
+  data.timestamp = new Date().toISOString();
+  data.userAgent = (navigator && navigator.userAgent) ? navigator.userAgent : '';
+
+  if (!apiUrl) {
+    console.log('ℹ️ [구글시트] 연동 URL 미등록 상태 — 회원 기록을 브라우저 대기열에 안전하게 저장합니다.', data);
+    try {
+      var queue = JSON.parse(localStorage.getItem('zp_member_sync_queue') || '[]');
+      queue.push(data);
+      localStorage.setItem('zp_member_sync_queue', JSON.stringify(queue.slice(-50)));
+    } catch(e) {}
+    return;
+  }
+
+  try {
+    fetch(apiUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(data)
+    }).then(function() {
+      console.log('📊 [구글시트] 회원 정보 실시간 전송 성공:', data.name, data.userType, data.provider);
+    }).catch(function(err) {
+      console.warn('⚠️ [구글시트] 전송 중 일시적 네트워크 오류:', err);
+    });
+  } catch(err) {
+    console.warn('⚠️ [구글시트] 전송 예외 발생:', err);
+  }
+}
+
+function flushMemberSyncQueue() {
+  var apiUrl = localStorage.getItem('zp_member_sheet_url') || ZP_SHEET_API_URL;
+  if (!apiUrl) return;
+  try {
+    var queue = JSON.parse(localStorage.getItem('zp_member_sync_queue') || '[]');
+    if (queue.length > 0) {
+      console.log('🔄 [구글시트] 누적된 대기열 ' + queue.length + '건을 전송합니다...');
+      queue.forEach(function(item) {
+        fetch(apiUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(item)
+        });
+      });
+      localStorage.removeItem('zp_member_sync_queue');
+    }
+  } catch(e) {}
+}
+
 function handleSocialExtraSubmit(e) {
   e.preventDefault();
   var userType = document.getElementById('extraUserType').value;
   var name = document.getElementById('extraName').value.trim();
   var phone = document.getElementById('extraPhone').value.trim();
   var provider = document.getElementById('extraProvider').value;
+  var birthInput = document.getElementById('extraBirth');
+  var birthVal = birthInput ? birthInput.value.trim() : '-';
+  var genderSelect = document.getElementById('extraGender');
+  var genderVal = genderSelect ? genderSelect.value : '-';
 
   if (!name || !phone) {
     alert('이름과 휴대폰 번호는 필수 입력 항목입니다.');
@@ -2363,6 +2457,19 @@ function handleSocialExtraSubmit(e) {
     closeSocialExtraModal();
     updateStudentLoginUI();
 
+    // 구글 시트 실시간 연동 전송
+    syncMemberToGoogleSheet({
+      action: 'social_login',
+      userType: '학생',
+      name: name,
+      phone: phone,
+      email: provName + '_' + (name || 'student') + '@zenpower.edu',
+      birth: birthVal,
+      gender: genderVal,
+      provider: provName,
+      service: pendingStudentService || '메인화면'
+    });
+
     if (pendingStudentService) {
       var target = pendingStudentService;
       pendingStudentService = null;
@@ -2376,6 +2483,20 @@ function handleSocialExtraSubmit(e) {
     localStorage.setItem('zp_parent_name', name);
     localStorage.setItem('zp_parent_phone', phone);
     closeSocialExtraModal();
+
+    // 구글 시트 실시간 연동 전송
+    syncMemberToGoogleSheet({
+      action: 'social_login',
+      userType: '학부모',
+      name: name,
+      phone: phone,
+      email: provName + '_parent_' + (name || 'parent') + '@zenpower.edu',
+      birth: birthVal,
+      gender: genderVal,
+      provider: provName,
+      service: '학부모상담'
+    });
+
     alert('👨‍👩‍👧 ' + provName + ' 간편인증 완료!\n' + name + ' 학부모님으로 로그인되었습니다.');
   }
 }
@@ -2391,6 +2512,10 @@ function handleLoginFormSubmit(e) {
     var pw = document.getElementById('loginPw').value;
     var pwConfirm = document.getElementById('signupPwConfirm').value;
     var agree = document.getElementById('signupAgree').checked;
+    var birthInput = document.getElementById('signupBirth');
+    var birthVal = birthInput ? birthInput.value.trim() : '-';
+    var genderSelect = document.getElementById('signupGender');
+    var genderVal = genderSelect ? genderSelect.value : '-';
 
     if (!name || !phone || !email || !pw) {
       alert('필수 입력 항목(성명, 휴대폰, 이메일, 비밀번호)을 모두 입력해 주세요.');
@@ -2413,6 +2538,19 @@ function handleLoginFormSubmit(e) {
       closeModal();
       updateStudentLoginUI();
 
+      // 구글 시트 회원가입 연동 전송
+      syncMemberToGoogleSheet({
+        action: 'signup',
+        userType: '학생',
+        name: name,
+        phone: phone,
+        email: email,
+        birth: birthVal,
+        gender: genderVal,
+        provider: '이메일가입',
+        service: pendingStudentService || '메인화면'
+      });
+
       if (pendingStudentService) {
         var target = pendingStudentService;
         pendingStudentService = null;
@@ -2426,6 +2564,20 @@ function handleLoginFormSubmit(e) {
       localStorage.setItem('zp_parent_name', name);
       localStorage.setItem('zp_parent_phone', phone);
       closeModal();
+
+      // 구글 시트 회원가입 연동 전송
+      syncMemberToGoogleSheet({
+        action: 'signup',
+        userType: '학부모',
+        name: name,
+        phone: phone,
+        email: email,
+        birth: birthVal,
+        gender: genderVal,
+        provider: '이메일가입',
+        service: '학부모회원가입'
+      });
+
       alert('🎉 학부모 회원가입 및 로그인이 완료되었습니다.\n' + name + ' 학부모님, 환영합니다!');
     }
     return;
@@ -2448,6 +2600,17 @@ function handleLoginFormSubmit(e) {
     localStorage.setItem('zp_parent_logged', 'true');
     localStorage.setItem('zp_parent_name', idVal);
     closeModal();
+
+    // 구글 시트 로그인 연동 전송
+    syncMemberToGoogleSheet({
+      action: 'login',
+      userType: '학부모',
+      name: idVal,
+      email: idVal,
+      provider: '학부모로그인',
+      service: '학부모상담/서비스'
+    });
+
     alert('👨‍👩‍👧 ' + idVal + ' 계정으로 로그인되었습니다.');
   } else {
     var displayName = (idVal === 'student') ? '수강생' : idVal;
@@ -2456,6 +2619,16 @@ function handleLoginFormSubmit(e) {
 
     closeModal();
     updateStudentLoginUI();
+
+    // 구글 시트 로그인 연동 전송
+    syncMemberToGoogleSheet({
+      action: 'login',
+      userType: '학생',
+      name: displayName,
+      email: idVal,
+      provider: '아이디로그인',
+      service: pendingStudentService || '메인화면'
+    });
 
     if (pendingStudentService) {
       var target = pendingStudentService;
