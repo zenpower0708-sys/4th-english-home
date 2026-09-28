@@ -1779,20 +1779,6 @@ footer {
       <span style="position: absolute; background: #ffffff; padding: 0 12px; font-size: 11px; color: #94a3b8; font-weight: 600;">또는 이메일 계정</span>
     </div>
 
-    <!-- 회원 구분 (학생 / 학부모) 선택 탭 -->
-    <div class="login-types" id="loginTypeTabs" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px;">
-      <button type="button" class="login-type-btn sel" id="btnTypeStudent" onclick="selLoginType(this, 'student')" style="padding: 10px; border-radius: 10px; border: 2px solid #2563eb; background: #eff6ff; cursor: pointer; text-align: center; transition: all 0.2s;">
-        <div style="font-size: 15px;">🎓</div>
-        <div style="font-size: 13px; font-weight: 700; color: #1e3a8a;">학생 회원</div>
-        <div style="font-size: 10.5px; color: #3b82f6;">기출·듣기·모의고사</div>
-      </button>
-      <button type="button" class="login-type-btn" id="btnTypeParent" onclick="selLoginType(this, 'parent')" style="padding: 10px; border-radius: 10px; border: 1px solid #cbd5e1; background: #f8fafc; cursor: pointer; text-align: center; transition: all 0.2s;">
-        <div style="font-size: 15px;">👨‍👩‍👧</div>
-        <div style="font-size: 13px; font-weight: 700; color: #475569;">학부모 회원</div>
-        <div style="font-size: 10.5px; color: #64748b;">상담예약·평가서</div>
-      </button>
-    </div>
-
     <!-- 이메일 로그인 / 회원가입 폼 -->
     <form id="loginForm" onsubmit="handleLoginFormSubmit(event)" style="padding: 0;">
       <!-- 회원가입 모드 전용 필드 -->
@@ -2445,18 +2431,25 @@ function handleLoginFormSubmit(e) {
     return;
   }
 
-  // 로그인 모드
-  if (currentLoginType === 'student') {
-    var idInput = document.getElementById('loginId');
-    var idVal = idInput ? idInput.value.trim() : '';
-    var pwInput = document.getElementById('loginPw');
-    var pwVal = pwInput ? pwInput.value.trim() : '';
+  // 로그인 모드: 학생/회원 통합 로그인
+  var idInput = document.getElementById('loginId');
+  var idVal = idInput ? idInput.value.trim() : '';
+  var pwInput = document.getElementById('loginPw');
+  var pwVal = pwInput ? pwInput.value.trim() : '';
 
-    if (!idVal || !pwVal) {
-      alert('아이디와 비밀번호를 모두 입력해 주세요.\n(체험용: student / 1234)');
-      return;
-    }
+  if (!idVal || !pwVal) {
+    alert('아이디와 비밀번호를 모두 입력해 주세요.\n(체험용: student / 1234)');
+    return;
+  }
 
+  var isParent = (currentLoginType === 'parent' || idVal.toLowerCase().indexOf('parent') !== -1 || idVal.indexOf('학부모') !== -1);
+
+  if (isParent) {
+    localStorage.setItem('zp_parent_logged', 'true');
+    localStorage.setItem('zp_parent_name', idVal);
+    closeModal();
+    alert('👨‍👩‍👧 ' + idVal + ' 계정으로 로그인되었습니다.');
+  } else {
     var displayName = (idVal === 'student') ? '수강생' : idVal;
     localStorage.setItem('zp_student_logged', 'true');
     localStorage.setItem('zp_student_name', displayName);
@@ -2472,12 +2465,6 @@ function handleLoginFormSubmit(e) {
     } else {
       alert('🎓 ' + displayName + ' 학생으로 로그인되었습니다.\n기출문제 은행, 듣기 평가실, 모의고사를 자유롭게 이용하세요.');
     }
-  } else {
-    var idVal = document.getElementById('loginId').value.trim();
-    localStorage.setItem('zp_parent_logged', 'true');
-    localStorage.setItem('zp_parent_name', idVal || '학부모님');
-    closeModal();
-    alert('👨‍👩‍👧 ' + (idVal || '학부모') + ' 계정으로 로그인되었습니다.');
   }
 }
 
@@ -2488,6 +2475,8 @@ function openModal(defaultType, alertHtml) {
   var form = document.getElementById('loginForm');
   if (form) form.style.display = 'block';
 
+  currentLoginType = defaultType || 'student';
+
   document.getElementById('loginModal').classList.add('open');
   var alertBox = document.getElementById('studentLoginAlert');
   if (alertBox) {
@@ -2497,13 +2486,6 @@ function openModal(defaultType, alertHtml) {
     } else {
       alertBox.style.display = 'none';
     }
-  }
-  if (defaultType === 'parent') {
-    var btn = document.getElementById('btnTypeParent');
-    if (btn) selLoginType(btn, 'parent');
-  } else {
-    var btn = document.getElementById('btnTypeStudent');
-    if (btn) selLoginType(btn, 'student');
   }
   setTimeout(function() {
     var idInput = document.getElementById('loginId');
