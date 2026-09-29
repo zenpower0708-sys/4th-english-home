@@ -1178,6 +1178,68 @@ footer {
     word-break: keep-all !important;
   }
 
+  /* ADMISSIONS FLOW 모바일 - 4단 가로 → 2×2 그리드 */
+  .adm-flow {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0 !important;
+    margin-bottom: 24px !important;
+  }
+  .adm-step {
+    padding: 20px 12px !important;
+    border-right: 1px solid var(--border-dark) !important;
+    border-bottom: 1px solid var(--border-dark) !important;
+  }
+  .adm-step:nth-child(2) {
+    border-right: none !important;
+  }
+  .adm-step:nth-child(3) {
+    border-bottom: none !important;
+  }
+  .adm-step:nth-child(4) {
+    border-right: none !important;
+    border-bottom: none !important;
+  }
+  .adm-step::after {
+    display: none !important;
+  }
+  .adm-circle {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 14px !important;
+    margin-bottom: 10px !important;
+  }
+  .adm-title {
+    font-size: 13px !important;
+    word-break: keep-all !important;
+  }
+  .adm-desc {
+    font-size: 11px !important;
+    word-break: keep-all !important;
+  }
+
+  /* ADM SPECIAL 모바일 */
+  .adm-special {
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 20px 16px !important;
+    text-align: center !important;
+  }
+  .adm-special-title {
+    font-size: 14px !important;
+    word-break: keep-all !important;
+  }
+  .adm-special-desc {
+    font-size: 12px !important;
+    word-break: keep-all !important;
+  }
+
+  /* LOCATION GRID 모바일 */
+  .location-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
   /* MONTH CHART 모바일 */
   .month-chart {
     overflow-x: auto !important;
