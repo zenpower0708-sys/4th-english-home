@@ -790,6 +790,67 @@ footer {
 }
 .form-submit:hover { background: var(--navy3); }
 
+/* CONSULT MODAL FORM STYLES */
+.cs-quick-btn {
+  background: rgba(30, 94, 184, 0.08);
+  border: 1px solid rgba(30, 94, 184, 0.2);
+  color: var(--blue);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.cs-quick-btn:hover {
+  background: var(--blue);
+  color: white;
+}
+.cs-radio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  background: #f8fafc;
+  padding: 5px 9px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  user-select: none;
+  transition: all 0.15s;
+}
+.cs-radio-label:hover {
+  border-color: var(--blue);
+}
+.cs-day-chip {
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+}
+.cs-day-chip input {
+  display: none;
+}
+.cs-day-chip span {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+.cs-day-chip input:checked + span {
+  background: var(--navy);
+  color: #ffffff;
+  border-color: var(--navy);
+  box-shadow: 0 2px 6px rgba(10, 22, 40, 0.25);
+}
+
 /* ANIMATIONS */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 .fade-up { animation: fadeUp 0.5s ease forwards; }
@@ -2291,67 +2352,118 @@ footer {
   </div>
 </div>
 
-<!-- CONSULTATION RESERVATION MODAL (학부모 상담 예약 텔레그램 전송) -->
+<!-- CONSULTATION RESERVATION MODAL (레벨테스트 & 1:1 상담 예약 텔레그램 전송) -->
 <div class="modal-overlay" id="consultModal">
-  <div class="modal" style="width: 480px; max-width: 92vw; max-height: 90vh; overflow-y: auto;">
+  <div class="modal" style="width: 520px; max-width: 94vw; max-height: 90vh; overflow-y: auto; padding: 32px 24px;">
     <button class="modal-close" onclick="closeConsultModal()">✕</button>
-    <div class="modal-title" style="display: flex; align-items: center; gap: 10px;">
-      <div style="width: 32px; height: 32px; border-radius: 10px; overflow: hidden; border: 1px solid #bfdbfe; background: #000000; flex-shrink: 0; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.12);">
+    <div class="modal-title" style="display: flex; align-items: center; gap: 10px; font-size: 20px;">
+      <div style="width: 34px; height: 34px; border-radius: 9px; overflow: hidden; border: 1.5px solid #bfdbfe; background: #000000; flex-shrink: 0; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.12);">
         <video autoplay loop muted playsinline poster="images/zenpower_emblem.png" style="width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none;">
           <source src="images/zenpower_logo_video.mp4" type="video/mp4">
           <img src="images/zenpower_emblem.png" alt="젠파워 로고" style="width: 100%; height: 100%; object-fit: contain;">
         </video>
       </div>
-      <span>학부모 상담 예약 신청</span>
+      <span>레벨테스트 &amp; 1:1 상담 예약 신청</span>
     </div>
-    <div class="modal-sub" style="margin-bottom: 20px; font-size: 13px; line-height: 1.6;">
-      작성해주신 상담 예약 내용은 <strong>학원 텔레그램으로 즉시 전송</strong>되어 원장님이 직접 확인 후 기재해주신 연락처로 연락드립니다.
+    <div class="modal-sub" style="margin-bottom: 18px; font-size: 13px; line-height: 1.6; color: var(--text-muted);">
+      작성해주신 예약 내용은 <strong>학원 텔레그램으로 즉시 안전하게 전송</strong>되어 원장님이 직접 확인 후 빠르게 안내 연락드립니다.
     </div>
 
     <form id="consultForm" onsubmit="sendConsultTelegram(event)">
-      <div class="form-field" style="margin-bottom: 14px;">
-        <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 6px;">학생이름 <span style="color:#e24b4a">*</span></label>
-        <input class="form-input" type="text" id="csName" placeholder="예: 김도현" required style="padding: 10px 14px;">
-      </div>
-
-      <div class="form-field" style="margin-bottom: 14px;">
-        <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 6px;">학교 학년 <span style="color:#e24b4a">*</span></label>
-        <input class="form-input" type="text" id="csSchool" placeholder="예: 대청중 2학년 / 경기고 1학년" required style="padding: 10px 14px;">
-      </div>
-
-      <div class="form-field" style="margin-bottom: 14px;">
-        <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 6px;">연락처 <span style="color:#e24b4a">*</span></label>
-        <input class="form-input" type="tel" id="csPhone" placeholder="예: 010-1234-5678" required style="padding: 10px 14px;">
-      </div>
-
-      <div class="form-field" style="margin-bottom: 14px;">
-        <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 6px;">상담통화가능시간</label>
-        <div style="display: flex; gap: 16px; margin-bottom: 8px; padding: 4px 0;">
-          <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer;">
-            <input type="radio" name="csTimeType" value="any" checked onchange="toggleTimeDetail()">
-            상관없음
-          </label>
-          <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer;">
-            <input type="radio" name="csTimeType" value="custom" onchange="toggleTimeDetail()">
-            시간지정
-          </label>
+      <!-- 1. 학생이름 & 학교 학년 (2단 그리드) -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+        <div class="form-field" style="margin-bottom: 0;">
+          <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 5px;">학생이름 <span style="color:#e24b4a">*</span></label>
+          <input class="form-input" type="text" id="csName" placeholder="예: 김도현" required style="padding: 9px 12px;">
         </div>
-        <div id="csTimeDetailWrap" style="display: none; margin-top: 6px;">
-          <input class="form-input" type="text" id="csTimeDetail" placeholder="예: 평일 16:00~18:00 또는 토요일 오전" style="padding: 10px 14px;">
+        <div class="form-field" style="margin-bottom: 0;">
+          <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 5px;">학교 학년 <span style="color:#e24b4a">*</span></label>
+          <input class="form-input" type="text" id="csSchool" placeholder="예: 대청중 2 / 경기고 1" required style="padding: 9px 12px;">
         </div>
       </div>
 
-      <div class="form-field" style="margin-bottom: 18px;">
-        <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 6px;">상담내용</label>
-        <textarea class="form-input" id="csContent" rows="3" placeholder="자녀의 현재 성적, 학습 고민(문법/수능/내신 등), 상담 희망 내용을 적어주세요." style="padding: 10px 14px; resize: vertical;"></textarea>
+      <!-- 2. 학부모 연락처 -->
+      <div class="form-field" style="margin-bottom: 14px;">
+        <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 5px;">학부모 연락처 <span style="color:#e24b4a">*</span></label>
+        <input class="form-input" type="tel" id="csPhone" placeholder="예: 010-1234-5678" required style="padding: 9px 12px;">
       </div>
 
-      <button type="submit" class="form-submit" id="csSubmitBtn" style="background: var(--navy); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; padding: 14px; font-weight: 700; width: 100%;">
-        <span>📨</span> 상담예약전송하기
+      <!-- 3. 상담 신청 날짜와 시간 -->
+      <div class="form-field" style="margin-bottom: 14px; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <label class="form-label" style="font-weight: 600; color: var(--navy); margin-bottom: 5px; display: flex; align-items: center; justify-content: space-between;">
+          <span>📞 상담 신청 날짜와 시간</span>
+          <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">(유선 또는 방문 상담)</span>
+        </label>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px;">
+          <input class="form-input" type="date" id="csConsultDate" style="padding: 8px 10px; font-size: 13px;">
+          <input class="form-input" type="text" id="csConsultTime" placeholder="예: 오후 3시, 저녁 등" style="padding: 8px 10px; font-size: 13px;">
+        </div>
+        <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+          <button type="button" class="cs-quick-btn" onclick="setCsField('csConsultTime', '시간 무관 (편하신 때)')">시간 무관</button>
+          <button type="button" class="cs-quick-btn" onclick="setCsField('csConsultTime', '평일 오후 (15~18시)')">평일 오후</button>
+          <button type="button" class="cs-quick-btn" onclick="setCsField('csConsultTime', '평일 저녁 (18~21시)')">평일 저녁</button>
+          <button type="button" class="cs-quick-btn" onclick="setCsField('csConsultTime', '토요일 오전')">토요일 오전</button>
+        </div>
+      </div>
+
+      <!-- 4. 테스트 예약 날짜와 시간 -->
+      <div class="form-field" style="margin-bottom: 14px; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <label class="form-label" style="font-weight: 600; color: var(--navy); margin-bottom: 5px; display: flex; align-items: center; justify-content: space-between;">
+          <span>📝 테스트 예약 날짜와 시간</span>
+          <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">(원장 직접 레벨테스트)</span>
+        </label>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px;">
+          <input class="form-input" type="date" id="csTestDate" style="padding: 8px 10px; font-size: 13px;">
+          <input class="form-input" type="text" id="csTestTime" placeholder="예: 토요일 14시 등" style="padding: 8px 10px; font-size: 13px;">
+        </div>
+        <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+          <button type="button" class="cs-quick-btn" onclick="setCsField('csTestTime', '상담 후 조율 희망')">상담 후 결정</button>
+          <button type="button" class="cs-quick-btn" onclick="setCsField('csTestTime', '이번 주말 희망')">이번 주말</button>
+          <button type="button" class="cs-quick-btn" onclick="setCsField('csTestTime', '평일 방과후')">평일 방과후</button>
+        </div>
+      </div>
+
+      <!-- 5. 가능한 수업 배정 회수와 요일 -->
+      <div class="form-field" style="margin-bottom: 14px; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <label class="form-label" style="font-weight: 600; color: var(--navy); margin-bottom: 6px;">📚 가능한 수업 배정 회수와 요일</label>
+        
+        <!-- 회수 선택 -->
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px;">
+          <label class="cs-radio-label"><input type="radio" name="csClassCount" value="주 1회"> 주 1회</label>
+          <label class="cs-radio-label"><input type="radio" name="csClassCount" value="주 2회" checked> 주 2회</label>
+          <label class="cs-radio-label"><input type="radio" name="csClassCount" value="주 3회"> 주 3회</label>
+          <label class="cs-radio-label"><input type="radio" name="csClassCount" value="주말 집중반"> 주말반</label>
+          <label class="cs-radio-label"><input type="radio" name="csClassCount" value="상담 후 조율"> 조율 희망</label>
+        </div>
+
+        <!-- 요일 선택 (복수 선택) -->
+        <div style="display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px;">
+          <label class="cs-day-chip"><input type="checkbox" name="csDay" value="월"><span>월</span></label>
+          <label class="cs-day-chip"><input type="checkbox" name="csDay" value="화"><span>화</span></label>
+          <label class="cs-day-chip"><input type="checkbox" name="csDay" value="수"><span>수</span></label>
+          <label class="cs-day-chip"><input type="checkbox" name="csDay" value="목"><span>목</span></label>
+          <label class="cs-day-chip"><input type="checkbox" name="csDay" value="금"><span>금</span></label>
+          <label class="cs-day-chip"><input type="checkbox" name="csDay" value="토"><span>토</span></label>
+          <label class="cs-day-chip"><input type="checkbox" name="csDay" value="일"><span>일</span></label>
+        </div>
+
+        <!-- 세부 시간 메모 -->
+        <input class="form-input" type="text" id="csClassMemo" placeholder="추가 희망 사항 (예: 화·목 18시 이후, 토요일 오전 등)" style="padding: 7px 10px; font-size: 12.5px;">
+      </div>
+
+      <!-- 6. 문의 내용 -->
+      <div class="form-field" style="margin-bottom: 16px;">
+        <label class="form-label" style="font-weight: 600; color: var(--text); margin-bottom: 5px;">문의 내용</label>
+        <textarea class="form-input" id="csContent" rows="3" placeholder="자녀의 현재 성적, 영어 학습 고민(문법/수능/내신 등), 학원에 문의하실 사항을 편하게 적어주세요." style="padding: 10px 12px; resize: vertical; font-size: 13px;"></textarea>
+      </div>
+
+      <!-- 전송 버튼 -->
+      <button type="submit" class="form-submit" id="csSubmitBtn" style="background: var(--navy); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; padding: 14px; font-weight: 700; width: 100%; border-radius: 8px; box-shadow: 0 4px 14px rgba(10,22,40,0.25);">
+        <span>📨</span> 레벨테스트 &amp; 상담 예약 신청하기
       </button>
 
-      <div style="text-align: center; margin-top: 12px; font-size: 11px; color: var(--text-muted);">
-        🔒 신청 즉시 원장님 텔레그램으로 안전하게 알림이 전송됩니다.
+      <div style="text-align: center; margin-top: 10px; font-size: 11px; color: var(--text-muted);">
+        🔒 신청 즉시 원장님 텔레그램으로 안전하게 직통 알림이 전송됩니다.
       </div>
     </form>
   </div>
@@ -3143,13 +3255,11 @@ function selLoginType(el, type) {
   }
 }
 
-function toggleTimeDetail() {
-  var checkedRadio = document.querySelector('input[name="csTimeType"]:checked');
-  var isCustom = checkedRadio && checkedRadio.value === 'custom';
-  var wrap = document.getElementById('csTimeDetailWrap');
-  if (wrap) {
-    wrap.style.display = isCustom ? 'block' : 'none';
-    if (isCustom) document.getElementById('csTimeDetail').focus();
+function setCsField(id, val) {
+  var el = document.getElementById(id);
+  if (el) {
+    el.value = val;
+    el.focus();
   }
 }
 
@@ -3159,27 +3269,51 @@ async function sendConsultTelegram(e) {
   var name = document.getElementById('csName').value.trim();
   var school = document.getElementById('csSchool').value.trim();
   var phone = document.getElementById('csPhone').value.trim();
-  var checkedRadio = document.querySelector('input[name="csTimeType"]:checked');
-  var timeType = checkedRadio ? checkedRadio.value : 'any';
-  var timeDetail = document.getElementById('csTimeDetail').value.trim();
-  var content = document.getElementById('csContent').value.trim() || '별도 기재 없음';
 
-  var timeStr = timeType === 'any' ? '상관없음' : (timeDetail ? '시간지정 (' + timeDetail + ')' : '시간지정 (추후 조율)');
+  // 1. 상담 신청 날짜와 시간
+  var consultDate = document.getElementById('csConsultDate').value.trim();
+  var consultTime = document.getElementById('csConsultTime').value.trim();
+  var consultSchedule = (consultDate ? consultDate : '날짜 미지정') + (consultTime ? ' [' + consultTime + ']' : '');
+
+  // 2. 테스트 예약 날짜와 시간
+  var testDate = document.getElementById('csTestDate').value.trim();
+  var testTime = document.getElementById('csTestTime').value.trim();
+  var testSchedule = (testDate ? testDate : '날짜 미지정') + (testTime ? ' [' + testTime + ']' : '');
+
+  // 3. 가능한 수업 배정 횟수와 요일
+  var countEl = document.querySelector('input[name="csClassCount"]:checked');
+  var classCount = countEl ? countEl.value : '상담 후 조율';
+  
+  var selectedDays = [];
+  document.querySelectorAll('input[name="csDay"]:checked').forEach(function(cb) {
+    selectedDays.push(cb.value);
+  });
+  var daysStr = selectedDays.length > 0 ? selectedDays.join(', ') : '요일 조율 가능';
+  var classMemo = document.getElementById('csClassMemo').value.trim();
+  var classFullInfo = '• 희망 회수: ' + classCount + '\n• 희망 요일: ' + daysStr + (classMemo ? '\n• 세부 메모: ' + classMemo : '');
+
+  // 4. 문의 내용
+  var content = document.getElementById('csContent').value.trim() || '별도 문의 내용 없음';
 
   if (!name || !school || !phone) {
-    alert('학생이름, 학교 학년, 연락처를 모두 입력해 주세요.');
+    alert('학생이름, 학교 학년, 학부모 연락처를 모두 입력해 주세요.');
     return;
   }
 
   var now = new Date();
   var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0') + ' ' + String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
 
-  var msg = '📋 [젠파워 학부모 상담 예약 신청]\n\n' +
+  var msg = '🔔 [젠파워 레벨테스트 & 1:1 상담 예약 신청]\n\n' +
+            '👤 학생 및 학부모 정보\n' +
             '• 학생이름: ' + name + '\n' +
             '• 학교 학년: ' + school + '\n' +
-            '• 연락처: ' + phone + '\n' +
-            '• 상담통화가능시간: ' + timeStr + '\n' +
-            '• 상담내용:\n' + content + '\n\n' +
+            '• 학부모 연락처: ' + phone + '\n\n' +
+            '📅 희망 예약 일정\n' +
+            '• 상담 신청 일시: ' + consultSchedule + '\n' +
+            '• 테스트 예약 일시: ' + testSchedule + '\n\n' +
+            '📚 가능한 수업 배정\n' +
+            classFullInfo + '\n\n' +
+            '💬 문의 내용:\n' + content + '\n\n' +
             '⏰ 접수일시: ' + dateStr;
 
   btn.disabled = true;
@@ -3198,10 +3332,9 @@ async function sendConsultTelegram(e) {
     });
     var data = await res.json();
     if (data.ok) {
-      alert('✅ 학원 텔레그램으로 상담 예약이 성공적으로 접수되었습니다!\n원장님이 확인 후 기재해주신 연락처로 연락드리겠습니다.');
+      alert('✅ 학원 텔레그램으로 레벨테스트 및 상담 예약이 성공적으로 접수되었습니다!\n원장님이 직접 확인 후 기재해주신 연락처로 빠르게 연락드리겠습니다.');
       closeConsultModal();
       document.getElementById('consultForm').reset();
-      toggleTimeDetail();
     } else {
       throw new Error(data.description || '전송 실패');
     }
@@ -3210,7 +3343,7 @@ async function sendConsultTelegram(e) {
     alert('전송 중 오류가 발생했습니다. 학원 전화(02-554-2212)로 문의 부탁드립니다.');
   } finally {
     btn.disabled = false;
-    btn.innerHTML = '<span>📨</span> 상담예약전송하기';
+    btn.innerHTML = '<span>📨</span> 레벨테스트 &amp; 상담 예약 신청하기';
   }
 }
 
