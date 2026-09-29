@@ -193,6 +193,8 @@ body { font-family: 'Noto Sans KR', sans-serif; color: var(--text); background: 
   word-break: keep-all;
 }
 .hero-h1 em { color: var(--gold-light); font-style: normal; }
+.hero-h1-top { display: block; }
+.hero-h1-bot { display: block; margin-top: 6px; }
 .hero-sub {
   font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.8;
   margin-bottom: 36px; max-width: 460px;
@@ -791,6 +793,262 @@ footer {
 /* ANIMATIONS */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 .fade-up { animation: fadeUp 0.5s ease forwards; }
+
+/* ===================================================
+   RESPONSIVE DESIGN (모바일 & 태블릿 최적화)
+   =================================================== */
+.mobile-menu-btn { display: none; }
+.mobile-dict-link { display: none; }
+
+@media (max-width: 900px) {
+  /* TOP BAR */
+  .topbar {
+    padding: 6px 14px !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    align-items: stretch !important;
+  }
+  .topbar-left {
+    display: none !important;
+  }
+  .topbar-right {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    font-size: 11.5px !important;
+  }
+  .topbar-phone {
+    font-size: 12px !important;
+    white-space: nowrap !important;
+  }
+  .topbar-links {
+    display: flex !important;
+    gap: 10px !important;
+    white-space: nowrap !important;
+  }
+  .topbar-links a {
+    font-size: 11px !important;
+    white-space: nowrap !important;
+  }
+
+  /* TICKER */
+  .ticker {
+    padding: 6px 14px !important;
+    gap: 8px !important;
+  }
+  .ticker-badge {
+    font-size: 9px !important;
+    padding: 2px 6px !important;
+  }
+  .ticker-item {
+    font-size: 11.5px !important;
+  }
+
+  /* NAV */
+  .nav {
+    padding: 0 14px !important;
+    height: 56px !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 300 !important;
+  }
+  .logo-zen, .logo-power { font-size: 17px !important; }
+  .logo-eng { display: none !important; }
+  
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 22, 40, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(200, 153, 42, 0.3);
+    padding: 12px 16px;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    z-index: 299;
+  }
+  .nav-menu.mobile-open {
+    display: flex !important;
+  }
+  .nav-menu .nav-item {
+    font-size: 14.5px !important;
+    padding: 10px 14px !important;
+    border-radius: 8px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    color: #ffffff !important;
+  }
+  .mobile-dict-link {
+    display: block !important;
+    color: var(--gold-light) !important;
+    font-weight: 600 !important;
+  }
+  .nav-dict-btn {
+    display: none !important;
+  }
+  .nav-login-btn {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+  }
+  .mobile-menu-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: white;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* HERO */
+  .hero {
+    flex-direction: column !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  .hero-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 30px 16px 20px !important;
+    box-sizing: border-box !important;
+  }
+  .hero-eyebrow {
+    font-size: 11px !important;
+    margin-bottom: 12px !important;
+  }
+  .hero-h1 {
+    font-size: clamp(19px, 5.2vw, 25px) !important;
+    line-height: 1.4 !important;
+    margin-bottom: 14px !important;
+    word-break: keep-all !important;
+    white-space: normal !important;
+  }
+  .hero-h1-top {
+    display: block !important;
+    word-break: keep-all !important;
+  }
+  .hero-h1-bot {
+    display: block !important;
+    margin-top: 4px !important;
+    word-break: keep-all !important;
+  }
+  .hero-sub {
+    font-size: 13.5px !important;
+    line-height: 1.7 !important;
+    margin-bottom: 22px !important;
+    max-width: 100% !important;
+    word-break: keep-all !important;
+  }
+  .hero-ctas {
+    display: flex !important;
+    gap: 8px !important;
+    margin-bottom: 22px !important;
+    width: 100% !important;
+  }
+  .cta-primary, .cta-outline {
+    flex: 1 !important;
+    padding: 12px 8px !important;
+    font-size: 12.5px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+  .hero-trust {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    padding: 12px !important;
+    background: rgba(255,255,255,0.04) !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+  }
+  .trust-num { font-size: 18px !important; }
+  .trust-label { font-size: 11px !important; }
+
+  /* HERO VISUAL (비디오 카드) */
+  .hero-visual {
+    flex: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 8px 16px 36px !important;
+    box-sizing: border-box !important;
+  }
+  .hero-mv-card {
+    max-width: 100% !important;
+  }
+
+  /* STATS RIBBON */
+  .stats-ribbon {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .ribbon-item {
+    padding: 12px 14px !important;
+  }
+  .ribbon-num { font-size: 20px !important; }
+  .ribbon-label { font-size: 10.5px !important; }
+
+  /* SECTION */
+  .section {
+    padding: 45px 16px !important;
+  }
+  .sec-title {
+    font-size: 22px !important;
+    word-break: keep-all !important;
+  }
+  .sec-sub {
+    font-size: 13px !important;
+    margin-bottom: 24px !important;
+    word-break: keep-all !important;
+  }
+
+  /* GRIDS */
+  .quick-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .about-points {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .steps-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .achieve-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .active {
+    grid-template-columns: 1fr !important;
+  }
+  .listen-levels {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+  .exam-setup {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* FOOTER */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+  .footer {
+    padding: 40px 16px 24px !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -830,8 +1088,8 @@ footer {
 
 <!-- NAV -->
 <nav class="nav" id="mainNav">
-  <a href="#top" class="logo" style="display: flex; align-items: center; gap: 10px;">
-    <div style="width: 36px; height: 36px; border-radius: 10px; overflow: hidden; border: 1.5px solid #bfdbfe; background: #000000; flex-shrink: 0; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+  <a href="#top" class="logo" style="display: flex; align-items: center; gap: 8px;">
+    <div style="width: 34px; height: 34px; border-radius: 9px; overflow: hidden; border: 1.5px solid #bfdbfe; background: #000000; flex-shrink: 0; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
       <video autoplay loop muted playsinline poster="images/zenpower_emblem.png" style="width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none;">
         <source src="images/zenpower_logo_video.mp4" type="video/mp4">
         <img src="images/zenpower_emblem.png" alt="젠파워 로고" style="width: 100%; height: 100%; object-fit: contain;">
@@ -842,12 +1100,13 @@ footer {
       <span class="logo-eng">English</span>
     </div>
   </a>
-  <div class="nav-menu">
-    <a href="#about" class="nav-item">학원 소개</a>
-    <a href="#curriculum" class="nav-item">프로그램</a>
-    <a href="#zone" class="nav-item">학습 센터</a>
-    <a href="#info" class="nav-item">입시 정보</a>
-    <a href="#admissions" class="nav-item">입학 안내</a>
+  <div class="nav-menu" id="navMenu">
+    <a href="#about" class="nav-item" onclick="closeMobileMenu()">학원 소개</a>
+    <a href="#curriculum" class="nav-item" onclick="closeMobileMenu()">프로그램</a>
+    <a href="#zone" class="nav-item" onclick="closeMobileMenu()">학습 센터</a>
+    <a href="#info" class="nav-item" onclick="closeMobileMenu()">입시 정보</a>
+    <a href="#admissions" class="nav-item" onclick="closeMobileMenu()">입학 안내</a>
+    <a href="https://service-252219997357.us-west1.run.app/" target="_blank" class="nav-item mobile-dict-link" onclick="closeMobileMenu()">📖 Word Action Master 사전</a>
   </div>
   <div class="nav-right">
     <a href="https://service-252219997357.us-west1.run.app/" target="_blank" class="nav-dict-btn">
@@ -858,6 +1117,13 @@ footer {
       Word Action Master
     </a>
     <button class="nav-login-btn" id="navLoginBtn" onclick="handleNavLoginClick()">로그인</button>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="메뉴 열기/닫기">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
   </div>
 </nav>
 
@@ -866,8 +1132,8 @@ footer {
   <div class="hero-content fade-up">
     <div class="hero-eyebrow">대치동 25년 · 소수정예 원장 직강</div>
     <h1 class="hero-h1">
-      만들어진 실력으로 가는 학원이 아닌<br>
-      <em>실력을 만들어 주는 학원</em>
+      <span class="hero-h1-top">만들어진 실력으로 가는 학원이 아닌</span>
+      <span class="hero-h1-bot"><em>실력을 만들어 주는 학원</em></span>
     </h1>
     <p class="hero-sub">
       최연소 대성학원 부원장 출신 · 고려대 영문 &amp; 캐나다 UBC<br>
@@ -3082,6 +3348,19 @@ document.getElementById('socialExtraModal').addEventListener('click', function(e
 document.getElementById('consultModal').addEventListener('click', function(e) {
   if (e.target === this) closeConsultModal();
 });
+
+function toggleMobileMenu() {
+  var menu = document.getElementById('navMenu');
+  if (menu) {
+    menu.classList.toggle('mobile-open');
+  }
+}
+function closeMobileMenu() {
+  var menu = document.getElementById('navMenu');
+  if (menu) {
+    menu.classList.remove('mobile-open');
+  }
+}
 </script>
 </body>
 </html>
