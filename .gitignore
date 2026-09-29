@@ -1,3 +1,5 @@
 .vercel
 assets/video/
 assets/video/*.mp4
+
+/zenpower_main_title_video.mp4
