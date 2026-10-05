@@ -153,7 +153,7 @@ body { font-family: 'Noto Sans KR', sans-serif; color: var(--text); background: 
 .hero {
   background: var(--navy);
   min-height: 580px;
-  display: flex; align-items: stretch;
+  display: flex; align-items: flex-start;
   position: relative; overflow: hidden;
 }
 .hero::before {
@@ -173,13 +173,13 @@ body { font-family: 'Noto Sans KR', sans-serif; color: var(--text); background: 
   pointer-events: none;
 }
 .hero-content {
-  flex: 1; padding: 80px 40px 80px;
-  display: flex; flex-direction: column; justify-content: center;
+  flex: 1; padding: 50px 40px 60px;
+  display: flex; flex-direction: column; justify-content: flex-start;
   z-index: 2; max-width: 580px;
 }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
   color: var(--gold-light);
 }
@@ -226,8 +226,8 @@ body { font-family: 'Noto Sans KR', sans-serif; color: var(--text); background: 
 .hero-visual {
   flex: 1 1 480px;
   max-width: 560px;
-  display: flex; align-items: center; justify-content: center;
-  padding: 30px 40px 30px 20px; z-index: 2; position: relative;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 88px 40px 60px 20px; z-index: 2; position: relative;
 }
 
 /* STATS RIBBON */
