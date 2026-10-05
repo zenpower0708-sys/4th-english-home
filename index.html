@@ -1350,7 +1350,7 @@ footer {
     </p>
     <div class="hero-ctas">
       <button class="cta-primary" onclick="openConsultModal()">레벨테스트 예약하기</button>
-      <button class="cta-outline" onclick="document.getElementById('zone').scrollIntoView({behavior:'smooth'})">학습 센터 입장</button>
+      <button class="cta-outline" onclick="openStudentLoungeModal()">학습 센터 입장</button>
     </div>
     <div class="hero-trust">
       <div class="trust-item"><span class="trust-num">25</span><span class="trust-label">년 대치동 경력</span></div>
@@ -1749,6 +1749,28 @@ footer {
   <div class="sec-eyebrow">학습 센터</div>
   <div class="sec-title">Learning Zone</div>
   <div class="sec-sub">학생·학부모 전용 학습 공간 — 로그인 후 전체 기능을 이용하세요</div>
+
+  <!-- 1:1 학생 전용 맞춤 학습관 입장 배너 -->
+  <div onclick="openStudentLoungeModal()" style="cursor: pointer; background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%); border-radius: 14px; padding: 18px 22px; color: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(49, 46, 129, 0.35); border: 1.5px solid rgba(167, 139, 250, 0.4); transition: transform 0.15s, box-shadow 0.15s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 14px 35px rgba(49, 46, 129, 0.45)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(49, 46, 129, 0.35)';">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.2);">
+        🎓
+      </div>
+      <div>
+        <div style="font-size: 15.5px; font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span>젠파워 1:1 재원생 전용 맞춤 학습관</span>
+          <span style="font-size: 11px; background: #8b5cf6; color: white; padding: 2px 9px; border-radius: 9999px; font-weight: 700;">1:1 학생 인증</span>
+        </div>
+        <div style="font-size: 12.5px; color: #cbd5e1; margin-top: 4px; line-height: 1.4;">
+          최나원 · 유시열 · 박서영 · 김진서 학생 전용 맞춤 학습관 | 학생 이름과 학부모 연락처로 입장
+        </div>
+      </div>
+    </div>
+    <div style="background: linear-gradient(135deg, #7c3aed, #6366f1); color: white; font-size: 13px; font-weight: 800; padding: 10px 18px; border-radius: 10px; white-space: nowrap; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4); display: flex; align-items: center; gap: 6px;">
+      <span>학습관 입장</span>
+      <span style="font-size: 15px;">➔</span>
+    </div>
+  </div>
 
   <div class="zone-header">
     <div class="zone-login-info" id="zoneLoginInfo">게스트로 접속 중 — 일부 기능만 이용 가능합니다</div>
@@ -2624,7 +2646,159 @@ footer {
   </div>
 </div>
 
+<!-- =================================================================
+     Modal: 젠파워 1:1 학생 인증 및 맞춤 학습관 입장 모달 (Student Lounge Modal)
+     ================================================================= -->
+<div class="modal-overlay" id="studentLoungeModal" style="display: none; z-index: 99999; background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(12px); align-items: center; justify-content: center;">
+  <div style="background: #FFFFFF; border-radius: 24px; width: 92%; max-width: 440px; padding: 36px 30px; box-shadow: 0 25px 60px rgba(0,0,0,0.45); border: 1.5px solid rgba(139, 92, 246, 0.35); text-align: center; position: relative; animation: modalFadeIn 0.3s ease; box-sizing: border-box;">
+    <!-- Close Button -->
+    <button type="button" onclick="closeStudentLoungeModal()" style="position: absolute; top: 18px; right: 18px; color: #94a3b8; font-size: 20px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: none; background: transparent; cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='#1e293b'" onmouseout="this.style.color='#94a3b8'">✕</button>
+
+    <!-- Header Badge -->
+    <div style="display: inline-flex; align-items: center; gap: 6px; background: #EDE9FE; color: #6D28D9; font-size: 11.5px; font-weight: 800; padding: 4px 12px; border-radius: 9999px; margin-bottom: 16px;">
+      <span>⚡ ZENPOWER PRIVATE LOUNGE</span> • <span>1:1 학생 인증</span>
+    </div>
+
+    <h3 style="font-size: 21px; font-weight: 900; color: #1E293B; margin: 0 0 8px 0; letter-spacing: -0.5px;">
+      🎓 젠파워 1:1 학생 맞춤 학습관
+    </h3>
+    <p style="font-size: 13px; color: #64748B; margin: 0 0 22px 0; line-height: 1.5;">
+      등록된 <strong>학생 이름</strong>과 <strong>학부모 연락처</strong>를 입력하시면<br>해당 학생 전용 맞춤형 학습관으로 입장합니다.
+    </p>
+
+    <!-- Login Form -->
+    <form onsubmit="handleStudentLoungeSubmit(event)" style="text-align: left;">
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-size: 13px; font-weight: 800; color: #334155; margin-bottom: 6px;">
+          👤 학생 이름 (Student Name)
+        </label>
+        <input type="text" id="loungeStudentName" placeholder="학생 이름을 입력하세요 (예: 최나원, 유시열, 박서영, 김진서)" required
+               style="width: 100%; padding: 12px 14px; border: 1.5px solid #CBD5E1; border-radius: 10px; font-size: 14px; box-sizing: border-box; font-family: inherit; transition: all 0.2s;"
+               onfocus="this.style.borderColor='#7C3AED'; this.style.boxShadow='0 0 0 3px rgba(124, 58, 237, 0.15)'" onblur="this.style.borderColor='#CBD5E1'; this.style.boxShadow='none'">
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <label style="display: block; font-size: 13px; font-weight: 800; color: #334155; margin-bottom: 6px;">
+          📱 학부모 연락처 (Parent Contact)
+        </label>
+        <input type="text" id="loungeParentPhone" placeholder="학부모 연락처 (예: 010-0000-0000)" required
+               style="width: 100%; padding: 12px 14px; border: 1.5px solid #CBD5E1; border-radius: 10px; font-size: 14px; box-sizing: border-box; font-family: inherit; transition: all 0.2s;"
+               onfocus="this.style.borderColor='#7C3AED'; this.style.boxShadow='0 0 0 3px rgba(124, 58, 237, 0.15)'" onblur="this.style.borderColor='#CBD5E1'; this.style.boxShadow='none'">
+        <span style="font-size: 11px; color: #94A3B8; margin-top: 4px; display: block;">* 하이픈(-) 없이 숫자만 입력하셔도 자동 인식됩니다.</span>
+      </div>
+
+      <!-- Error / Success Message Box -->
+      <div id="loungeErrorMsg" style="display: none; padding: 10px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 700; margin-bottom: 18px; line-height: 1.4;"></div>
+
+      <!-- Submit Button -->
+      <button type="submit" id="btnLoungeSubmit" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #7C3AED, #6366F1); color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 900; cursor: pointer; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35); transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        🚀 학습관 입장하기 (Enter Lounge)
+      </button>
+
+      <!-- 일반 공개 학습센터 둘러보기 버튼 -->
+      <div style="margin-top: 14px; text-align: center;">
+        <button type="button" onclick="closeStudentLoungeModal(); document.getElementById('zone').scrollIntoView({behavior:'smooth'});" style="background: none; border: none; color: #64748B; font-size: 12.5px; text-decoration: underline; cursor: pointer; padding: 6px; font-family: inherit;">
+          📖 일반 공개 학습센터 둘러보기 (기출·듣기·모의고사) ▾
+        </button>
+      </div>
+    </form>
+
+    <div style="margin-top: 20px; font-size: 11.5px; color: #94A3B8; border-top: 1px dashed #E2E8F0; padding-top: 14px;">
+      대치동 젠파워 영어 전문학원 • 프라이빗 학생 포털 보안 인증
+    </div>
+  </div>
+</div>
+
 <script>
+// =================================================================
+// 젠파워 1:1 재원생 전용 맞춤 학습관 데이터 & 입장 시스템
+// 최나원, 유시열, 박서영, 김진서 학생 사이트 연동
+// =================================================================
+var ZEN_STUDENTS = {
+  '최나원': { phone: '01064208215', url: 'https://zenstu114.vercel.app', label: '최나원 학생 맞춤 학습관' },
+  '유시열': { phone: '01066170501', url: 'https://zenstu115.vercel.app', label: '유시열 학생 맞춤 학습관' },
+  '박서영': { phone: '01032368891', url: 'https://zenstu116.vercel.app', label: '박서영 학생 맞춤 학습관' },
+  '김진서': { phone: '01092660214', url: 'https://zenstu117.vercel.app', label: '김진서 학생 맞춤 학습관' }
+};
+
+function openStudentLoungeModal() {
+  var modal = document.getElementById('studentLoungeModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    var err = document.getElementById('loungeErrorMsg');
+    if (err) err.style.display = 'none';
+    var nameInput = document.getElementById('loungeStudentName');
+    if (nameInput) {
+      nameInput.value = '';
+      setTimeout(function() { nameInput.focus(); }, 150);
+    }
+    var phoneInput = document.getElementById('loungeParentPhone');
+    if (phoneInput) phoneInput.value = '';
+  }
+}
+
+function closeStudentLoungeModal() {
+  var modal = document.getElementById('studentLoungeModal');
+  if (modal) modal.style.display = 'none';
+}
+
+function handleStudentLoungeSubmit(event) {
+  if (event) event.preventDefault();
+  var nameInput = document.getElementById('loungeStudentName');
+  var phoneInput = document.getElementById('loungeParentPhone');
+  var errorBox = document.getElementById('loungeErrorMsg');
+  var submitBtn = document.getElementById('btnLoungeSubmit');
+
+  var inputName = nameInput ? nameInput.value.trim().replace(/\s+/g, '') : '';
+  var inputPhone = phoneInput ? phoneInput.value.trim().replace(/[^0-9]/g, '') : '';
+
+  var target = ZEN_STUDENTS[inputName];
+
+  if (target && target.phone === inputPhone) {
+    // 1:1 학생 인증 성공
+    if (errorBox) {
+      errorBox.style.display = 'block';
+      errorBox.style.background = '#ECFDF5';
+      errorBox.style.border = '1px solid #A7F3D0';
+      errorBox.style.color = '#065F46';
+      errorBox.innerHTML = '🎉 ' + inputName + ' 학생 인증 성공! 젠파워 맞춤 학습관으로 입장합니다💖';
+    }
+    if (submitBtn) {
+      submitBtn.innerHTML = '✅ 인증 완료! 학습관 이동 중...';
+      submitBtn.style.background = '#10B981';
+    }
+
+    // 메인 홈 학생 로그인 상태 저장
+    localStorage.setItem('zp_student_logged', 'true');
+    localStorage.setItem('zp_student_name', inputName);
+    localStorage.setItem('zp_student_phone', inputPhone);
+    updateStudentLoginUI();
+
+    setTimeout(function() {
+      closeStudentLoungeModal();
+      window.open(target.url + '?auth=auto', '_blank');
+      if (submitBtn) {
+        submitBtn.innerHTML = '🚀 학습관 입장하기 (Enter Lounge)';
+        submitBtn.style.background = 'linear-gradient(135deg, #7C3AED, #6366F1)';
+      }
+    }, 600);
+  } else {
+    // 인증 실패 / 불일치
+    if (errorBox) {
+      errorBox.style.display = 'block';
+      errorBox.style.background = '#FEF2F2';
+      errorBox.style.border = '1px solid #FECACA';
+      errorBox.style.color = '#DC2626';
+      errorBox.innerHTML = '⚠️ 등록된 학생 이름 또는 학부모 연락처와 일치하지 않습니다.<br><span style="font-size:11px;font-weight:normal;color:#991B1B;">(등록 원생: 최나원, 유시열, 박서영, 김진서 등)</span>';
+    }
+    if (nameInput && !target) {
+      nameInput.focus();
+    } else if (phoneInput) {
+      phoneInput.focus();
+    }
+  }
+}
+
 // CURRICULUM TABS
 function currTab(name, el) {
   document.querySelectorAll('.curr-tab').forEach(t => t.classList.remove('active'));
@@ -2647,11 +2821,7 @@ function setZoneUser(type) {
   if (type === 'guest') {
     logoutStudent(false);
   } else if (type === 'student') {
-    if (isStudentLoggedIn()) {
-      alert('이미 ' + getStudentName() + ' 학생으로 로그인되어 있습니다.');
-    } else {
-      openModal('student', '🔒 <strong>학생 전용 학습 공간</strong>입니다. 학생 로그인 후 기출문제·듣기·모의고사를 자유롭게 이용하세요.');
-    }
+    openStudentLoungeModal();
   } else {
     document.querySelectorAll('.zone-badge').forEach(b => { b.classList.remove('active'); b.classList.remove('guest-active'); });
     document.getElementById('zbParent').classList.add('active');
@@ -2799,7 +2969,7 @@ function handleNavLoginClick() {
       logoutStudent(true);
     }
   } else {
-    openModal('student');
+    openStudentLoungeModal();
   }
 }
 
@@ -3375,8 +3545,7 @@ function triggerSoundOnFirstInteraction() {
 function handleMvCenterAction() {
   var v = document.getElementById('heroMvVideo');
   if (v) v.pause();
-  var zone = document.getElementById('zone');
-  if (zone) zone.scrollIntoView({ behavior: 'smooth' });
+  openStudentLoungeModal();
 }
 
 function toggleHeroLyrics() {
