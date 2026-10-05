@@ -2672,7 +2672,7 @@ footer {
         <label style="display: block; font-size: 13px; font-weight: 800; color: #334155; margin-bottom: 6px;">
           👤 학생 이름 (Student Name)
         </label>
-        <input type="text" id="loungeStudentName" placeholder="학생 이름을 입력하세요 (예: 최나원, 유시열, 박서영, 김진서)" required
+        <input type="text" id="loungeStudentName" placeholder="학생 이름을 입력하세요" required
                style="width: 100%; padding: 12px 14px; border: 1.5px solid #CBD5E1; border-radius: 10px; font-size: 14px; box-sizing: border-box; font-family: inherit; transition: all 0.2s;"
                onfocus="this.style.borderColor='#7C3AED'; this.style.boxShadow='0 0 0 3px rgba(124, 58, 237, 0.15)'" onblur="this.style.borderColor='#CBD5E1'; this.style.boxShadow='none'">
       </div>
@@ -2681,7 +2681,7 @@ footer {
         <label style="display: block; font-size: 13px; font-weight: 800; color: #334155; margin-bottom: 6px;">
           📱 학부모 연락처 (Parent Contact)
         </label>
-        <input type="text" id="loungeParentPhone" placeholder="학부모 연락처 (예: 010-0000-0000)" required
+        <input type="text" id="loungeParentPhone" placeholder="학부모 연락처를 입력하세요" required
                style="width: 100%; padding: 12px 14px; border: 1.5px solid #CBD5E1; border-radius: 10px; font-size: 14px; box-sizing: border-box; font-family: inherit; transition: all 0.2s;"
                onfocus="this.style.borderColor='#7C3AED'; this.style.boxShadow='0 0 0 3px rgba(124, 58, 237, 0.15)'" onblur="this.style.borderColor='#CBD5E1'; this.style.boxShadow='none'">
         <span style="font-size: 11px; color: #94A3B8; margin-top: 4px; display: block;">* 하이픈(-) 없이 숫자만 입력하셔도 자동 인식됩니다.</span>
@@ -2694,13 +2694,6 @@ footer {
       <button type="submit" id="btnLoungeSubmit" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #7C3AED, #6366F1); color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 900; cursor: pointer; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35); transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         🚀 학습관 입장하기 (Enter Lounge)
       </button>
-
-      <!-- 일반 공개 학습센터 둘러보기 버튼 -->
-      <div style="margin-top: 14px; text-align: center;">
-        <button type="button" onclick="closeStudentLoungeModal(); document.getElementById('zone').scrollIntoView({behavior:'smooth'});" style="background: none; border: none; color: #64748B; font-size: 12.5px; text-decoration: underline; cursor: pointer; padding: 6px; font-family: inherit;">
-          📖 일반 공개 학습센터 둘러보기 (기출·듣기·모의고사) ▾
-        </button>
-      </div>
     </form>
 
     <div style="margin-top: 20px; font-size: 11.5px; color: #94A3B8; border-top: 1px dashed #E2E8F0; padding-top: 14px;">
@@ -2789,7 +2782,7 @@ function handleStudentLoungeSubmit(event) {
       errorBox.style.background = '#FEF2F2';
       errorBox.style.border = '1px solid #FECACA';
       errorBox.style.color = '#DC2626';
-      errorBox.innerHTML = '⚠️ 등록된 학생 이름 또는 학부모 연락처와 일치하지 않습니다.<br><span style="font-size:11px;font-weight:normal;color:#991B1B;">(등록 원생: 최나원, 유시열, 박서영, 김진서 등)</span>';
+      errorBox.innerHTML = '⚠️ 등록된 학생 이름 또는 학부모 연락처와 일치하지 않습니다.<br><span style="font-size:11px;font-weight:normal;color:#991B1B;">(정확한 정보 확인 후 다시 입력해 주세요)</span>';
     }
     if (nameInput && !target) {
       nameInput.focus();
