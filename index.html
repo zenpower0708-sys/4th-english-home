@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
 <title>젠파워 영어 — 대치동 25년 소수정예 영어학원</title>
 
 <!-- 홈화면 추가 & PWA 앱 아이콘 & 파비콘 (학원 공식 로고 적용) -->
@@ -749,44 +749,60 @@ footer {
 
 /* LOGIN MODAL */
 .modal-overlay {
-  position: fixed; inset: 0; z-index: 1000;
-  background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+  position: fixed; inset: 0; z-index: 99999;
+  background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(8px);
   display: none; align-items: center; justify-content: center;
+  padding: 16px;
+  padding-top: max(16px, env(safe-area-inset-top));
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
 }
 .modal-overlay.open { display: flex; }
 .modal {
-  background: white; border-radius: 16px; padding: 40px;
-  width: 400px; max-width: 90vw; position: relative;
+  background: white; border-radius: 20px; padding: 32px 24px;
+  width: 100%; max-width: 440px; position: relative;
+  box-sizing: border-box;
+  max-height: min(92vh, 92dvh);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: auto;
 }
 .modal-close {
-  position: absolute; top: 16px; right: 16px;
-  background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted);
+  position: absolute; top: 14px; right: 14px;
+  background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text-muted);
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
 }
-.modal-title { font-family: 'Noto Serif KR', serif; font-size: 22px; font-weight: 700; margin-bottom: 6px; }
-.modal-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; }
-.login-types { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+.modal-title { font-family: 'Noto Serif KR', serif; font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+.modal-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
+.login-types { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
 .login-type-btn {
-  padding: 14px; border-radius: 8px; cursor: pointer; text-align: center;
+  padding: 12px 8px; border-radius: 8px; cursor: pointer; text-align: center;
   border: 2px solid var(--border-dark); background: white; font-family: inherit;
   transition: all 0.2s;
 }
 .login-type-btn:hover, .login-type-btn.sel { border-color: var(--blue); background: #f0f6ff; }
-.login-type-icon { font-size: 24px; margin-bottom: 6px; }
+.login-type-icon { font-size: 22px; margin-bottom: 4px; }
 .login-type-name { font-size: 13px; font-weight: 600; color: var(--text); }
 .login-type-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 .form-field { margin-bottom: 14px; }
 .form-label { font-size: 12px; font-weight: 500; margin-bottom: 5px; display: block; color: var(--text-muted); }
 .form-input {
-  width: 100%; padding: 10px 14px; border-radius: 6px;
-  border: 1px solid var(--border-dark); font-size: 14px; font-family: inherit;
-  outline: none; transition: border-color 0.2s;
+  width: 100%; padding: 11px 13px; border-radius: 8px;
+  border: 1px solid var(--border-dark); font-size: 16px; font-family: inherit;
+  outline: none; transition: border-color 0.2s; box-sizing: border-box;
+  -webkit-appearance: none; appearance: none;
 }
 .form-input:focus { border-color: var(--blue); }
 .form-submit {
   width: 100%; padding: 13px; border-radius: 8px;
   background: var(--navy); color: white; border: none;
-  font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;
-  transition: background 0.2s;
+  font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit;
+  transition: background 0.2s; -webkit-appearance: none;
 }
 .form-submit:hover { background: var(--navy3); }
 
@@ -1010,16 +1026,25 @@ footer {
   }
   .hero-ctas {
     display: flex !important;
+    flex-wrap: wrap !important;
     gap: 8px !important;
     margin-bottom: 22px !important;
     width: 100% !important;
   }
-  .cta-primary, .cta-outline {
-    flex: 1 !important;
-    padding: 12px 8px !important;
-    font-size: 12.5px !important;
+  .cta-primary {
+    width: 100% !important;
+    padding: 13px 12px !important;
+    font-size: 13.5px !important;
+    text-align: center !important;
+    border-radius: 8px !important;
+  }
+  .cta-outline {
+    flex: 1 1 calc(50% - 4px) !important;
+    padding: 11px 6px !important;
+    font-size: 12px !important;
     text-align: center !important;
     white-space: nowrap !important;
+    border-radius: 8px !important;
   }
   .hero-trust {
     display: grid !important;
@@ -1252,6 +1277,33 @@ footer {
   }
   .footer {
     padding: 40px 16px 24px !important;
+  }
+
+  /* MODALS 모바일 최적화 (아이폰 & 삼성 갤럭시 전 기종 지원) */
+  .modal-overlay {
+    padding: 12px !important;
+    padding-top: max(12px, env(safe-area-inset-top)) !important;
+    padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
+    padding-left: max(12px, env(safe-area-inset-left)) !important;
+    padding-right: max(12px, env(safe-area-inset-right)) !important;
+  }
+  .modal {
+    padding: 24px 18px !important;
+    border-radius: 18px !important;
+    max-width: 100% !important;
+    max-height: 88dvh !important;
+  }
+  .modal-close {
+    top: 12px !important;
+    right: 12px !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 18px !important;
+  }
+  .student-lounge-box {
+    padding: 24px 16px !important;
+    border-radius: 18px !important;
+    max-height: 88dvh !important;
   }
 }
 </style>
@@ -2651,48 +2703,48 @@ footer {
      Modal: 젠파워 1:1 학생 인증 및 맞춤 학습관 입장 모달 (Student Lounge Modal)
      ================================================================= -->
 <div class="modal-overlay" id="studentLoungeModal" style="display: none; z-index: 99999; background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(12px); align-items: center; justify-content: center;">
-  <div style="background: #FFFFFF; border-radius: 24px; width: 92%; max-width: 440px; padding: 36px 30px; box-shadow: 0 25px 60px rgba(0,0,0,0.45); border: 1.5px solid rgba(139, 92, 246, 0.35); text-align: center; position: relative; animation: modalFadeIn 0.3s ease; box-sizing: border-box;">
+  <div class="student-lounge-box" style="background: #FFFFFF; border-radius: 24px; width: 100%; max-width: 440px; padding: 36px 28px; box-shadow: 0 25px 60px rgba(0,0,0,0.45); border: 1.5px solid rgba(139, 92, 246, 0.35); text-align: center; position: relative; animation: modalFadeIn 0.3s ease; box-sizing: border-box; max-height: min(92vh, 92dvh); overflow-y: auto; -webkit-overflow-scrolling: touch; margin: auto;">
     <!-- Close Button -->
-    <button type="button" onclick="closeStudentLoungeModal()" style="position: absolute; top: 18px; right: 18px; color: #94a3b8; font-size: 20px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: none; background: transparent; cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='#1e293b'" onmouseout="this.style.color='#94a3b8'">✕</button>
+    <button type="button" onclick="closeStudentLoungeModal()" style="position: absolute; top: 16px; right: 16px; color: #94a3b8; font-size: 20px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: none; background: transparent; cursor: pointer; transition: color 0.15s;" onmouseover="this.style.color='#1e293b'" onmouseout="this.style.color='#94a3b8'">✕</button>
 
     <!-- Header Badge -->
     <div style="display: inline-flex; align-items: center; gap: 6px; background: #EDE9FE; color: #6D28D9; font-size: 11.5px; font-weight: 800; padding: 4px 12px; border-radius: 9999px; margin-bottom: 16px;">
       <span id="loungeBadgeEn">⚡ ZENPOWER PRIVATE LOUNGE</span> • <span id="loungeBadgeKo">1:1 학생 인증</span>
     </div>
 
-    <h3 id="loungeTitle" style="font-size: 21px; font-weight: 900; color: #1E293B; margin: 0 0 8px 0; letter-spacing: -0.5px;">
+    <h3 id="loungeTitle" style="font-size: 20px; font-weight: 900; color: #1E293B; margin: 0 0 8px 0; letter-spacing: -0.5px;">
       🎓 젠파워 1:1 학생 맞춤 학습관
     </h3>
-    <p id="loungeDesc" style="font-size: 13px; color: #64748B; margin: 0 0 22px 0; line-height: 1.5;">
+    <p id="loungeDesc" style="font-size: 13px; color: #64748B; margin: 0 0 20px 0; line-height: 1.5;">
       등록된 <strong>학생 이름</strong>과 <strong>학부모 연락처</strong>를 입력하시면<br>해당 학생 전용 맞춤형 학습관으로 입장합니다.
     </p>
 
     <!-- Login Form -->
     <form onsubmit="handleStudentLoungeSubmit(event)" style="text-align: left;">
-      <div style="margin-bottom: 16px;">
-        <label style="display: block; font-size: 13px; font-weight: 800; color: #334155; margin-bottom: 6px;">
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; font-size: 12.5px; font-weight: 800; color: #334155; margin-bottom: 5px;">
           👤 학생 이름 (Student Name)
         </label>
         <input type="text" id="loungeStudentName" placeholder="학생 이름을 입력하세요" required
-               style="width: 100%; padding: 12px 14px; border: 1.5px solid #CBD5E1; border-radius: 10px; font-size: 14px; box-sizing: border-box; font-family: inherit; transition: all 0.2s;"
+               style="width: 100%; padding: 12px 14px; border: 1.5px solid #CBD5E1; border-radius: 10px; font-size: 16px; box-sizing: border-box; font-family: inherit; transition: all 0.2s; -webkit-appearance: none; appearance: none;"
                onfocus="this.style.borderColor='#7C3AED'; this.style.boxShadow='0 0 0 3px rgba(124, 58, 237, 0.15)'" onblur="this.style.borderColor='#CBD5E1'; this.style.boxShadow='none'">
       </div>
 
-      <div style="margin-bottom: 18px;">
-        <label style="display: block; font-size: 13px; font-weight: 800; color: #334155; margin-bottom: 6px;">
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-size: 12.5px; font-weight: 800; color: #334155; margin-bottom: 5px;">
           📱 학부모 연락처 (Parent Contact)
         </label>
-        <input type="text" id="loungeParentPhone" placeholder="학부모 연락처를 입력하세요" required
-               style="width: 100%; padding: 12px 14px; border: 1.5px solid #CBD5E1; border-radius: 10px; font-size: 14px; box-sizing: border-box; font-family: inherit; transition: all 0.2s;"
+        <input type="tel" id="loungeParentPhone" placeholder="학부모 연락처를 입력하세요" required
+               style="width: 100%; padding: 12px 14px; border: 1.5px solid #CBD5E1; border-radius: 10px; font-size: 16px; box-sizing: border-box; font-family: inherit; transition: all 0.2s; -webkit-appearance: none; appearance: none;"
                onfocus="this.style.borderColor='#7C3AED'; this.style.boxShadow='0 0 0 3px rgba(124, 58, 237, 0.15)'" onblur="this.style.borderColor='#CBD5E1'; this.style.boxShadow='none'">
         <span style="font-size: 11px; color: #94A3B8; margin-top: 4px; display: block;">* 하이픈(-) 없이 숫자만 입력하셔도 자동 인식됩니다.</span>
       </div>
 
       <!-- Error / Success Message Box -->
-      <div id="loungeErrorMsg" style="display: none; padding: 10px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 700; margin-bottom: 18px; line-height: 1.4;"></div>
+      <div id="loungeErrorMsg" style="display: none; padding: 10px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 700; margin-bottom: 16px; line-height: 1.4;"></div>
 
       <!-- Submit Button -->
-      <button type="submit" id="btnLoungeSubmit" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #7C3AED, #6366F1); color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 900; cursor: pointer; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35); transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+      <button type="submit" id="btnLoungeSubmit" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #7C3AED, #6366F1); color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 900; cursor: pointer; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35); transition: transform 0.15s; -webkit-appearance: none; appearance: none;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         🚀 학습관 입장하기 (Enter Lounge)
       </button>
     </form>
